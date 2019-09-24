@@ -1,18 +1,23 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+let mongoose = require("mongoose")
 
-const userSchema = new Schema(
-  {
-    username: String,
-    password: String,
-  },
-  {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
+// do a user and userprofile 
+
+let userSchema = mongoose.Schema(
+
+    {
+        username: String,
+        email: String,
+        emoji_img: String,
+        questions: [String],
+        presentation: String,
+        abonnements: [],
+        favs: [],
+        interests: []
     },
-  }
+        { timestamps: true }
+
 )
 
-const User = mongoose.model('User', userSchema)
-module.exports = User
+let userModel = mongoose.model( "user", userSchema)
+
+module.exports= userModel
