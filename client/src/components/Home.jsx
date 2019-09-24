@@ -1,7 +1,17 @@
 import React from 'react'
+import NavBar from "./../components/Admin/NavBar"
+import Signup from "./Signup"
+
 
 function Home() {
-    return <div>voici le home</div>
-}
+    return (
+        <div>
+            <NavBar />
+            <Signup />
 
-export default Home
+        </div>
+
+    )
+
+}
+export default Home;

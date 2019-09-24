@@ -3,7 +3,7 @@
 // require("dotenv").config()
 
 // app.get("/", (req, res, next) => {
-  
+
 //   res.send("works")
 // })
 
@@ -17,11 +17,6 @@
 
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '.env') })
-
-
-
-
-
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')

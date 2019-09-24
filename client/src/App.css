@@ -5,3 +5,16 @@
 .td,th{
    border:solid 1px black;
 }
+.signup-container{
+  display:flex;
+  background:#FFE500;
+  width:50%;
+  justify-content: center;  
+  box-shadow: 5px 5px 1px 5px #FFBD59;
+}
+
+.Signup{
+  width:50%;
+  justify-content: center;
+ 
+}
