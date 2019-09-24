@@ -8,11 +8,13 @@ import Admin from './components/Admin/Admin'
 function App() {
   return (
     <div className="App">
+      
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/secret-admin-page" component={Admin} />
         <Route render={() => <h1>404</h1>} />
       </Switch>
+      
     </div>
   );
 }
