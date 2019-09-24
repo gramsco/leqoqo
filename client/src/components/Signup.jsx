@@ -4,8 +4,11 @@ import React, { useState } from 'react'
 function Signup(props) {
     return (
         <div className="signup-container">
-            <div className="Signup">
+            <div className="heading">
                 <h2>Signup</h2>
+
+            </div>
+            <div className="Signup">
                 <form>
                     Username:{' '}
                     <input
@@ -31,7 +34,7 @@ function Signup(props) {
                         name="password"
                     // onChange={handleInputChange}
                     />{' '}
-                    <br />
+                    <br />  <br />
                     <button>Signup</button>
                     {/*  //onClick={e => handleClick(e)} */}
                 </form>
