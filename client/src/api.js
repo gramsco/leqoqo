@@ -91,32 +91,45 @@ export default {
       .catch(errHandler)
   },
 
+  getUsers() {
+    return service
+      .get("/users")
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  newUser(body) {
+    return service
+      .post("/users", body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteUser(id) {
+    return service
+      .delete("/users/" + id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getSubscriptions() {
+    return service
+      .get("/subscriptions")
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   newSubscription(body) {
     console.log(body)
     return service
       .post("/subscriptions", body)
       .then(res => res.data)
       .catch(errHandler)
-
   },
 
-  getCountries() {
+  deleteSubscription(id) {
     return service
-      .get('/countries')
-      .then(res => res.data)
-      .catch(errHandler)
-  },
-
-  addCountry(body) {
-    return service
-      .post('/countries', body)
-      .then(res => res.data)
-      .catch(errHandler)
-  },
-
-  getSecret() {
-    return service
-      .get('/secret')
+      .delete("/subscriptions/" + id)
       .then(res => res.data)
       .catch(errHandler)
   },

@@ -5,7 +5,7 @@ import api from '../api'
 function Signup(props) {
     const [state, setState] = useState({
         email: '',
-        name: '',
+        username: '',
         password: '',
         message: null,
     })
