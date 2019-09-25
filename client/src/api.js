@@ -91,6 +91,15 @@ export default {
       .catch(errHandler)
   },
 
+  newSubscription(body) {
+    console.log(body)
+    return service
+      .post("/subscriptions", body)
+      .then(res => res.data)
+      .catch(errHandler)
+
+  },
+
   getCountries() {
     return service
       .get('/countries')

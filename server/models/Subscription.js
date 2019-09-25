@@ -6,10 +6,11 @@ let SubscriptionSchema = mongoose.Schema(
 
   {
     name: String,
-    cat: [{
+    cat: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category"
-    }],
+    },
+    organization:String,
     description: String,
     image_url:String
   },

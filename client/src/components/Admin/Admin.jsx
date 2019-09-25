@@ -8,7 +8,7 @@ import Categories from "./Categories"
 
 function Admin(props) {
 
-    const [select, setSelect] = useState("categories")
+    const [select, setSelect] = useState("subscriptions")
 
     return (
       <main>
