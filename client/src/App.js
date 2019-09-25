@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Admin from './components/Admin/Admin'
 import NewSubscription from './components/Admin/NewSubscription'
 import Signup from "./components/Signup"
+import UserProfile from "./components/UserProfile"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/secret-admin-page" component={Admin} />
         <Route exact path="/Signup" component={Signup} />
+        <Route exact path="/UserProfile" component={UserProfile} />
         <Route render={() => <h1>404</h1>} />
       </Switch>
 
