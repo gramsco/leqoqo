@@ -27,5 +27,43 @@
   text-align:center;
   color:white;
 
+}
+
+.userprofile-container{
+  display:flex;
+  flex-direction: column;
+  margin-left:40px;
+  align-items:center;
+
+
+}
+.profile-image{
+  height: 185px;
+  width: 15%;
+
+  /* box-shadow: 5px 5px 5px 5px red; */
+  font-size:170px;
+}
+.selector{
+  width:20%;
+  margin-top:10px;
+
+}
+.inputEmoji{
+  font-size:30px;
+}
+.head{
+  display:flex;
+ 
+}
+.something-about-you{
+  font-family: 'Mansalva', cursive;
+}
+.question-container{
+  display:flex;
+  justify-content: space-between;
+}
+.small-questions{
+  width:50%;
 
 }

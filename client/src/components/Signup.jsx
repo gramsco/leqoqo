@@ -5,7 +5,7 @@ import api from '../api'
 function Signup(props) {
     const [state, setState] = useState({
         email: '',
-        name: '',
+        username: '',
         password: '',
         message: null,
     })
@@ -28,7 +28,7 @@ function Signup(props) {
             .signup(data)
             .then(result => {
                 console.log('SUCCESS!')
-                props.history.push('/') // Redirect to the home page
+                props.history.push('/UserProfile') // Redirect to the home page
             })
             .catch(err => setState({ message: err.toString() }))
     }
