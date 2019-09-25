@@ -5,6 +5,7 @@ import { BrowserRouter, Link, NavLink, Route, Switch } from 'react-router-dom'
 import Home from './components/Home'
 import Admin from './components/Admin/Admin'
 import NewSubscription from './components/Admin/NewSubscription'
+import Signup from "./components/Signup"
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/secret-admin-page" component={Admin} />
+        <Route exact path="/Signup" component={Signup} />
         <Route render={() => <h1>404</h1>} />
       </Switch>
-      
+
     </div>
   );
 }
