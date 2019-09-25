@@ -4,25 +4,28 @@ import Users from "./Users"
 import Tags from "./Tags"
 import Subscriptions from "./Subscriptions"
 import NavBar from "./NavBar"
+import Categories from "./Categories"
 
 function Admin(props) {
 
-    const [select, setSelect] = useState("subscriptions")
+    const [select, setSelect] = useState("categories")
 
     return (
-        <main>
-            <select onChange={(e) => setSelect(e.target.value)} value={select}>
-                <option value="users">Users</option>
-                <option value="subscriptions">Subscriptions</option>
-                <option value="tags">Tags</option>
-            </select>
-            <hr />
-            
-            {select === "users" && <Users />}
-            {select === "subscriptions" && <Subscriptions />}
-            {select === "tags" && <Tags />}
+      <main>
+        <select onChange={e => setSelect(e.target.value)} value={select}>
+          <option value="users">Users</option>
+          <option value="subscriptions">Subscriptions</option>
+          <option value="tags">Tags</option>
+          <option value="categories">Categories</option>
+        </select>
+        <hr />
 
-        </main>
+        {select === 'users' && <Users />}
+        {select === 'subscriptions' && <Subscriptions />}
+        {select === 'tags' && <Tags />}
+        {select === 'categories' && <Categories />}
+        {/* {NewSubscription} */}
+      </main>
     )
 
 }

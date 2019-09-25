@@ -68,6 +68,29 @@ export default {
 
   // This is an example on how to use this method in a different file
   // api.getCountries().then(countries => { /* ... */ })
+  
+  getCategories() {
+    return service
+      .get('/categories')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  newCategory(body) {
+    return service
+      .post('/categories', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  destroyCategory(params) {
+    
+    return service
+      .delete('/categories/'+params)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getCountries() {
     return service
       .get('/countries')

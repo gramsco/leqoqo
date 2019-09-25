@@ -29,7 +29,7 @@ let UserProfileSchema = mongoose.Schema(
         }],
         interests: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Interest"
+            ref: "Category"
         }]
     },
     { timestamps: true }
