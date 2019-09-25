@@ -38,7 +38,7 @@ export default {
   // This method signs up and logs in the user
   signup(userInfo) {
     return service
-      .post('/signup', userInfo)
+      .post('/Signup', userInfo)
       .then(res => {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
@@ -68,7 +68,7 @@ export default {
 
   // This is an example on how to use this method in a different file
   // api.getCountries().then(countries => { /* ... */ })
-  
+
   getCategories() {
     return service
       .get('/categories')
@@ -84,9 +84,9 @@ export default {
   },
 
   destroyCategory(params) {
-    
+
     return service
-      .delete('/categories/'+params)
+      .delete('/categories/' + params)
       .then(res => res.data)
       .catch(errHandler)
   },

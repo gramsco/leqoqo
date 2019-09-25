@@ -7,21 +7,21 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
-router.post('/signup', (req, res, next) => {
-  const { username, password, name } = req.body
-  if (!username || !password) {
-    res.status(400).json({ message: 'Indicate username and password' })
+router.post('/Signup', (req, res, next) => {
+  const { username, email, password } = req.body
+  if (!email || !password) {
+    res.status(400).json({ message: 'Indicate email and password' })
     return
   }
-  User.findOne({ username })
+  User.findOne({ email })
     .then(userDoc => {
       if (userDoc !== null) {
-        res.status(409).json({ message: 'The username already exists' })
+        res.status(409).json({ message: 'The user already exists' })
         return
       }
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(password, salt)
-      const newUser = new User({ username, password: hashPass, name })
+      const newUser = new User({ username, email, password: hashPass })
       return newUser.save()
     })
     .then(userSaved => {

@@ -7,8 +7,7 @@ function Home() {
     return (
         <div>
             <NavBar />
-            <Signup />
-
+            <p>This is Home Page</p>
         </div>
 
     )
