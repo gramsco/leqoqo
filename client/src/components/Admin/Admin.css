@@ -1,0 +1,11 @@
+.rotate{
+  animation: sk-bounce 2.0s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes sk-bounce {
+   100% { 
+    transform:rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}

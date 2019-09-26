@@ -4,6 +4,8 @@ const router = express.Router()
 const CategoryModel = require("../models/Category")
 const SubscriptionModel = require("../models/Subscription")
 const UserModel = require("../models/User")
+const PlaceModel = require("../models/Place")
+const EventModel = require("../models/Event")
 
 //encryption
 const bcrypt = require('bcrypt')
@@ -72,7 +74,7 @@ router.get("/subscriptions", (req, res, next) => {
 router.post('/subscriptions', (req, res, next) => {
   
   const {name,cat,description, organization} = req.body
-
+  console.log(cat)
   SubscriptionModel
     .findOne({ name })
     .then((dataRes) => {
@@ -138,6 +140,48 @@ router.get("/users", (req, res, next) => {
 })
 
 //Subscriptions
+
+//Places
+
+router.get("/places/:id", (req, res) => {
+  PlaceModel
+    .findById(req.params.id)
+    .then((dataRes) => res.send(dataRes))
+    .catch(() => console.log(err))
+})
+
+router.get("/places", (req, res) => {
+  PlaceModel
+    .find()
+    .then((dataRes) => res.send(dataRes))
+    .catch(() => console.log(err))
+})
+
+//EVENTS
+
+router.get("/events", (req, res) => {
+  console.log("wesh")
+  EventModel
+    .find()
+    .populate("place")
+    .then(dataRes => {
+      console.log(dataRes)
+      res.send(dataRes)
+    })
+    .catch(err => console.log(err))
+
+})
+
+router.post("/events", (req, res) => {
+
+  console.log(req.body)
+  const {type,name,place,cat,event_begin,event_end,hour_begin} = req.body
+  EventModel
+    .create({ type, name, place, cat, event_begin, event_end, hour_begin })
+    .then(() => console.log("yeaaah man"))
+    .catch(err => console.log(err))
+})
+
 
 
 

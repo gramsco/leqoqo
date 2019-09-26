@@ -83,7 +83,7 @@ function Users({users, fetchUsers}) {
               <td>{user.email}</td>
               <td>{format(user.createdAt)}</td>
               <td>
-                <button>Details</button>
+                <button><a href="/secret-admin-page/details">Details</a></button>
                 <button onClick={destroyUser} value={user._id}>Delete user</button>
               </td>
             </tr>

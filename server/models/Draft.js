@@ -1,3 +1,14 @@
+let event1 = {
+
+    id: 1,
+    place: "ObjectId of a place",
+    date_start:Date,
+    date_end: Date,
+    category:"ObjectId category",
+    price:Number
+}
+
+
 let Roger =
 
 {

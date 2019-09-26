@@ -134,13 +134,45 @@ export default {
       .catch(errHandler)
   },
 
+<<<<<<< HEAD
   addUserProfile(body) {
     return service.
       post("/Signup/user-profile")
+=======
+  getPlaces() {
+    return service
+      .get("/places")
+>>>>>>> 1a18f70e4c874fe59cc9301c7f677c3357a74f4c
       .then(res => res.data)
       .catch(errHandler)
   },
 
+<<<<<<< HEAD
+=======
+  getSinglePlace(id) {
+    return service 
+      .get(`/places/${id}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  sendEvent(body) {
+    return service
+      .post('/events', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+
+  getEvents() {
+    return service
+      .get("events")
+      .then(res => res.data)
+      .catch(errHandler)
+
+  },
+
+>>>>>>> 1a18f70e4c874fe59cc9301c7f677c3357a74f4c
   addPicture(file) {
     const formData = new FormData()
     formData.append('picture', file)
@@ -152,5 +184,5 @@ export default {
       })
       .then(res => res.data)
       .catch(errHandler)
-  },
+  }
 }
