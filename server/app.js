@@ -1,7 +1,6 @@
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '.env') })
 
-
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
@@ -12,6 +11,9 @@ const nocache = require('nocache')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
+
+
+
 require('./configs/database')
 
 const app_name = require('./package.json').name
@@ -20,6 +22,9 @@ const debug = require('debug')(
 )
 
 const app = express()
+
+
+
 
 app.use(nocache())
 
@@ -57,6 +62,9 @@ require('./passport')(app)
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 app.use('/api', require('./routes/admin'))
+app.use('/api', require('./routes/msgs'))
+
+
 // app.use('/api/countries', require('./routes/countries'))
 
 // For any routes that starts with "/api", catch 404 and forward to error handler
@@ -71,8 +79,14 @@ app.use("/api", require('./routes/users'))
 
 // For any other routes, redirect to the index.html file of React
 app.get('*', (req, res) => {
+
+  console.log("wesh")
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
+  // res.sendFile(path.join(__dirname, '../client/public/index.html'))
 })
+
+
+
 
 // Error handler
 app.use((err, req, res, next) => {

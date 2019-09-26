@@ -134,6 +134,36 @@ export default {
       .catch(errHandler)
   },
 
+  getPlaces() {
+    return service
+      .get("/places")
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getSinglePlace(id) {
+    return service 
+      .get(`/places/${id}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  sendEvent(body) {
+    return service
+      .post('/events', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+
+  getEvents() {
+    return service
+      .get("events")
+      .then(res => res.data)
+      .catch(errHandler)
+
+  },
+
   addPicture(file) {
     const formData = new FormData()
     formData.append('picture', file)
@@ -145,5 +175,5 @@ export default {
       })
       .then(res => res.data)
       .catch(errHandler)
-  },
+  }
 }

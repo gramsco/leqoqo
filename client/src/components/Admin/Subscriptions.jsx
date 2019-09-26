@@ -6,7 +6,7 @@ function Users({ cats, subs, fetchSubscriptions }) {
 
   const [formsub, setFormSub] = useState({
     name: 'no name',
-    cat: '5d8a8f861368ede74d01973c',
+    cat: cats[0],
     organization: 'no organization',
     description: 'no description',
   })
@@ -51,7 +51,6 @@ function Users({ cats, subs, fetchSubscriptions }) {
 
   return (
     <>
-      <pre>{JSON.stringify(formsub)}</pre>
       <form onChange={handleChange} className="inline-form">
         <input
           name="name"
