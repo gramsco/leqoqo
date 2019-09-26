@@ -47,10 +47,10 @@ export default {
       .catch(errHandler)
   },
 
-  login(username, password) {
+  login(email, password) {
     return service
       .post('/login', {
-        username,
+        email,
         password,
       })
       .then(res => {
@@ -130,6 +130,13 @@ export default {
   deleteSubscription(id) {
     return service
       .delete("/subscriptions/" + id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  addUserProfile(body) {
+    return service.
+      post("/Signup/user-profile")
       .then(res => res.data)
       .catch(errHandler)
   },
