@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import api from '../api'
-
+import Login from './Login'
 
 function Signup(props) {
     const [state, setState] = useState({
@@ -70,6 +70,7 @@ function Signup(props) {
                 </form>
                 {state.message && <div>{state.message}</div>}
             </div>
+            <Login props={props}/>
 
         </div>
 

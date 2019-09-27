@@ -12,7 +12,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhbXNjbyIsImEiOiJjazB3ZG5oaXQwMjNrM2NtbTh1b
 
 function Home() {
 
-    const [connected, setConnected] = useState(true)
+    // const [connected, setConnected] = useState(true)
     const [users, setUsers] = useState([])
     const [events, setEvents] = useState([])
     const [loading, setLoading] = useState(false)
@@ -42,23 +42,22 @@ function Home() {
         <Header
           setSearch={setSearch}
           setUsers={setUsers}
-        setEvents={setEvents}
-        search={search}
-            
+          setEvents={setEvents}
+          search={search}
         />
 
-        {!connected && <Map />}
-        {connected && (
+        {!api.isLoggedIn() && <Map />}
+        {api.isLoggedIn() && (
           <Container
             search={search}
             fetchUsers={fetchUsers}
             fetchEvents={fetchEvents}
-                    events={events}
-                    users={users}
+            events={events}
+            users={users}
           />
         )}
-
-        {connected && <NavBar />}
+        {!api.isLoggedIn() && <div className="NotConnected">You're not connected! Please<a href="/signup"> log in </a> </div>}
+        {api.isLoggedIn() && <NavBar />}
       </div>
     )
 

@@ -155,3 +155,7 @@ a{
   background:rgba(0,0,255,0.4);
   cursor:pointer;
 }
+
+.NotConnected a{
+  text-decoration: underline;
+}

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from "react-router-dom"
-
-function NavBar() {
+import api from "../api"
+function NavBar(props) {
 
 
     const [emoji,setEmoji] = useState("😴")
@@ -9,6 +9,18 @@ function NavBar() {
     function changeAvailable() {
         if (emoji === "😀") setEmoji("😴")
         else setEmoji("😀")
+    }
+  
+  function handleLogout() {
+      api
+        .logout()
+        .then(result => {
+         
+          props.history.push('/') // Redirect to the home page
+        })
+        .catch(err => {
+          return 'cannot logout'
+        })
     }
 
     return (
@@ -24,6 +36,9 @@ function NavBar() {
         </a> */}
         <div>
           <i class="fas fa-user-cog"></i>
+        </div>
+        <div onClick={handleLogout}>
+          <i class="fas fa-door-open"></i>
         </div>
       </nav>
     )

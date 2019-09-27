@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import api from "../api";
 import { useForm } from '../hooks'
 
-export default function Login(props) {
+export default function Login({ props }) {
+    
     const { formValues, getInputProps } = useForm({ lang: 'en' })
 
     function handleSubmit(e) {
@@ -11,7 +12,10 @@ export default function Login(props) {
             .login(formValues.email, formValues.password)
             .then(result => {
                 console.log('SUCCESS!')
-                props.history.push('/UserProfile') // Redirect to the home page
+                console.log('--------')
+                console.log(props)
+                console.log('--------')
+                props.history.push('/') // Redirect to the home page
             })
             .catch(err => setMessage(err.toString()))
     }
