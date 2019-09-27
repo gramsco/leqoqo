@@ -24,9 +24,9 @@ function UserProfile(props) {
     const handleSubmit = e => {
         e.preventDefault();
         api
-        .addUserProfile()
-        .then(res => props.history.push("/"))
-        .catch(err => console.log(err));
+            .addUserProfile()
+            .then(res => props.history.push("/"))
+            .catch(err => console.log(err));
     };
 
     const [emoji, setEmoji] = useState("😍");
@@ -58,10 +58,23 @@ function UserProfile(props) {
         setEmoji(String.fromCodePoint(parseInt(emoji, 16)))
     }
 
+    function handleLogout() {
+        api.logout()
+            .then((result) => {
+                console.log('SUCCESS!')
+                props.history.push('/') // Redirect to the home page
+            })
+            .catch((err) => {
+                return ("cannot logout")
+            })
+    }
+
 
 
     return (
         <div>
+
+            <button onClick={handleLogout}>LOGOUT</button>
             <form onChange={handleChange} onSubmit={handleSubmit}>
                 <div className="profile-image">
                     {emoji}
