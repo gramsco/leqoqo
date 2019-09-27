@@ -11,8 +11,6 @@ a{
   color:black;
 }
 
-
-
 .Admin{
   border:solid 1px black;
 }
@@ -92,9 +90,7 @@ a{
 }
 .small-questions{
   width:50%;
-
 }
-
 
 .Navbar{
   position:fixed;

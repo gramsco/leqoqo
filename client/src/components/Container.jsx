@@ -19,6 +19,11 @@ function Container({ fetchEvents, fetchUsers, events,search,users}) {
             <h3>{e.place.name}</h3>
             <h4>{e.place.ville}</h4>
             <p>{e.event_begin}</p>
+            <p>{
+              e.ratings.length === 0 && "No one rated this event yet!"
+              ||
+              e.ratings.length !== 0 && (e.ratings.map(i => i.rate).reduce((a,b) => a+b)) / e.ratings.length
+            }</p>
             <p>
               <i class="fas fa-clock"></i>
               {e.hour_begin}
