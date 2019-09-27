@@ -4,9 +4,14 @@ import EmojiPicker from 'emoji-picker-react'
 import Subscriptions from './Admin/Subscriptions'
 import api from '../api'
 
+
 function UserProfile(props) {
+
+
+
     const [state, setState] = useState({
-        emoji: '',
+        user: JSON.parse(localStorage.user).id,
+        emoji: '😍',
         info: '',
         address: '',
 
@@ -20,8 +25,9 @@ function UserProfile(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
+
         api
-            .addUserProfile()
+            .addUserprofile(state)
             .then(res => props.history.push('/'))
             .catch(err => console.log(err))
     }
@@ -79,7 +85,7 @@ function UserProfile(props) {
 
             <div className="userprofile-container" >
 
-                <form onChange={handleChange} onSubmit={handleSubmit}>
+                <form onChange={handleChange} >
 
                     <div className="profile-image">{emoji}
                         &nbsp;
@@ -113,8 +119,7 @@ function UserProfile(props) {
                     <h2 className="something-about-you">where do you live</h2>
                     <input type="text" name="address" id="address" />
 
-
-                    <button>Submit</button>
+                    <button onClick={handleSubmit}>Submit</button>
                 </form>
             </div>
 

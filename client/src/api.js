@@ -97,7 +97,7 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
-  
+
   getSingleUser(id) {
     return service
       .get("/user/" + id)
@@ -189,5 +189,14 @@ export default {
       })
       .then(res => res.data)
       .catch(errHandler)
+  },
+
+  addUserprofile(body) {
+    console.log(body)
+    return service
+      .post("/add-profile", body)
+      .then(res => res.data)
+      .catch(errHandler)
   }
 }
+
