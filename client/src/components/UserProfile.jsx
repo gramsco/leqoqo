@@ -9,7 +9,7 @@ function UserProfile(props) {
         emoji: '',
         info: '',
         address: '',
-        hobbies: '',
+
     })
 
     const handleChange = e => {
@@ -66,39 +66,58 @@ function UserProfile(props) {
     }
 
     return (
-        <div>
-            <button onClick={handleLogout}>LOGOUT</button>
-            <form onChange={handleChange} onSubmit={handleSubmit}>
-                <div className="profile-image">{emoji}</div>
-                <input
-                    className="inputEmoji"
-                    onClick={handleEmojis}
-                    style={{ width: '30px' }}
-                    type="text"
-                    readOnly
-                    value={emoji}
-                />
-                {emojis.bool && (
-                    <EmojiPicker display={emojis.display} onEmojiClick={handleEmoji} />
-                )}
-                <h1>HORLALA</h1> &nbsp; &nbsp;&nbsp;
-        <h1>
-                    {' '}
-                    <i class="fas fa-plus-circle"></i>
-                </h1>{' '}
-                &nbsp; &nbsp;&nbsp;{' '}
-                <h1>
-                    <i class="fas fa-envelope-square"></i>
-                </h1>
-                <h2 className="something-about-you">something about you</h2>
-                <input type="text" name="info" id="info" />
-                <h2 className="something-about-you">where do you live</h2>
-                <input type="text" name="address" id="address" />
-                <h2 className="something-about-you">Hobbies</h2>
-                <input type="text" name="hobbies" id="hobbies" />
-                <select>option</select>
-                <button>Submit</button>
-            </form>
+        <div className="container">
+
+            <header className="Header-in-userprofile">
+                <div className="logo">
+                    <i className="fas fa-search"></i>o <i class="fas fa-search "></i>o</div>
+
+                <button onClick={handleLogout}><i class="fas fa-power-off logout-icon"></i></button>
+
+            </header>
+
+
+            <div className="userprofile-container" >
+
+                <form onChange={handleChange} onSubmit={handleSubmit}>
+
+                    <div className="profile-image">{emoji}
+                        &nbsp;
+                        <input
+                            className="inputEmoji"
+                            onClick={handleEmojis}
+                            style={{ height: '50px', width: '50px' }}
+                            type="text"
+                            readOnly
+                            value={emoji}
+                        />
+                    </div>
+
+                    {emojis.bool && (
+                        <EmojiPicker display={emojis.display} onEmojiClick={handleEmoji} />
+                    )}
+
+                    <hr />
+                    <div className="horlala">
+                        <h1>HORLALA</h1> &nbsp; &nbsp;&nbsp;
+
+                        {api.isLoggedIn() && <div className="horlala">
+                            <h1> <i class="fas fa-plus-circle"></i></h1> &nbsp; &nbsp;
+                            <h1> <i class="fas fa-envelope-square"></i> </h1> </div>
+                        }
+
+                    </div>
+
+                    <h2 className="something-about-you">something about you</h2>
+                    <input type="text" name="info" id="info" />
+                    <h2 className="something-about-you">where do you live</h2>
+                    <input type="text" name="address" id="address" />
+
+
+                    <button>Submit</button>
+                </form>
+            </div>
+
             <login />
         </div>
     )
@@ -106,70 +125,3 @@ function UserProfile(props) {
 
 export default UserProfile
 
-// // return (
-//     //     <div className="userprofile-container">
-//     //         <h1>WELCOME user</h1>
-
-//     //         <div className="profile-image">
-//     //             {emoji}
-//     //         </div>
-
-//     //         <div className="selector">
-//     //             <form>
-//     //                 <input className="inputEmoji"
-//     //                     onClick={handleEmojis}
-//     //                     style={{ width: "30px" }}
-//     //                     type="text"
-//     //                     readOnly
-//     //                     value={emoji}
-//     //                 />
-//     //             </form>
-//     //             {emojis.bool && (
-//     //                 <EmojiPicker display={emojis.display} onEmojiClick={handleEmoji} />
-//     //             )}
-//     //         </div>
-
-//     //         <div class="head">
-//     //             <h1>HORLALA</h1> &nbsp; &nbsp;&nbsp;
-//     //             {/* <h1> <i class="fas fa-plus-circle"></i></h1> &nbsp; &nbsp;&nbsp;
-//     //             <h1><i class="fas fa-envelope-square"></i></h1> */}
-//     //         </div>
-
-//     //         <div className="question-container">
-//     //             <div className="small-questions">
-//     //                 <h2 className="something-about-you">something about you</h2>
-//     //                 <input
-//     //                     type="text"
-//     //                     value=""
-//     //                 />
-//     //             </div>
-//     //             <div className="small-questions">
-//     //                 <h2 className="something-about-you">where do you live</h2>
-//     //                 <input
-//     //                     type="text"
-//     //                     value=""
-//     //                 />
-//     //             </div>
-//     //         </div>
-//     //         <div className="question-container">
-//     //             <div className="small-questions">
-//     //                 <h2 className="something-about-you">Hobbies</h2>
-//     //                 <input
-//     //                     type="text"
-//     //                     value=""
-//     //                 />
-//     //             </div>
-//     //             <div className="small-questions">
-//     //                 <h2 className="something-about-you">where do you live</h2>
-//     //                 <input
-//     //                     type="text"
-//     //                     value=""
-//     //                 />
-//     //             </div>
-//     //         </div>
-
-//     //         <div>
-
-//     //         </div>
-
-//     //     </div>}
