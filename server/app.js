@@ -67,6 +67,7 @@ app.use('/api', require('./routes/msgs'))
 
 // app.use('/api/countries', require('./routes/countries'))
 
+app.use("/api", require('./routes/users'))
 // For any routes that starts with "/api", catch 404 and forward to error handler
 app.use('/api/*', (req, res, next) => {
   let err = new Error('Not Found')
@@ -74,7 +75,6 @@ app.use('/api/*', (req, res, next) => {
   next(err)
 })
 
-app.use("/api", require('./routes/users'))
 
 
 // For any other routes, redirect to the index.html file of React
