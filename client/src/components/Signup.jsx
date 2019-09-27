@@ -26,7 +26,7 @@ function Signup(props) {
     function handleSignup(e) {
         e.preventDefault()
         let data = {
-            username: state.name,
+            username: state.username,
             email: state.email,
             password: state.password,
         }

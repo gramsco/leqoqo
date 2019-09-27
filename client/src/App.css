@@ -54,21 +54,27 @@ a{
   color:white;
 
 }
+.container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
 .userprofile-container{
   display:flex;
-  flex-direction: column;
   margin-left:40px;
-  align-items:center;
-
-
+  text-align:center;
+  margin-right:40px;
 }
 .profile-image{
+  display:flex;
   height: 185px;
-  width: 15%;
-
-  /* box-shadow: 5px 5px 5px 5px red; */
+  width: 50%;
+  margin: auto 0;
+  box-shadow: 5px 5px 5px 5px #6074C0;
   font-size:170px;
+  margin-bottom: 20px;
+  margin-top:20px;
 }
 .selector{
   width:20%;
@@ -155,4 +161,27 @@ a{
 
 .NotConnected a{
   text-decoration: underline;
+}
+
+
+.logout-icon{
+  font-size:40px;
+  color:#FFE500;
+}
+
+.Header-in-userprofile{
+  height:20vh;
+  top:0;
+  width:100%;
+  font-size:8vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background:var(--var-main-yellow);
+  padding:1%;
+
+}
+.horlala{
+  display: flex;    
 }
