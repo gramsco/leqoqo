@@ -19,8 +19,19 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/Signup" component={Signup} />
-        <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/Signup" component={Signup} /> */}
+
+
+        <Route exact path="/Signup" render={routeProps => (
+          <Signup isLogin={false} {...routeProps} />
+        )} />
+
+
+        <Route exact path="/login" render={routeProps => (
+          <Signup isLogin={true} {...routeProps} />
+        )} />
+
+        {/* <Route exact path="/login" component={Login} /> */}
         <Route exact path="/UserProfile" component={UserProfile} />
 
 
@@ -36,7 +47,7 @@ function App() {
         {/* Default */}
         <Route render={() => <h1>404</h1>} />
       </Switch>
-      
+
 
     </div>
   );

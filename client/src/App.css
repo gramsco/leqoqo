@@ -12,7 +12,6 @@ a{
 }
 
 
-
 .Admin{
   border:solid 1px black;
 }
@@ -21,6 +20,7 @@ a{
    border:solid 1px black;
 }
 .signup-container{
+  margin-top:150px; 
   display:flex;
   flex-direction: column;
   align-items: center;  

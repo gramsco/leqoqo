@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import api from '../api'
 import Login from './Login'
+import { Link } from 'react-router-dom'
+import Header from './Header'
+
 
 function Signup(props) {
+
+    console.log("props in signup", props)
+
     const [state, setState] = useState({
         email: '',
         username: '',
@@ -17,7 +23,7 @@ function Signup(props) {
         })
     }
 
-    function handleClick(e) {
+    function handleSignup(e) {
         e.preventDefault()
         let data = {
             username: state.name,
@@ -33,8 +39,30 @@ function Signup(props) {
             .catch(err => setState({ message: err.toString() }))
     }
 
+    function handleLogin(e) {
+        e.preventDefault()
+        api
+            .login(state.email, state.password)
+            .then(result => {
+                console.log('SUCCESS!')
+                console.log('--------')
+                console.log(props)
+                console.log('--------')
+                props.history.push('/') // Redirect to the home page
+            })
+            .catch(err => { return ("error") })
+    }
+
     return (
+
         <div className="signup-container">
+            <header className="Header">
+                <div className="logo">
+                    <i class="fas fa-search"></i>o <i class="fas fa-search"></i>o
+            </div>
+
+            </header>
+
             {/* <div className="heading">
                 <h2>Signup with facebook</h2>
 
@@ -66,13 +94,27 @@ function Signup(props) {
                         onChange={handleInputChange}
                     />{' '}
                     <br />  <br />
-                    <div className="heading" onClick={e => handleClick(e)}><h2>Signup</h2></div>
+                    {
+                        !props.isLogin &&
+                        <div className="heading" onClick={e => handleSignup(e)}><h2>Signup</h2></div>
+                    }
+                    {
+                        props.isLogin &&
+                        <div className="heading" onClick={e => handleLogin(e)}><h2>Login</h2></div>
+                    }
+
+                    {props.isLogin && <p>No account yet ?
+                        <Link to="/Signup"> Signup here</Link>  <i class="fas fa-user-plus"></i></p>}
+                    {!props.isLogin && <p>Already have an account ?
+                        <Link to="/login">Login here</Link> <i class="fas fa-key"></i> </p>}
+
+
                 </form>
                 {state.message && <div>{state.message}</div>}
             </div>
-            <Login props={props}/>
 
-        </div>
+
+        </div >
 
     )
 
