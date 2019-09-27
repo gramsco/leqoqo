@@ -20,11 +20,19 @@ function Home(props) {
     const [events, setEvents] = useState([])
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState("events")
-    const [eventDetail,setEventDetail] = useState("")
+    const [eventDetail, setEventDetail] = useState("")
+    const [userProfile, setUserProfile] = useState({})
     
     console.log(events)
 
-    
+  function fetchUserProfile() {
+    console.log("fetching user profile")
+      // api
+      //   .getUserProfile()
+      //   .then(res => setUserProfile(res))
+      //   .catch(err => console.log(err))
+    }  
+  
     function fetchEvents() {
         api
         .getEvents()
@@ -52,7 +60,10 @@ function Home(props) {
 
         {!api.isLoggedIn() && <Map />}
         {eventDetail && api.isLoggedIn() && (
-          <EventDetail setEventDetail={setEventDetail} eventDetail={eventDetail} />
+          <EventDetail
+            setEventDetail={setEventDetail}
+            eventDetail={eventDetail}
+          />
         )}
         {!eventDetail && api.isLoggedIn() && (
           <Container
@@ -62,6 +73,7 @@ function Home(props) {
             events={events}
             users={users}
             setEventDetail={setEventDetail}
+            fetchUserProfile={fetchUserProfile}
           />
         )}
         {!api.isLoggedIn() && (

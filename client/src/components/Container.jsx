@@ -1,13 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
-function Container({ setEventDetail, fetchEvents, fetchUsers, events,search,users}) {
+function Container({ setEventDetail, fetchEvents, fetchUsers, fetchUserProfile, events,search,users}) {
       
   useEffect(fetchEvents, [])
   useEffect(fetchUsers, [])
   
-  console.log(users)
+
+
+  useEffect(() => fetchUserProfile)
   
+  function toggleFav(e) {
+    console.log(`you're trying to add event ${e.target.value} to ${JSON.parse(localStorage.user).username}`)
+    // if (e.target.value)
+  }
+
   return (
     <div className="Container">
       
@@ -22,15 +29,19 @@ function Container({ setEventDetail, fetchEvents, fetchUsers, events,search,user
             <h4>{e.place.ville}</h4>
             <p>{e.event_begin}</p>
             <p>{
-              e.ratings.length === 0 && "No one rated this event yet!"
+              (e.ratings.length === 0 && "No one rated this event yet!")
               ||
-              e.ratings.length !== 0 && (e.ratings.map(i => i.rate).reduce((a,b) => a+b)) / e.ratings.length
-            }</p>
+              (e.ratings.length !== 0 && (e.ratings.map(i => i.rate).reduce((a, b) => a + b)) / e.ratings.length
+              )}
+            </p>
             <p>
               <i class="fas fa-clock"></i>
               {e.hour_begin}
             </p>
-            <button>Add to favs</button>
+            <button
+              onClick={toggleFav}
+              value={e._id}>Add to favs
+              </button>
           </div>
         ))}
 
