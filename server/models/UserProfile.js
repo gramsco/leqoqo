@@ -36,6 +36,6 @@ let UserProfileSchema = mongoose.Schema(
 
 )
 
-let UserProfile = mongoose.model("user", UserProfileSchema)
+let UserProfile = mongoose.model("UserProfile", UserProfileSchema)
 
 module.exports = UserProfile

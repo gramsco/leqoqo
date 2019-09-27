@@ -97,6 +97,13 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  
+  getSingleUser(id) {
+    return service
+      .get("/user/" + id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
   newUser(body) {
     return service

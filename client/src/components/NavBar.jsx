@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from "react-router-dom"
 import api from "../api"
-function NavBar(props) {
-
+function NavBar({ props }) {
 
     const [emoji,setEmoji] = useState("😴")
 
@@ -30,13 +29,15 @@ function NavBar(props) {
         </a>
         <div className="Navbar__emoji" onClick={changeAvailable}>
           {emoji}
+          {JSON.parse(localStorage.user).username}
+        
         </div>
         {/* <a href="/Signup">
           <i class="fas fa-key"></i>
         </a> */}
-        <div>
+        <a href="/profile-settings">
           <i class="fas fa-user-cog"></i>
-        </div>
+        </a>
         <div onClick={handleLogout}>
           <i class="fas fa-door-open"></i>
         </div>

@@ -1,6 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const router = express.Router()
+const UserProfile = require("../models/UserProfile")
 const User = require('../models/User')
 
 // Bcrypt to encrypt passwords
@@ -25,14 +26,23 @@ router.post('/Signup', (req, res, next) => {
       return newUser.save()
     })
     .then(userSaved => {
+      
+      UserProfile
+        .create({ user: userSaved._id })
+        .then(() => console.log("userProfileCreated"))
+        .then(() => {
+
+          req.logIn(userSaved, () => {
+            // hide "encryptedPassword" before sending the JSON (it's a security risk)
+            userSaved.password = undefined
+            res.json(userSaved)
+          })
+
+        })
       // LOG IN THIS USER
       // "req.logIn()" is a Passport method that calls "serializeUser()"
       // (that saves the USER ID in the session)
-      req.logIn(userSaved, () => {
-        // hide "encryptedPassword" before sending the JSON (it's a security risk)
-        userSaved.password = undefined
-        res.json(userSaved)
-      })
+      
     })
     .catch(err => next(err))
 })

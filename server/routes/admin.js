@@ -105,8 +105,6 @@ router.delete('/users/:id', (req, res, next) => {
     .catch(err => console.log(err))  
 })
 
-
-
 router.post('/users', (req, res, next) => {
   const { username, email, password } = req.body
   if (!email || !password) {
@@ -129,7 +127,7 @@ router.post('/users', (req, res, next) => {
     .catch(err => next(err))
 })
 
-
+//ALL USERS
 router.get("/users", (req, res, next) => {
  
   UserModel
@@ -138,6 +136,16 @@ router.get("/users", (req, res, next) => {
     .catch(err => console.log(err))
 
 })
+
+//A SINGLE USER
+router.get("/user/id", (req, res, next) => {
+  
+  UserModel
+    .findById(req.params.id)
+    .then(dataRes => res.send(dataRes))
+    .catch(err => console.log(err))
+})
+
 
 //Subscriptions
 

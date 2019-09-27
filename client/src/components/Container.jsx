@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 
 
-function Container({ fetchEvents, fetchUsers, events,search,users}) {
+function Container({ setEventDetail, fetchEvents, fetchUsers, events,search,users}) {
       
   useEffect(fetchEvents, [])
-  useEffect(fetchUsers,[])
-
+  useEffect(fetchUsers, [])
+  
   console.log(users)
   
   return (
@@ -14,7 +14,9 @@ function Container({ fetchEvents, fetchUsers, events,search,users}) {
       {search === 'events' &&
         events &&
         events.map((e, i) => (
-          <div key={i}>
+          <div
+            key={i}
+            onClick={() => setEventDetail(e)}>
             <h2>{e.name}</h2>
             <h3>{e.place.name}</h3>
             <h4>{e.place.ville}</h4>
@@ -28,6 +30,7 @@ function Container({ fetchEvents, fetchUsers, events,search,users}) {
               <i class="fas fa-clock"></i>
               {e.hour_begin}
             </p>
+            <button>Add to favs</button>
           </div>
         ))}
 
