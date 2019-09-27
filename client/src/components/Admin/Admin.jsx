@@ -18,7 +18,7 @@ function Admin() {
     const [users, setUsers] = useState([])
     const [subs, setSubs] = useState([])
     const [event,setEvent] = useState("")
-
+    
   function fetchSubscriptions() {
     console.log("fetchin' subscriptions")
 

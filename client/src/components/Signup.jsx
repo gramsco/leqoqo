@@ -35,10 +35,10 @@ function Signup(props) {
 
     return (
         <div className="signup-container">
-            <div className="heading">
-                <h2>Signup</h2>
+            {/* <div className="heading">
+                <h2>Signup with facebook</h2>
 
-            </div>
+            </div> */}
             <div className="Signup">
                 <form>
                     Username:{' '}
@@ -66,7 +66,7 @@ function Signup(props) {
                         onChange={handleInputChange}
                     />{' '}
                     <br />  <br />
-                    <button onClick={e => handleClick(e)}>Signup</button>
+                    <div className="heading" onClick={e => handleClick(e)}><h2>Signup</h2></div>
                 </form>
                 {state.message && <div>{state.message}</div>}
             </div>

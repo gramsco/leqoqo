@@ -1,3 +1,18 @@
+:root{
+  --var-main-yellow:#FFEC9F
+}
+
+*{
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+}
+
+
+
 .Admin{
   border:solid 1px black;
 }
@@ -13,11 +28,23 @@
 
 .Signup{
   padding-top:20px;
-  width:40%;
+  width:400px;
   background:#FFE500;
   box-shadow: 5px 5px 1px 5px #FFBD59;
   text-align:center;
 }
+
+.Signup form{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Signup form input{
+  width:220px
+}
+
 .heading{
   margin-top:50px;
   margin-bottom:40px;
@@ -66,4 +93,65 @@
 .small-questions{
   width:50%;
 
+}
+
+
+.Navbar{
+  position:fixed;
+  bottom:0;
+  height:15vh;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width:100%;
+  align-items: center;
+  background:var(--var-main-yellow);
+  font-size:8vh;
+}
+
+.Navbar__emoji{
+  cursor:pointer;
+}
+
+.Navbar > *:hover{
+  transform:scale(1.2);
+}
+
+.Header{
+  height:20vh;
+  position:fixed;
+  top:0;
+  width:100%;
+  font-size:8vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background:var(--var-main-yellow);
+  padding:1%;
+}
+
+.Header label{
+  font-size:1rem;
+}
+
+.Header__filter{
+  display:flex
+}
+
+.Container{
+  margin:20vh;
+  display:grid;
+  grid-gap:5%;  
+}
+
+.Container > * {
+  border:1px solid black;
+  border-radius:12px;
+  text-align:center;
+}
+
+.Container > *:hover{
+  background:rgba(0,0,255,0.4);
+  cursor:pointer;
 }

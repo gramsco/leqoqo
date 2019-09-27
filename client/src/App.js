@@ -9,7 +9,10 @@ import NewEvent from './components/Admin/NewEvent'
 import Signup from "./components/Signup"
 import Details from "./components/Admin/Details"
 import Messages from "./components/Messages/Messages"
-// import UserProfile from "./components/UserProfile"
+import UserProfile from "./components/UserProfile"
+import Login from './components/Login'
+import NavBar from './components/NavBar'
+import Header from './components/Header'
 
 function App() {
   return (
@@ -33,6 +36,8 @@ function App() {
         {/* Default */}
         <Route render={() => <h1>404</h1>} />
       </Switch>
+      
+
     </div>
   );
 }

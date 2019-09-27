@@ -135,48 +135,52 @@ export default {
   },
 
   addUserProfile(body) {
-    return service.
-      post("/Signup/user-profile")
-    getPlaces() {
-      return service
-        .get("/places")
-        .then(res => res.data)
-        .catch(errHandler)
-    },
+    return service
+      .post("/Signup/user-profile")
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
-    getSinglePlace(id) {
-      return service
-        .get(`/places/${id}`)
-        .then(res => res.data)
-        .catch(errHandler)
-    },
+  getPlaces() {
+    return service
+      .get("/places")
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
-    sendEvent(body) {
-      return service
-        .post('/events', body)
-        .then(res => res.data)
-        .catch(errHandler)
-    },
+  getSinglePlace(id) {
+    return service
+      .get(`/places/${id}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  sendEvent(body) {
+    return service
+      .post('/events', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
 
-    getEvents() {
-      return service
-        .get("events")
-        .then(res => res.data)
-        .catch(errHandler)
+  getEvents() {
+    return service
+      .get("events")
+      .then(res => res.data)
+      .catch(errHandler)
 
-    },
+  },
 
-    addPicture(file) {
-      const formData = new FormData()
-      formData.append('picture', file)
-      return service
-        .post('/endpoint/to/add/a/picture', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        .then(res => res.data)
-        .catch(errHandler)
-    }
+  addPicture(file) {
+    const formData = new FormData()
+    formData.append('picture', file)
+    return service
+      .post('/endpoint/to/add/a/picture', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => res.data)
+      .catch(errHandler)
   }
+}

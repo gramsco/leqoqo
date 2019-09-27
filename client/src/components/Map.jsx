@@ -13,7 +13,7 @@ export default function Map() {
 
   useEffect(() => {
     initMap(15, 45)
-  }, [])
+  }, ) // react told me to leave the dep. blank.... :/ ?
 
   useEffect(() => {
     api.getEvents()
@@ -33,8 +33,8 @@ export default function Map() {
     map = new mapboxgl.Map({
       container: mapDomRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [lat, lng],
-      zoom: 3,
+      center: [2.3488, 48.8534],
+      zoom: 5,
     })
 
     // Add zoom control on the top right corner
