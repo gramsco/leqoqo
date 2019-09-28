@@ -7,8 +7,10 @@ import api from '../api'
 
 function UserProfile(props) {
 
+
     const [state, setState] = useState({
-        user: JSON.parse(localStorage.user).id,
+        user: JSON.parse(localStorage.user)._id,
+        username:"",
         emoji: '😍',
         info: '',
         address: '',
@@ -25,7 +27,7 @@ function UserProfile(props) {
         e.preventDefault()
 
         api
-            .addUserprofile(state)
+          .editUserProfile(state )
             .then(res => props.history.push('/'))
             .catch(err => console.log(err))
     }
@@ -55,7 +57,7 @@ function UserProfile(props) {
 
     function handleEmoji(emoji) {
         setEmoji(String.fromCodePoint(parseInt(emoji, 16)))
-        setState({...state,emoji:emoji})
+      setState({ ...state, emoji: String.fromCodePoint(parseInt(emoji, 16)) })
     }
 
     function handleLogout() {
@@ -88,7 +90,7 @@ function UserProfile(props) {
             <input
               type="text"
               value={state.username}
-              username="username"
+              name="username"
               onChange={handleChange}
             />{' '}
             <div className="profile-image">

@@ -50,7 +50,7 @@ router.get('/categories', (req, res, next) => {
   CategoryModel
     .find()
     .then(response => {
-      console.log(response)
+      // console.log(response)
       res.send(response)
     })
     .catch(err => console.log(err))
@@ -173,7 +173,7 @@ router.get("/events", (req, res) => {
     .find()
     .populate("place")
     .then(dataRes => {
-      console.log(dataRes)
+      // console.log(dataRes)
       res.send(dataRes)
     })
     .catch(err => console.log(err))
@@ -185,7 +185,7 @@ router.post("/events", (req, res) => {
   console.log(req.body)
   const {type,name,place,cat,event_begin,event_end,hour_begin} = req.body
   EventModel
-    .create({ type, name, place, cat, event_begin, event_end, hour_begin })
+    .create({ type, name, place, cat, event_begin, event_end, hour_begin, favs: [] })
     .then(() => console.log("yeaaah man"))
     .catch(err => console.log(err))
 })

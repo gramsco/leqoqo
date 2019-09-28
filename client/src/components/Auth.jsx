@@ -26,8 +26,7 @@ function Signup(props) {
         e.preventDefault()
         api
             .signup(state)
-            .then(result => {
-                console.log('SUCCESS!')
+            .then(() => {
                 props.history.push('/UserProfile') // Redirect to the home page
             })
             .catch(err => setState({ ...state, message: err.toString() }))
@@ -37,11 +36,7 @@ function Signup(props) {
         e.preventDefault()
         api
             .login(state.email, state.password)
-            .then(result => {
-                console.log('SUCCESS!')
-                console.log('--------')
-                console.log(props)
-                console.log('--------')
+            .then(() => {
                 props.history.push('/') // Redirect to the home page
             })
             .catch(err => setState({...state,message:err.toString()}))

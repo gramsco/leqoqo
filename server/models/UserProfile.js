@@ -9,6 +9,7 @@ let UserProfileSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },
+        username:String,
         emoji: String,
         info: String,
         address: String,
@@ -21,10 +22,10 @@ let UserProfileSchema = mongoose.Schema(
         //     type: mongoose.Schema.Types.ObjectId,
         //     ref: "User"
         // }],
-        // fav_events: [{
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: "Event"
-        // }],
+        fav_events: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Event"
+        }],
         // interests: [{
         //     type: mongoose.Schema.Types.ObjectId,
         //     ref: "Category"

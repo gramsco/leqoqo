@@ -63,6 +63,7 @@ app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 app.use('/api', require('./routes/admin'))
 app.use('/api', require('./routes/msgs'))
+app.use('/api', require('./routes/events'))
 
 
 // app.use('/api/countries', require('./routes/countries'))

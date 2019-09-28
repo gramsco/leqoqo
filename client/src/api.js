@@ -141,12 +141,6 @@ export default {
       .catch(errHandler)
   },
 
-  addUserProfile(body) {
-    return service
-      .post("/Signup/user-profile")
-      .then(res => res.data)
-      .catch(errHandler)
-  },
 
   getPlaces() {
     return service
@@ -169,6 +163,12 @@ export default {
       .catch(errHandler)
   },
 
+  getSingleEvent(id) {
+    return service
+      .get("/event/" + id)
+      .then(res => res.data)
+      .catch(err => console.log(err))
+  },
 
   getEvents() {
     return service
@@ -200,9 +200,39 @@ export default {
   },
 
   getUserProfile(id) {
-    console.log(id)
     return service
       .get("/user-profile/" + id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  editUserProfile(body) {
+    console.log(body)
+    console.log("/user-profile/" + body.user)
+    return service
+      .post("/user-profile/" + body.user, body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  removeFavEvent(data) {
+    
+    return service
+      .delete(`/events/${data.event}/${data.user}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  addFavEvent(data) {
+    return service
+      .post(`/events/${data.event}/${data.user}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getUserEvents(id) {
+    return service
+      .get(`/events/user/${id}`)
       .then(res => res.data)
       .catch(errHandler)
   }

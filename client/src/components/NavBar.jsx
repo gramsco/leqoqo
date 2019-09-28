@@ -15,7 +15,7 @@ function NavBar({ props }) {
         .logout()
         .then(result => {
          
-          props.history.push('/') // Redirect to the home page
+          props.history.push('/signup') // Redirect to the home page
         })
         .catch(err => {
           return 'cannot logout'

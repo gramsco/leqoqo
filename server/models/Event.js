@@ -12,11 +12,15 @@ let EventSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category"
   },
+  favs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "UserProfile"
+  }],
   ratings: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref:"user"
       },
       rate:Number
     }

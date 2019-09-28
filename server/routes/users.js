@@ -16,6 +16,20 @@ router.post("/add-profile", (req, res, next) => {
         .then(() => res.send("successful"))
         .catch(err => console.log(err))
 
+})
+
+router.post("/user-profile/:id", (req, res, next) => {
+        
+    console.log(`REQ BODY : ${req.body}`)
+
+    UserProfileModel
+        .findOneAndUpdate({ user: req.params.id },req.body)
+        .then(() => {
+            res.send(200)
+            console.log(":)")
+        })
+        .catch(err => console.log(err))
+    
 
 })
 
@@ -25,11 +39,15 @@ router.get("/user-profile/:id", (req, res, next) => {
     UserProfileModel
         .findOne({ user: req.params.id })
         .then(dataRes => {
+            console.log("-----user profile------")
             console.log(dataRes)
+            console.log("-----------------------")
             res.send(dataRes)
         })
         .catch(err => console.log(err))
 })
+
+
 
 
 module.exports = router

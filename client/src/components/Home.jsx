@@ -25,10 +25,14 @@ function Home(props) {
 
   function fetchUserProfile() {
     console.log("fetching user profile")
-      // api
-      //   .getUserProfile()
-      //   .then(res => setUserProfile(res))
-      //   .catch(err => console.log(err))
+    api
+      .getUserProfile(JSON.parse(localStorage.user)._id)
+      .then(res => {
+        console.log("--------")
+        setUserProfile(res)
+        console.log("--------")
+      })
+        .catch(err => console.log(err))
     }  
   
     function fetchEvents() {
@@ -71,6 +75,7 @@ function Home(props) {
             events={events}
             users={users}
             setEventDetail={setEventDetail}
+            userProfile={userProfile}
             fetchUserProfile={fetchUserProfile}
           />
         )}

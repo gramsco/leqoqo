@@ -30,9 +30,7 @@ router.post('/Signup', (req, res, next) => {
       
       UserProfile
         .create({ user: userSaved._id })
-        .then(() => console.log("userProfileCreated"))
         .then(() => {
-
           req.logIn(userSaved, () => {
             // hide "encryptedPassword" before sending the JSON (it's a security risk)
             userSaved.password = undefined

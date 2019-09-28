@@ -6,14 +6,14 @@ import Home from './components/Home'
 import Admin from './components/Admin/Admin'
 import NewSubscription from './components/Admin/NewSubscription'
 import NewEvent from './components/Admin/NewEvent'
-import Signup from "./components/Signup"
 import Details from "./components/Admin/Details"
 import Messages from "./components/Messages/Messages"
 import UserProfile from "./components/UserProfile"
 import Settings from './components/Settings'
-import Login from './components/Login'
+import Auth from './components/Auth'
 import NavBar from './components/NavBar'
 import Header from './components/Header'
+import EventDetail from './components/EventDetail';
 require ('dotenv').config()
 
 function App() {
@@ -26,17 +26,18 @@ function App() {
 
 
         <Route exact path="/Signup" render={routeProps => (
-          <Signup isLogin={false} {...routeProps} />
+          <Auth isLogin={false} {...routeProps} />
         )} />
 
 
         <Route exact path="/login" render={routeProps => (
-          <Signup isLogin={true} {...routeProps} />
+          <Auth isLogin={true} {...routeProps} />
         )} />
 
-        {/* <Route exact path="/login" component={Login} /> */}
         <Route exact path="/UserProfile" component={UserProfile} />
+        <Route exact path="/event-details/:id" component={EventDetail} />
 
+        <Route path="/profile-settings" component={Settings} />
 
 
         {/* (- PAGES TO COMMENT ONCE DEPLOYED */}
@@ -45,7 +46,6 @@ function App() {
         <Route exact path="/secret-messages-page/" component={Messages} />
         <Route path="/add-subscription/:id" component={NewSubscription} />
         <Route path="/add-event/:id" component={NewEvent} />
-        <Route path="/profile-settings" component={Settings} />
         {/* PAGES TO COMMENT OUT -) */}
 
         {/* Default */}
