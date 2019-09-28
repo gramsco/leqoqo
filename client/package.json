@@ -13,6 +13,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "typescript": "^3.6.3",
+    "use-immer": "^0.3.4",
     "use-socket.io-client": "^1.0.4"
   },
   "scripts": {
