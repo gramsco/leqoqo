@@ -7,6 +7,7 @@
     "emoji-picker-react": "^2.1.1",
     "immer": "^4.0.0",
     "mapbox": "^1.0.0-beta10",
+    "mapbox-gl": "^1.4.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
