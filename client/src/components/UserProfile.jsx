@@ -7,8 +7,6 @@ import api from '../api'
 
 function UserProfile(props) {
 
-
-
     const [state, setState] = useState({
         user: JSON.parse(localStorage.user).id,
         emoji: '😍',
@@ -57,6 +55,7 @@ function UserProfile(props) {
 
     function handleEmoji(emoji) {
         setEmoji(String.fromCodePoint(parseInt(emoji, 16)))
+        setState({...state,emoji:emoji})
     }
 
     function handleLogout() {

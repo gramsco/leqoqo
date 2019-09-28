@@ -197,6 +197,14 @@ export default {
       .post("/add-profile", body)
       .then(res => res.data)
       .catch(errHandler)
+  },
+
+  getUserProfile(id) {
+    console.log(id)
+    return service
+      .get("/user-profile/" + id)
+      .then(res => res.data)
+      .catch(errHandler)
   }
 }
 

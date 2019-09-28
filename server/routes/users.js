@@ -19,6 +19,17 @@ router.post("/add-profile", (req, res, next) => {
 
 })
 
+router.get("/user-profile/:id", (req, res, next) => {
+    
+    console.log(req.params.id)
+    UserProfileModel
+        .findOne({ user: req.params.id })
+        .then(dataRes => {
+            console.log(dataRes)
+            res.send(dataRes)
+        })
+        .catch(err => console.log(err))
+})
 
 
 module.exports = router

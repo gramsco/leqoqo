@@ -13,8 +13,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhbXNjbyIsImEiOiJjazB3ZG5oaXQwMjNrM2NtbTh1b
 
 function Home(props) {
 
-  
-
     // const [connected, setConnected] = useState(true)
     const [users, setUsers] = useState([])
     const [events, setEvents] = useState([])

@@ -14,8 +14,10 @@ import Settings from './components/Settings'
 import Login from './components/Login'
 import NavBar from './components/NavBar'
 import Header from './components/Header'
+require ('dotenv').config()
 
 function App() {
+  console.log(process.env.REACT_APP_TEST)
   return (
     <div className="App">
       <Switch>
