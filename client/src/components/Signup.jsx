@@ -11,7 +11,6 @@ function Signup(props) {
 
     const [state, setState] = useState({
         email: '',
-        username: '',
         password: '',
         message: null,
     })
@@ -25,18 +24,13 @@ function Signup(props) {
 
     function handleSignup(e) {
         e.preventDefault()
-        let data = {
-            username: state.username,
-            email: state.email,
-            password: state.password,
-        }
         api
-            .signup(data)
+            .signup(state)
             .then(result => {
                 console.log('SUCCESS!')
                 props.history.push('/UserProfile') // Redirect to the home page
             })
-            .catch(err => setState({ message: err.toString() }))
+            .catch(err => setState({ ...state, message: err.toString() }))
     }
 
     function handleLogin(e) {
@@ -50,7 +44,7 @@ function Signup(props) {
                 console.log('--------')
                 props.history.push('/') // Redirect to the home page
             })
-            .catch(err => { return ("error") })
+            .catch(err => setState({...state,message:err.toString()}))
     }
 
     return (
@@ -69,13 +63,13 @@ function Signup(props) {
             </div> */}
             <div className="Signup">
                 <form>
-                    Username:{' '}
+                    {/* Username:{' '}
                     <input
                         type="text"
                         value={state.username}
-                        name="username"
+                        username="username"
                         onChange={handleInputChange}
-                    />{' '}
+                    />{' '} */}
                     <br />
                     <br />
                     Email:{' '}

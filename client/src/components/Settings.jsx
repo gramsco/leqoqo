@@ -6,7 +6,7 @@ import { userInfo } from 'os'
 function Settings() {
   
   let users_infos = JSON.parse(localStorage.user)
-  let [userProfile, setUserProfile] = useState({})
+  let [userProfile, setUserProfile] = useState({emoji:''})
   
   console.log(userProfile)
   console.log(users_infos)
@@ -34,7 +34,7 @@ function Settings() {
         </div>
       ) : (
         <div>
-          <h1>{`Hello ${users_infos.username} + ${userProfile.emoji}`}</h1>
+          <h1>{`Hello, ${users_infos.username} ${userProfile.emoji}`}</h1>
           <div>you're connected but can't change anything, SO SORRY</div>
           {/* {userProfile && user.favs} */}
         </div>

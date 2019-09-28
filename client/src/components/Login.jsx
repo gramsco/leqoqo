@@ -2,22 +2,24 @@ import React, { useState } from 'react'
 import api from "../api";
 import { useForm } from '../hooks'
 
+// DO NOT USE THIS
 export default function Login({ props }) {
     
     const { formValues, getInputProps } = useForm({ lang: 'en' })
 
     function handleSubmit(e) {
         e.preventDefault()
+        console.log("t'es ici ")
         api
             .login(formValues.email, formValues.password)
             .then(result => {
-                console.log('SUCCESS!')
-                console.log('--------')
-                console.log(props)
-                console.log('--------')
+           
                 props.history.push('/') // Redirect to the home page
             })
-            .catch(err => setMessage(err.toString()))
+            .catch(err => {
+              
+                setMessage(err.toString())
+            })
     }
 
     const [message, setMessage] = useState(null)
@@ -27,9 +29,9 @@ export default function Login({ props }) {
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 Email
-        <input
+                <input
                     className="form-control"
-                    type="text"
+                    type="email"
                     {...getInputProps('email')}
                 />{' '}
                 <br />

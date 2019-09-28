@@ -13,7 +13,7 @@ export default function Map() {
 
   useEffect(() => {
     initMap(15, 45)
-  }, ) // react told me to leave the dep. blank.... :/ ?
+  }, ) // Antonin : react told me to leave the dependancy thing blank.... :/ ?
 
   useEffect(() => {
     api.getEvents()

@@ -9,7 +9,8 @@ const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
 router.post('/Signup', (req, res, next) => {
-  const { username, email, password } = req.body
+  const { email, password } = req.body
+  console.log(req.body)
   if (!email || !password) {
     res.status(400).json({ message: 'Indicate email and password' })
     return
@@ -22,7 +23,7 @@ router.post('/Signup', (req, res, next) => {
       }
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(password, salt)
-      const newUser = new User({ username, email, password: hashPass })
+      const newUser = new User({ email, password: hashPass })
       return newUser.save()
     })
     .then(userSaved => {
@@ -48,15 +49,22 @@ router.post('/Signup', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-  const { username, password } = req.body
+  const { email, password } = req.body
+
+  console.log("----------------")
+  console.log("login route in auth")
+  console.log("----------------")
 
   // first check to see if there's a document with that username
-  User.findOne({ username })
+  User.findOne({ email })
     .then(userDoc => {
       // "userDoc" will be empty if the username is wrong (no document in database)
       if (!userDoc) {
         // create an error object to send to our error handler with "next()"
-        next(new Error('Incorrect username '))
+        console.log("wrong username")
+        res.status(409).json({
+          message: 'Incorrect password or username '})
+        // next(new Error('Incorrect password or username '))
         return
       }
 
@@ -64,7 +72,11 @@ router.post('/login', (req, res, next) => {
       // "compareSync()" will return false if the "password" is wrong
       if (!bcrypt.compareSync(password, userDoc.password)) {
         // create an error object to send to our error handler with "next()"
-        next(new Error('Password is wrong'))
+        console.log("wrong password")
+        res.status(409).json({
+          message: 'Incorrect password or username '
+        })
+        // next(new Error('Incorrect password or username'))
         return
       }
 
