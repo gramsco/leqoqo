@@ -28,7 +28,7 @@ function UserProfile(props) {
 
         api
           .editUserProfile(state )
-            .then(res => props.history.push('/'))
+            .then(res => props.history.push('/home'))
             .catch(err => console.log(err))
     }
 

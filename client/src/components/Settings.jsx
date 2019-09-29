@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 import api from '../api'
 import { userInfo } from 'os'
 
-function Settings(props) {
+function Settings(props ) {
   
   let users_infos = JSON.parse(localStorage.user)
   const [userProfile, setUserProfile] = useState({})

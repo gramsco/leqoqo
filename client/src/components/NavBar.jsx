@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
+import { HashLink} from 'react-router-hash-link';
+
 import api from "../api"
 function NavBar({ props }) {
 
+    console.log(props)
     const [emoji,setEmoji] = useState("😴")
 
     function changeAvailable() {
@@ -24,20 +27,23 @@ function NavBar({ props }) {
 
     return (
       <nav className="Navbar">
-        <a href="/">
-          <i class="fas fa-home"></i>
-        </a>
+        {props.location.pathname === "/home" ?
+          <HashLink to="#top_page">  <i class="fas fa-home"></i></HashLink>
+          :
+          <NavLink activeClassName="selected" to="/home"><i class="fas fa-home"></i></NavLink>
+        }
         <div className="Navbar__emoji" onClick={changeAvailable}>
           {emoji}
           {JSON.parse(localStorage.user).username}
-        
         </div>
         {/* <a href="/Signup">
           <i class="fas fa-key"></i>
         </a> */}
-        <a href="/profile-settings">
+        <NavLink
+          activeClassName="selected"
+          to="/profile-settings">
           <i class="fas fa-user-cog"></i>
-        </a>
+        </NavLink>
         <div onClick={handleLogout}>
           <i class="fas fa-door-open"></i>
         </div>

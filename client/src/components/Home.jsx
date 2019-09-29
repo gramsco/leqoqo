@@ -20,8 +20,9 @@ function Home(props) {
     const [search, setSearch] = useState("events")
     const [eventDetail, setEventDetail] = useState("")
     const [userProfile, setUserProfile] = useState({})
+    const [filter, setFilter] = useState("")
     
-    console.log(events)
+  
 
   function fetchUserProfile() {
     console.log("fetching user profile")
@@ -58,6 +59,8 @@ function Home(props) {
           setUsers={setUsers}
           setEvents={setEvents}
           search={search}
+          filter={filter}
+          setFilter={setFilter}
         />
 
         {!api.isLoggedIn() && <Map />}
@@ -77,6 +80,7 @@ function Home(props) {
             setEventDetail={setEventDetail}
             userProfile={userProfile}
             fetchUserProfile={fetchUserProfile}
+            filter={filter}
           />
         )}
         {!api.isLoggedIn() && (

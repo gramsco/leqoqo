@@ -1,15 +1,17 @@
 import React from 'react'
 
 
-function Header({search, setSearch}) {
+function Header({filter, setFilter, search, setSearch}) {
+
+  
 
 
   return (
-    <header className="Header">
+    <header className="Header" id="top_page">
       <div className="logo">
         <i class="fas fa-search"></i>o <i class="fas fa-search"></i>o
       </div>
-      <input type="text" />
+      <input value={filter} onChange={(e) => setFilter(e.target.value)} type="text" />
 
       <div className="Header__filter">
         <div>

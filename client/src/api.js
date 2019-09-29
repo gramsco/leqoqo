@@ -235,6 +235,13 @@ export default {
       .get(`/events/user/${id}`)
       .then(res => res.data)
       .catch(errHandler)
+  },
+
+  sendVote(id,user,vote) {
+    return service
+      .post(`/event/${id}/${user}`, vote)
+      .then(res => res.data)
+      .catch(errHandler)
   }
 }
 
