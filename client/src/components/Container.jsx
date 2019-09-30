@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import api from '../api'
 import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-component'
-import LazyLoad from 'react-lazyload'
+import LazyLoad from 'react-lazy-load'
 
 
 const masonryOptions = {
