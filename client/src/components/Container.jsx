@@ -70,7 +70,7 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
 
   return (
     <div
-      className={"Container"}
+      className={'Container'}
       options={masonryOptions}
       disableImagesLoaded={false} // default false
       updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
@@ -79,10 +79,11 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
     >
       
       {search === 'events' &&
+        
         events &&
         events.filter(sorting).map((e, i) => (
-          
-          <div key={e._id} >
+          // if cat === cinema, then backgroundImage === cinema.jpg, etc
+          <div key={e._id}>
             <h2>{e.name}</h2>
             <h3>{e.place.name}</h3>
             <h4>{e.place.ville}</h4>
@@ -91,37 +92,40 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
               {(e.ratings.length === 0 && 'No one rated this event yet!') ||
                 (e.ratings.length !== 0 &&
                   // e.ratings.map(e => <div>{e.rate}</div>)
-                  e.ratings.map(i => i.rate).reduce((a, b) => a + b, 0) / e.ratings.length 
-                )}
+                  e.ratings.map(i => i.rate).reduce((a, b) => a + b, 0) /
+                    e.ratings.length)}
             </p>
             <p>
               <i class="fas fa-clock"></i>
               {e.hour_begin}
-                  {" | "} 
+              {' | '}
               <Link to={`/event-details/${e._id}`}>Details</Link>
-            
             </p>
-            <p>{e.favs.length + ` qoqonaute${e.favs.length > 1 ? "s":""} want to go there`}</p>
-           
-            {e._id !== "undefined" && (
+            <p>
+              {e.favs.length +
+                ` qoqonaute${e.favs.length > 1 ? 's' : ''} want to go there`}
+            </p>
+
+            {e._id !== 'undefined' && (
               <button
                 className="Favs"
                 style={{
                   border: '1px black solid',
-                  fontSize:'15px'
+                  fontSize: '15px',
                 }}
                 value={e._id}
-                onClick={e._id !== "undefined" ? e.favs.includes(userProfile._id) ? removeFav : addFav : problem}
+                onClick={
+                  e._id !== 'undefined'
+                    ? e.favs.includes(userProfile._id)
+                      ? removeFav
+                      : addFav
+                    : problem
+                }
               >
-                {e._id && 
-                  (e.favs.includes(userProfile._id) ? (
-                    "remove"
-                  ) : (
-                    "add"
-                  ))}
+                {e._id && (e.favs.includes(userProfile._id) ? 'remove' : 'add')}
               </button>
             )}
-            </div>    
+          </div>
         ))}
 
       {search === 'persons' &&

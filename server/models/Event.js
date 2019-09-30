@@ -1,4 +1,5 @@
 let mongoose = require('mongoose')
+let Schema = mongoose.Schema
 
 let EventSchema = mongoose.Schema({
 
@@ -16,15 +17,13 @@ let EventSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "UserProfile"
   }],
-  ratings: [
-    {
+  ratings: [new Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"user"
+        ref:"UserProfile"
       },
-      rate:Number
-    }
-  ],
+      rate: Number,
+  }, { _id: false })],
   event_begin: Date,
   event_end: Date,
   hour_begin: String,
