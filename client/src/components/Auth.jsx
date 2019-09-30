@@ -39,13 +39,13 @@ function Signup(props) {
             .then(() => {
                 props.history.push('/') // Redirect to the home page
             })
-            .catch(err => setState({...state,message:err.toString()}))
+            .catch(err => setState({ ...state, message: err.toString() }))
     }
 
     return (
 
         <div className="signup-container">
-            <header className="Header">
+            <header className="Header neg-margin">
                 <div className="logo">
                     <i class="fas fa-search"></i>o <i class="fas fa-search"></i>o
             </div>

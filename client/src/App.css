@@ -80,7 +80,7 @@ a{
 .profile-image{
   display:flex;
   height: 185px;
-  width: 50%;
+  width: 70%;
   margin: auto 0;
   box-shadow: 5px 5px 5px 5px #6074C0;
   font-size:170px;
@@ -173,6 +173,7 @@ a{
   border:1px red solid;
   margin-top:10px;
   width:200px;
+  background:#E6E7E8
 }
 
 
@@ -202,4 +203,14 @@ a{
 }
 .horlala{
   display: flex;    
+}
+
+.neg-margin{
+  margin-top:-150px;
+}
+
+.event-image{
+  width:100%;
+  border-radius:10px;
+
 }

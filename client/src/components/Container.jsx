@@ -5,7 +5,7 @@ import Masonry from 'react-masonry-component'
 
 
 const masonryOptions = {
-  transitionDuration:5
+  transitionDuration: 5
 }
 
 const breakpointColumnsObj = {
@@ -18,11 +18,11 @@ const imagesLoadedOptions = {
 }
 
 function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetchUserProfile, events, search, users, filter }) {
-      
+
   useEffect(fetchEvents, [])
   useEffect(fetchUsers, [])
   useEffect(fetchUserProfile, [])
-  
+
   console.log(userProfile)
 
   function problem() {
@@ -32,9 +32,9 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
   function addFav(e) {
     let event = e.target.value
     let user = userProfile._id
-    
+
     api
-      .addFavEvent({event,user})
+      .addFavEvent({ event, user })
       .then(() => {
         console.log("added to fav")
         fetchEvents()
@@ -46,7 +46,7 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
     let event = e.target.value
     let user = userProfile._id
     api
-      .removeFavEvent({event,user})
+      .removeFavEvent({ event, user })
       .then(() => {
         console.log("removed from fav")
         fetchEvents()
@@ -77,9 +77,21 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
       imagesLoadedOptions={imagesLoadedOptions} // default {}
       breakpointCols={breakpointColumnsObj}
     >
-      
+      <div>
+        <h5>Musée de la Résistance et de la Déportation de l'Ain</h5>
+        <img src="/index.jpeg" alt="event-default-image" className="event-image" />
+      </div>
+      <div>
+        <h5>Musée de la Résistance et de la Déportation de l'Ain</h5>
+        <img src="/cinema.jpg" alt="event-default-image" className="event-image" />
+      </div>
+      <div>
+        <h5>Musée de la Résistance et de la Déportation de l'Ain</h5>
+        <img src="/museum.jpg" alt="event-default-image" className="event-image" />
+      </div>
+
       {search === 'events' &&
-        
+
         events &&
         events.filter(sorting).map((e, i) => (
           // if cat === cinema, then backgroundImage === cinema.jpg, etc
@@ -93,7 +105,7 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
                 (e.ratings.length !== 0 &&
                   // e.ratings.map(e => <div>{e.rate}</div>)
                   e.ratings.map(i => i.rate).reduce((a, b) => a + b, 0) /
-                    e.ratings.length)}
+                  e.ratings.length)}
             </p>
             <p>
               <i class="fas fa-clock"></i>
