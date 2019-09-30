@@ -54,18 +54,18 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
       .catch(err => console.log(err))
   }
 
-  function sorting(e) {
+  // function sorting(e) {
 
-    return (
-      e.name.toLowerCase().includes(filter.toLowerCase())
-      ||
-      e.place.name.toLowerCase().includes(filter.toLowerCase())
-      ||
-      e.place.ville.toLowerCase().includes(filter.toLowerCase())
-      ||
-      e.favs.length >= filter
-    )
-  }
+  //   return (
+  //     e.name.toLowerCase().includes(filter.toLowerCase())
+  //     // ||
+  //     // e.place.name.toLowerCase().includes(filter.toLowerCase())
+  //     // ||
+  //     // e.place.ville.toLowerCase().includes(filter.toLowerCase())
+  //     // ||
+  //     // e.favs.length >= filter
+  //   )
+  // }
 
 
   return (
@@ -77,16 +77,20 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
       imagesLoadedOptions={imagesLoadedOptions} // default {}
       breakpointCols={breakpointColumnsObj}
     >
-      
+    
+
       {search === 'events' &&
         
         events &&
-        events.filter(sorting).map((e, i) => (
+        events
+        // .filter(sorting)
+        .map((e, i) => (
           // if cat === cinema, then backgroundImage === cinema.jpg, etc
-          <div key={e._id}>
+          
+          <div style={{ backgroundImage:`url("${e.cat}.jpg")`}} key={e._id}>
             <h2>{e.name}</h2>
-            <h3>{e.place.name}</h3>
-            <h4>{e.place.ville}</h4>
+            {/* <h3>{e.place.name}</h3> */}
+            {/* <h4>{e.place.ville}</h4> */}
             <p>{e.event_begin}</p>
             <p>
               {(e.ratings.length === 0 && 'No one rated this event yet!') ||

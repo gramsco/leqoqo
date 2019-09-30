@@ -17,6 +17,9 @@ let EventSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "UserProfile"
   }],
+  image:String,
+  lat: Number,
+  long: Number,
   ratings: [new Schema({
       user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -27,6 +30,10 @@ let EventSchema = mongoose.Schema({
   event_begin: Date,
   event_end: Date,
   hour_begin: String,
+  location: {
+    type: { String, enum: ['Point'], default: 'Point' },
+    coordinates: [Number],
+  },
 },
   {
     timestamps: true
