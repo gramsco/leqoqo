@@ -20,9 +20,19 @@ function Home(props) {
     const [search, setSearch] = useState("events")
     const [eventDetail, setEventDetail] = useState("")
     const [userProfile, setUserProfile] = useState({})
+    const [userProfiles, setUserProfiles] = useState([])
     const [filter, setFilter] = useState("")
     
   
+  function fetchUserProfiles() {
+    
+    console.log("yo")
+    api
+      .getAllUserProfiles()
+      .then(res => setUserProfiles(res))
+      .catch(err => console.log(err))
+    
+  }
 
   function fetchUserProfile() {
     console.log("fetching user profile")
@@ -72,12 +82,19 @@ function Home(props) {
         )}
         {!eventDetail && api.isLoggedIn() && (
           <Container
+            onScroll={() => console.log('lalalalalala')}
             search={search}
             fetchUsers={fetchUsers}
             fetchEvents={fetchEvents}
             events={events}
             users={users}
             setEventDetail={setEventDetail}
+
+            //all the user profiles
+            userProfiles={userProfiles}
+            fetchUserProfiles={fetchUserProfiles}
+
+            //the logged in user profile
             userProfile={userProfile}
             fetchUserProfile={fetchUserProfile}
             filter={filter}

@@ -33,6 +33,18 @@ router.post("/user-profile/:id", (req, res, next) => {
 
 })
 
+router.get("/user-profile/all", (req, res, next) => {
+    
+    UserProfileModel
+        .find()
+        .then(dataRes => {
+            console.log(dataRes)
+            res.send(dataRes)
+        })
+        .catch(err => console.log(err))
+
+})
+
 router.get("/user-profile/:id", (req, res, next) => {
     
     console.log(req.params.id)

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import api from '../api'
 import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-component'
+import LazyLoad from 'react-lazyload'
 
 
 const masonryOptions = {
@@ -17,13 +18,14 @@ const imagesLoadedOptions = {
   columnWidth: 200
 }
 
-function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetchUserProfile, events, search, users, filter }) {
+function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetchUserProfile, events, search, userProfiles, fetchUserProfiles, filter }) {
 
   useEffect(fetchEvents, [])
   useEffect(fetchUsers, [])
   useEffect(fetchUserProfile, [])
+  useEffect(fetchUserProfiles,[])
 
-  console.log(userProfile)
+  console.log(userProfiles)
 
   function problem() {
     alert("something wrong man")
@@ -77,32 +79,22 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
       imagesLoadedOptions={imagesLoadedOptions} // default {}
       breakpointCols={breakpointColumnsObj}
     >
-      <div>
-        <h5>Musée de la Résistance et de la Déportation de l'Ain</h5>
-        <img src="/index.jpeg" alt="event-default-image" className="event-image" />
-      </div>
-      <div>
-        <h5>Musée de la Résistance et de la Déportation de l'Ain</h5>
-        <img src="/cinema.jpg" alt="event-default-image" className="event-image" />
-      </div>
-      <div>
-        <h5>Musée de la Résistance et de la Déportation de l'Ain</h5>
-        <img src="/museum.jpg" alt="event-default-image" className="event-image" />
-      </div>
-
       {search === 'events' &&
-
         events &&
         events
-        // .filter(sorting)
-        .map((e, i) => (
-          // if cat === cinema, then backgroundImage === cinema.jpg, etc
-          
-          <div style={{ backgroundImage:`url("${e.cat}.jpg")`}} key={e._id}>
-            <h2>{e.name}</h2>
-            {/* <h3>{e.place.name}</h3> */}
-            {/* <h4>{e.place.ville}</h4> */}
-            <p>{e.event_begin}</p>
+          // .filter(sorting)
+          .map((e, i) => (
+            // if cat === cinema, then backgroundImage === cinema.jpg, etc
+            <LazyLoad height={200} key={i} placeholder={<div>wait...</div>}>
+              <div className="Card" key={e._id}>
+                <p>{e.name}</p>
+                {/* <h3>{e.place.name}</h3> */}
+                {/* <h4>{e.place.ville}</h4> */}
+                <div
+                  style={{ backgroundImage: `url(${e.image})` }}
+                  className="image-container"
+                ></div>
+                {/* <p>{e.event_begin}</p>
             <p>
               {(e.ratings.length === 0 && 'No one rated this event yet!') ||
                 (e.ratings.length !== 0 &&
@@ -119,37 +111,44 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
             <p>
               {e.favs.length +
                 ` qoqonaute${e.favs.length > 1 ? 's' : ''} want to go there`}
-            </p>
+            </p> */}
 
-            {e._id !== 'undefined' && (
-              <button
-                className="Favs"
-                style={{
-                  border: '1px black solid',
-                  fontSize: '15px',
-                }}
-                value={e._id}
-                onClick={
-                  e._id !== 'undefined'
-                    ? e.favs.includes(userProfile._id)
-                      ? removeFav
-                      : addFav
-                    : problem
-                }
-              >
-                {e._id && (e.favs.includes(userProfile._id) ? 'remove' : 'add')}
-              </button>
-            )}
-          </div>
-        ))}
+                {e._id !== 'undefined' && (
+                  <button
+                    className="Favs"
+                    style={{
+                      border: '1px black solid',
+                      fontSize: '15px',
+                    }}
+                    value={e._id}
+                    onClick={
+                      e._id !== 'undefined'
+                        ? e.favs.includes(userProfile._id)
+                          ? removeFav
+                          : addFav
+                        : problem
+                    }
+                  >
+                    {e._id &&
+                      (e.favs.includes(userProfile._id) ? 'remove' : 'add')}
+                  </button>
+                )}
+              </div>
+            </LazyLoad>
+          ))}
 
       {search === 'persons' &&
-        users &&
-        users.map((e, i) => (
-          <div key={e._id}>
-            <div> {e.username || e.email}</div>
-          </div>
+        userProfiles &&
+        userProfiles.map((e, i) => (
+          <>
+            {e.username && (
+              <div key={e._id}>
+                <div> {e.username + e.emoji}</div>
+              </div>)
+            }
+            </>
         ))}
+      <div>{userProfiles.length}</div>
     </div>
   )
 

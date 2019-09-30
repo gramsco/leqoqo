@@ -18,8 +18,14 @@ require ('dotenv').config()
 
 function App() {
   console.log(process.env.REACT_APP_TEST)
+  function handleScroll(e) {
+    console.log("lalalala")
+  }
   return (
-    <div className="App">
+    <div
+      className="App"
+      onScroll={handleScroll}
+    >
       <Switch>
 
         <Route exact path="/" component={Home}/>

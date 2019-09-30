@@ -199,6 +199,14 @@ export default {
       .catch(errHandler)
   },
 
+  getAllUserProfiles() {
+    console.log("loading all the profiles")
+    return service
+      .get("/user-profile/all")
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getUserProfile(id) {
     return service
       .get("/user-profile/" + id)

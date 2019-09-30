@@ -4,7 +4,7 @@ let mongoose = require('mongoose')
 let EventModel = require("../models/Event")
 let path = require("path")
 const baseURL = "https://openagenda.com/agendas/49405812/events.json?lang=fr&key=aa7d7eac3dc04a5fa98924368f080baf";
-const pageLimit = 2;
+const pageLimit = 10;
 require('dotenv').config({ path: path.join(__dirname, '../.env') })
 
 
