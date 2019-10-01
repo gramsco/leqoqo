@@ -125,19 +125,12 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
         userProfiles.map((e, i) => (
           <>
             {e.username && (
-<<<<<<< HEAD
               <div key={e._id} className="userContainer newcontainer">
                 <div className="test"> {e.username}</div>
                 <br />
                 <div className="emj">  {e.emoji}</div>
               </div>)
             }
-=======
-              <div key={e._id}>
-                <div> {e.username + e.emoji}</div>
-              </div>
-            )}
->>>>>>> 83dcee4b97d48900b2fcd588a7325200011b259c
           </>
         ))}
     </div>
