@@ -23,6 +23,7 @@ function Home(props) {
     const [userProfiles, setUserProfiles] = useState([])
     const [filter, setFilter] = useState("")
     
+  console.log(props)
   
   function fetchUserProfiles() {
     
@@ -71,6 +72,7 @@ function Home(props) {
           search={search}
           filter={filter}
           setFilter={setFilter}
+          props={props}
         />
 
         {!api.isLoggedIn() && <Map />}

@@ -23,7 +23,9 @@
   height:250px;
   border:none;
   box-shadow:5px 5px 5px 1px;
+  margin-right:10px;
 }
+
 .iconsContainer{
   display:flex;
   height:150px;

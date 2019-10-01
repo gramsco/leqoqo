@@ -5,14 +5,6 @@ import { HashLink} from 'react-router-hash-link';
 import api from "../api"
 function NavBar({ props }) {
 
-    console.log(props)
-    const [emoji,setEmoji] = useState("😴")
-
-    function changeAvailable() {
-        if (emoji === "😀") setEmoji("😴")
-        else setEmoji("😀")
-    }
-  
   function handleLogout() {
       api
         .logout()
@@ -27,26 +19,27 @@ function NavBar({ props }) {
 
     return (
       <nav className="Navbar">
-        {props.location.pathname === "/home" ?
-          <HashLink to="#top_page">  <i class="fas fa-home"></i></HashLink>
-          :
-          <NavLink activeClassName="selected" to="/home"><i class="fas fa-home"></i></NavLink>
-        }
-        <div className="Navbar__emoji" onClick={changeAvailable}>
-          {emoji}
-          {JSON.parse(localStorage.user).username}
-        </div>
-        {/* <a href="/Signup">
-          <i class="fas fa-key"></i>
-        </a> */}
+        
         <NavLink
           activeClassName="selected"
           to="/profile-settings">
-          <i class="fas fa-user-cog"></i>
+          
+          <div className="Navbar__emoji" >👁</div>
+          <p>Profile</p>
         </NavLink>
-        <div onClick={handleLogout}>
-          <i class="fas fa-door-open"></i>
+
+
+        <NavLink activeClassName="selected" to="/home">
+          <i class="fas fa-home"></i>
+          <p>Home</p>
+        </NavLink>
+
+
+        <div className="goToFavs">
+          <i class="fas fa-heart"></i>
         </div>
+        
+  
       </nav>
     )
 }

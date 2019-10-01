@@ -57,18 +57,18 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
       .catch(err => console.log(err))
   }
 
-  // function sorting(e) {
-
-  //   return (
-  //     e.name.toLowerCase().includes(filter.toLowerCase())
-  //     // ||
-  //     // e.place.name.toLowerCase().includes(filter.toLowerCase())
-  //     // ||
-  //     // e.place.ville.toLowerCase().includes(filter.toLowerCase())
-  //     // ||
-  //     // e.favs.length >= filter
-  //   )
-  // }
+  function sorting(e) {
+    if (e.name === undefined) return
+    return (
+      e.name.toLowerCase().includes(filter.toLowerCase())
+      // ||
+      // e.place.name.toLowerCase().includes(filter.toLowerCase())
+      // ||
+      // e.place.ville.toLowerCase().includes(filter.toLowerCase())
+      // ||
+      // e.favs.length >= filter
+    )
+  }
 
 
   return (
@@ -83,7 +83,7 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
       {search === 'events' &&
         events &&
         events
-          // .filter(sorting)
+          .filter(sorting)
           .map((e, i) => (
             // if cat === cinema, then backgroundImage === cinema.jpg, etc
             <LazyLoad key={e._id}>

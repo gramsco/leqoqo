@@ -9,7 +9,7 @@ import NewEvent from './components/Admin/NewEvent'
 import Details from "./components/Admin/Details"
 import Messages from "./components/Messages/Messages"
 import UserProfile from "./components/UserProfile"
-import Settings from './components/Settings'
+import UserDetail from './components/UserDetail'
 import Auth from './components/Auth'
 import NavBar from './components/NavBar'
 import Header from './components/Header'
@@ -45,7 +45,7 @@ function App() {
         <Route exact path="/UserProfile" component={UserProfile} />
         <Route exact path="/event-details/:id" component={EventDetail} />
 
-        <Route path="/profile-settings" component={Settings} />
+        <Route path="/profile-settings" component={UserDetail} />
 
 
         {/* (- PAGES TO COMMENT ONCE DEPLOYED */}
