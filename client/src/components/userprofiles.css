@@ -1,30 +1,26 @@
 .test{
   font-family: 'Oswald', sans-serif;
-  font-size:40px;
-  background:#7AA0BE;
-  box-shadow: 5px 5px 5px 2px blue;
+  font-size:20px;
+  text-align:center;
   
-}
-
-.userContainer{
-  display:flex;
-  flex-direction: column;
 }
 
 .emj{
 
-  font-size:100px;
+  font-size:90px;
   border-radius:15px;
-  margin-top:15px;
-  background:#F3AA37;
+  text-align:center;
 }
 
+<<<<<<< HEAD
 .newcontainer{
   height:250px;
   border:none;
   box-shadow:5px 5px 5px 1px;
   margin-right:10px;
 }
+=======
+>>>>>>> 2b6286dfc73e5817f0c54155f60be4e46b43c853
 
 .iconsContainer{
   display:flex;
@@ -41,4 +37,47 @@
   font-size:100px;
   margin-left:100px;
 
+}
+
+.newdiv{
+  display:flex;
+}
+
+.newcontainer{
+  border:3px solid #FFBD57;
+  background:#FDE8AA;
+  border-radius:2000px;
+  height:280px;
+  margin-top:20px;
+  margin-right:10px;
+  margin-left:15px;
+
+}
+
+.userprofiles{
+  display:flex;
+  flex-wrap: wrap;
+  margin-left:20px;
+}
+
+.usercard{
+  width:40%;
+}
+
+.love{
+  color:#FF5A78;
+  font-size:45px;
+
+}
+
+.pallet{
+  width:45px;
+  height:45px;
+  overflow:hidden;
+}
+
+.pallet-image{
+  width:100%;
+  height:100%;
+  margin-left:35px;
 }

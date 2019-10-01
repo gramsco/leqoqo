@@ -80,11 +80,22 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
       imagesLoadedOptions={imagesLoadedOptions} // default {}
       breakpointCols={breakpointColumnsObj}
     >
-      {search === 'events' &&
+      {search === 'events' &&/* .newcontainer{
+  height:250px;
+  border:none;
+  border: 1px solid red;
+  border-radius:50%;  
+} */
         events &&
         events
           .filter(sorting)
-          .map((e, i) => (
+          // .filter(sorting)
+          .map((e, i) => (/* .newcontainer{
+  height:250px;
+  border:none;
+  border: 1px solid red;
+  border-radius:50%;  
+} */
             // if cat === cinema, then backgroundImage === cinema.jpg, etc
             <LazyLoad key={e._id}>
               <div
@@ -120,20 +131,29 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
             </LazyLoad>
           ))}
 
+      {/* <div className="userprofiles"> */}
       {search === 'persons' &&
         userProfiles &&
         userProfiles.map((e, i) => (
           <>
             {e.username && (
               <div key={e._id} className="userContainer newcontainer">
-                <div className="test"> {e.username}</div>
-                <br />
                 <div className="emj">  {e.emoji}</div>
+                <hr></hr>
+                <div className="test"> {e.username}</div>
+                {/* <div className="test pallet "> <img className="pallet-image" src="color-pallet.png" /></div> */}
+                <div className="test love"> <i class="fab fa-gratipay"></i></div>
+                <div className="test"> {e.address}</div>
+
               </div>)
             }
           </>
         ))}
+
+      {/* </div> */}
+
     </div>
+
   )
 
 }
