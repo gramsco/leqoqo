@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import api from '../api'
 import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-component'
-import LazyLoad from 'react-lazyload'
 import './userprofiles.css'
+import LazyLoad from 'react-lazy-load'
+
 
 const masonryOptions = {
   transitionDuration: 5
@@ -85,33 +86,12 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
           // .filter(sorting)
           .map((e, i) => (
             // if cat === cinema, then backgroundImage === cinema.jpg, etc
-            <LazyLoad height={200} key={i} placeholder={<div>wait...</div>}>
-              <div className="Card" key={e._id}>
-                <p>{e.name}</p>
-                {/* <h3>{e.place.name}</h3> */}
-                {/* <h4>{e.place.ville}</h4> */}
-                <div
-                  style={{ backgroundImage: `url(${e.image})` }}
-                  className="image-container"
-                ></div>
-                {/* <p>{e.event_begin}</p>
-            <p>
-              {(e.ratings.length === 0 && 'No one rated this event yet!') ||
-                (e.ratings.length !== 0 &&
-                  // e.ratings.map(e => <div>{e.rate}</div>)
-                  e.ratings.map(i => i.rate).reduce((a, b) => a + b, 0) /
-                  e.ratings.length)}
-            </p>
-            <p>
-              <i class="fas fa-clock"></i>
-              {e.hour_begin}
-              {' | '}
-              <Link to={`/event-details/${e._id}`}>Details</Link>
-            </p>
-            <p>
-              {e.favs.length +
-                ` qoqonaute${e.favs.length > 1 ? 's' : ''} want to go there`}
-            </p> */}
+            <LazyLoad key={e._id}>
+              <div
+                className="Card"
+                style={{ backgroundImage: `url(${e.image})` }}
+              >
+                <div class="NameTag">{e.name}</div>
 
                 {e._id !== 'undefined' && (
                   <button
@@ -142,15 +122,21 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
         userProfiles.map((e, i) => (
           <>
             {e.username && (
+<<<<<<< HEAD
               <div key={e._id} className="userContainer newcontainer">
                 <div className="test"> {e.username}</div>
                 <br />
                 <div className="emj">  {e.emoji}</div>
               </div>)
             }
+=======
+              <div key={e._id}>
+                <div> {e.username + e.emoji}</div>
+              </div>
+            )}
+>>>>>>> 83dcee4b97d48900b2fcd588a7325200011b259c
           </>
         ))}
-      <div>{userProfiles.length}</div>
     </div>
   )
 
