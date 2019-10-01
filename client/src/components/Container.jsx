@@ -88,7 +88,10 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
             <LazyLoad key={e._id}>
               <div
                 className="Card"
-                style={{ backgroundImage: `url(${e.image})` }}
+                style={
+                  {
+                    backgroundImage: `url(${e.image})`,
+                  }}
               >
                 <div class="NameTag">{e.name}</div>
 
