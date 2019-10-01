@@ -3,7 +3,7 @@ import api from '../api'
 import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-component'
 import LazyLoad from 'react-lazyload'
-
+import './userprofiles.css'
 
 const masonryOptions = {
   transitionDuration: 5
@@ -23,7 +23,7 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
   useEffect(fetchEvents, [])
   useEffect(fetchUsers, [])
   useEffect(fetchUserProfile, [])
-  useEffect(fetchUserProfiles,[])
+  useEffect(fetchUserProfiles, [])
 
   console.log(userProfiles)
 
@@ -142,11 +142,13 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
         userProfiles.map((e, i) => (
           <>
             {e.username && (
-              <div key={e._id}>
-                <div> {e.username + e.emoji}</div>
+              <div key={e._id} className="userContainer newcontainer">
+                <div className="test"> {e.username}</div>
+                <br />
+                <div className="emj">  {e.emoji}</div>
               </div>)
             }
-            </>
+          </>
         ))}
       <div>{userProfiles.length}</div>
     </div>
