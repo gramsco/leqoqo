@@ -15,18 +15,18 @@ export default function Map() {
     initMap(15, 45)
   }, ) // Antonin : react told me to leave the dependancy thing blank.... :/ ?
 
-  useEffect(() => {
-    api.getEvents()
-      .then(events => {
-        events = events.filter(e => Boolean(e.place.location))
-        markers = []
-        for (let i = 0; i < events.length; i++) {
-          markers.push = new mapboxgl.Marker({ color: 'red' })
-            .setLngLat(events[i].place.location.coordinates)
-            .addTo(map)
-        }
-      })
-  }, [])
+  // useEffect(() => {
+  //   api.getEvents()
+  //     .then(events => {
+  //       events = events.filter(e => Boolean(e.location))
+  //       markers = []
+  //       for (let i = 0; i < events.length; i++) {
+  //         markers.push = new mapboxgl.Marker({ color: 'red' })
+  //           .setLngLat({ long:events[i].long, lat:events[i].lat })
+  //           .addTo(map)
+  //       }
+  //     })
+  // }, [])
 
   function initMap(lng, lat) {
     // Embed the map where "mapDomRef" is defined in the render
