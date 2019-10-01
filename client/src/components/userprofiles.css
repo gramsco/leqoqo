@@ -1,0 +1,42 @@
+.test{
+  font-family: 'Oswald', sans-serif;
+  font-size:40px;
+  background:#7AA0BE;
+  box-shadow: 5px 5px 5px 2px blue;
+  
+}
+
+.userContainer{
+  display:flex;
+  flex-direction: column;
+}
+
+.emj{
+
+  font-size:100px;
+  border-radius:15px;
+  margin-top:15px;
+  background:#F3AA37;
+}
+
+.newcontainer{
+  height:250px;
+  border:none;
+  box-shadow:5px 5px 5px 1px;
+}
+.iconsContainer{
+  display:flex;
+  height:150px;
+  width:100%;
+  margin-top: 30px;
+
+}
+.each{
+  width:20%;
+  flex: 1;
+  display:flex;
+  overflow:hidden;
+  font-size:100px;
+  margin-left:100px;
+
+}

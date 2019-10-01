@@ -3,6 +3,7 @@ import api from '../api'
 import Login from './Login'
 import { Link } from 'react-router-dom'
 import Header from './Header'
+import './userprofiles.css'
 
 
 function Signup(props) {
@@ -100,6 +101,14 @@ function Signup(props) {
 
                 </form>
                 {state.message && <div>{state.message}</div>}
+            </div>
+            <div className="iconsContainer">
+
+                <div className="each"><img src="./mask.png" alt="wine-image" /></div>
+                <div className="each"><img src="./mask.png" alt="wine-image" /></div>
+                <div className="each"><img src="./museum.png" alt="wine-image" /></div>
+                <div className="each"><img src="./mask.png" alt="wine-image" /></div>
+
             </div>
 
 

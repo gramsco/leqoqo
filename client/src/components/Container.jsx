@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import api from '../api'
 import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-component'
+import './userprofiles.css'
 import LazyLoad from 'react-lazy-load'
 
 
@@ -23,7 +24,7 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
   useEffect(fetchEvents, [])
   useEffect(fetchUsers, [])
   useEffect(fetchUserProfile, [])
-  useEffect(fetchUserProfiles,[])
+  useEffect(fetchUserProfiles, [])
 
   console.log(userProfiles)
 
@@ -124,10 +125,19 @@ function Container({ setEventDetail, userProfile, fetchEvents, fetchUsers, fetch
         userProfiles.map((e, i) => (
           <>
             {e.username && (
+<<<<<<< HEAD
+              <div key={e._id} className="userContainer newcontainer">
+                <div className="test"> {e.username}</div>
+                <br />
+                <div className="emj">  {e.emoji}</div>
+              </div>)
+            }
+=======
               <div key={e._id}>
                 <div> {e.username + e.emoji}</div>
               </div>
             )}
+>>>>>>> 83dcee4b97d48900b2fcd588a7325200011b259c
           </>
         ))}
     </div>
