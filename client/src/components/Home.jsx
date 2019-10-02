@@ -18,6 +18,7 @@ function Home(props) {
     const [events, setEvents] = useState([])
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState("events")
+    const [km, setKm] = useState(10)
     const [eventDetail, setEventDetail] = useState("")
     const [userProfile, setUserProfile] = useState({})
     const [userProfiles, setUserProfiles] = useState([])
@@ -66,6 +67,7 @@ function Home(props) {
     return (
       <div className="Home">
         <Header
+          setKm={setKm}
           setSearch={setSearch}
           setUsers={setUsers}
           setEvents={setEvents}
@@ -73,6 +75,7 @@ function Home(props) {
           filter={filter}
           setFilter={setFilter}
           props={props}
+          km={km}
         />
 
         {!api.isLoggedIn() && <Map />}
@@ -91,6 +94,7 @@ function Home(props) {
             events={events}
             users={users}
             setEventDetail={setEventDetail}
+            km={km}
 
             //all the user profiles
             userProfiles={userProfiles}

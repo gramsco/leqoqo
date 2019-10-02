@@ -23,27 +23,27 @@ function NavBar({ props }) {
   
     return (
       <nav className="Navbar">
-      
-        <NavLink
-          activeClassName="selected"
-          to={`/profile/${userProfile._id}`}>
-          
-          <div className="Navbar__emoji" >{userProfile.emoji}</div>
+        <NavLink activeClassName="selected" to={`/profile/${userProfile._id}`}>
+          <div className="Navbar__emoji">{userProfile.emoji}</div>
           <p>Profile</p>
         </NavLink>
 
+        <div className="goToFavs">
+          <i class="fas fa-heart"></i>
+        </div>
 
         <NavLink activeClassName="selected" to="/home">
           <i class="fas fa-home"></i>
           <p>Home</p>
         </NavLink>
 
-
-        <div className="goToFavs">
-          <i class="fas fa-heart"></i>
+        <div className="">
+          <i class="far fa-comment-dots"></i>
         </div>
-        
-  
+
+        <div className="Infos">
+          <i class="fas fa-info-circle"></i>
+        </div>
       </nav>
     )
 }

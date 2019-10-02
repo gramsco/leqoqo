@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Header({ userProfile="", props,filter, setFilter, search, setSearch}) {
+function Header({ setKm, km, userProfile="", props,filter, setFilter, search, setSearch}) {
 
   if (userProfile) console.log(userProfile)
   console.log(props)
@@ -51,7 +51,7 @@ function Header({ userProfile="", props,filter, setFilter, search, setSearch}) {
               value="huey"
               checked={search === 'events'}
               onClick={() => setSearch('events')}
-              
+            
             />
             
             <label for="huey">Events</label>
@@ -71,7 +71,12 @@ function Header({ userProfile="", props,filter, setFilter, search, setSearch}) {
               <div class="query">
                 <i class="fas fa-search"></i>
                 <input value={filter} onChange={(e) => setFilter(e.target.value)} type="text" />
-              </div>
+          </div>
+          
+          <div>
+            <input onChange={(e) => setKm(e.target.value)} type="range" value={km} min="1" max="200" />
+            {km}km
+          </div>
 
             </div>
         

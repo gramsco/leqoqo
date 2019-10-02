@@ -26,6 +26,7 @@ const imagesLoadedOptions = {
 
 
 function Container({
+  km,
   setEventDetail,
   userProfile,
   fetchEvents,
@@ -94,16 +95,36 @@ function Container({
       })
       .catch(err => console.log(err))
   }
+  console.log(km)
 
   function sorting(e) {
-    if (e.name === undefined) return
-    return e.name.toLowerCase().includes(filter.toLowerCase())
-    // ||
-    // e.place.name.toLowerCase().includes(filter.toLowerCase())
+    // if (e.name === undefined) return
+    return (
+      e.name && e.name.toLowerCase().includes(filter.toLowerCase())
+
+      // ||
+
+      // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
+        
+    &&
+    
+      distance(
+        e.location.coordinates, [
+                        geoloc.lat,
+                        geoloc.lng,
+                      ]) < Number(km))
     // ||
     // e.place.ville.toLowerCase().includes(filter.toLowerCase())
     // ||
     // e.favs.length >= filter
+  }
+
+  function location(a,b) {
+    return (
+      distance(a.location.coordinates, [geoloc.lat, geoloc.lng])
+      -
+      distance(b.location.coordinates, [geoloc.lat, geoloc.lng])
+    )
   }
 
   return (
@@ -117,7 +138,7 @@ function Container({
     >
       {search === 'events' &&
         events &&
-        events.filter(sorting).map(e => (
+        events.filter(sorting).sort(location).map(e => (
           <a href={`/event-details/${e._id}`}>
             <LazyLoad key={e._id}>
               <div

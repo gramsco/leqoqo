@@ -77,6 +77,11 @@ function UserDetail(props) {
     .catch(err => console.log(err))
     
   }
+
+  function handleMsg() {
+    // create in both userprofiles the id of the other
+    setMsg(true)
+  }
   
   useEffect(fetchUserEvents,[])
   useEffect(fetchUserProfile, [])
@@ -95,47 +100,46 @@ function UserDetail(props) {
               🐼
             </span>
           </div>
-        ) : ( 
-            
-          
-          !msg && <div className="UserDetail__Main">
-            <div className="top">
-              <div className="side">
-                <div onClick={handleLogout}>
-                  <i class="fas fa-power-off logout-icon"></i>
+        ) : (
+          !msg && (
+            <div className="UserDetail__Main">
+              <div className="top">
+                <div className="side">
+                  <div onClick={handleLogout}>
+                    <i class="fas fa-power-off logout-icon"></i>
                   </div>
-                  
-                  <div onClick={() => setMsg(true)}>
+
+                  <div onClick={() => handleMsg(true)}>
                     <i class="fas fa-envelope"></i>
                   </div>
-                  
                 </div>
-                
-              <div className="center">
-                <div className="bigEmoji">{userVisited.emoji}</div>
-                <div>{`${userVisited.username}`}</div>
+
+                <div className="center">
+                  <div className="bigEmoji">{userVisited.emoji}</div>
+                  <div>{`${userVisited.username}`}</div>
+                </div>
+
+                <div className="side">
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
 
-              <div className="side">
-                <div></div>
-                <div></div>
+              <div className="middle">
+                <div className="middle__bio">
+                  <h3>{userVisited.bio && ''}</h3>
+                  <p>{userVisited.bio || ''}</p>
+                </div>
+
+                <div className="middle__questions">
+                  <p>{userVisited.question || ''}</p>
+                </div>
               </div>
             </div>
-
-            <div className="middle">
-              <div className="middle__bio">
-                <h3>{userVisited.bio && ""}</h3>
-                <p>{userVisited.bio || ''}</p>
-              </div>
-
-              <div className="middle__questions">
-                <p>{userVisited.question || ''}</p>
-              </div>
-            </div>
-          </div>
+          )
         )}
       </div>
-      {msg && <Messages userId={userProfile._id} />}
+      {msg && userVisited && <Messages otherUserId={userVisited._id} userId={userProfile._id} />}
       {!msg && <NavBar props={props} />}
     </>
   )
