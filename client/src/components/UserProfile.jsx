@@ -11,30 +11,66 @@ function UserProfile(props) {
     const [page,setPage] = useState(1)
 
     const [state, setState] = useState({
-        user: JSON.parse(localStorage.user)._id,
-        username:"",
-        emoji: '😍',
-        bio: '',
-        address: '',
-        question:'',
-  
+      user: JSON.parse(localStorage.user)._id,
+      username:"",
+      emoji: '😍',
+      bio: '',
+      question_type:'',
+      question_answer: '',
+      weekday: false,
+      weeknights: false,
+      weekends:false
     })
 
-    const handleChange = e => {
+  function handleChange (e) {
         let name = e.target.name
-        let value = e.target.value
-        setState({ ...state, [name]: value })
+        let value =  e.target.value 
+          setState({ ...state, [name]: value })
+  }
+  
+  function handleChecked(e) {
+
+    let checked = e.target.checked
+    let name = e.target.name
+    console.log(checked,name)
+    setState({...state, [name]:checked})
+
+  }
+
+  const handleSubmitOne = e => {
+      
+    e.preventDefault()
+    
+    
+    let body = {
+      user:state.user,
+      username:state.username,
+      emoji:state.emoji,
+      bio:state.bio
+    }
+    
+        api
+          .editUserProfile(body)
+          .then(res => setPage(2))
+          .catch(err => console.log(err))
+  }
+  const handleSubmitTwo = e => {
+    e.preventDefault()
+
+    let body = {
+      user:state.user,
+      question_type:state.question_type,
+      question_answer:state.question_answer,
+      weekday:state.weekday,
+      weekends:state.weekends,
+      weeknights:state.weeknights
     }
 
-    const handleSubmitOne = e => {
-      e.preventDefault()
-      setPage(2)
-
-        // api
-        //   .editUserProfile(state.user,state.username,state.emoji,state.bio)
-        //     .then(res => props.history.push('/home'))
-        //     .catch(err => console.log(err))
-    }
+    api
+      .editUserProfile(body)
+      .then(res => props.history.push("/"))
+      .catch(err => console.log(err))
+  }
 
     const [emoji, setEmoji] = useState('😍')
 
@@ -118,6 +154,7 @@ function UserProfile(props) {
                 name="bio"
                 id="info"
               />
+              
               <h2 className="Validate" onClick={handleSubmitOne}>
                 VALIDER 1/2
               </h2>
@@ -136,15 +173,30 @@ function UserProfile(props) {
                   <div>
                     <div>
                       <label>Week day</label>
-                      <input type="checkbox" />
+                      <input
+                        name="weekday"
+                        checked={state.weekday}
+                        onChange={handleChecked}
+                        type="checkbox"
+                      />
                     </div>
                     <div>
                       <label>Week nights</label>
-                      <input type="checkbox" />
+                      <input
+                        name="weeknights"
+                        checked={state.weeknights}
+                        onChange={handleChecked}
+                        type="checkbox"
+                      />
                     </div>
                     <div>
                       <label>Weekend</label>
-                      <input type="checkbox" />
+                      <input
+                        name="weekend"
+                        checked={state.weekend}
+                        onChange={handleChecked}
+                        type="checkbox"
+                      />
                     </div>
                   </div>
                 </div>
@@ -158,8 +210,12 @@ function UserProfile(props) {
                 <div>{!state.username && `What drives you nut ?`}</div>
               </div>
               <div>
-                If I were {' '}
-                <select name="question">
+                If I were{' '}
+                <select
+                  onChange={handleChange}
+                  value={state.question_type}
+                  name="question_type"
+                >
                   <option value="animal">an animal</option>
                   <option value="movie">a movie</option>
                   <option value="book">a book</option>
@@ -167,16 +223,23 @@ function UserProfile(props) {
                   <option value="flower">a flower</option>
                   <option value="person">another person</option>
                   <option value="train">a train</option>
-                </select>
-                {' '} I'd be {' '}
-                <input type="text"></input>
+                </select>{' '}
+                I'd be{' '}
+                <input
+                  onChange={handleChange}
+                  value={state.question_answer}
+                  name="question_answer"
+                  type="text"
+                />
               </div>
-
-              <h2 className="Validate">VALIDER 2/2</h2>
+              <h2 className="Validate" onClick={handleSubmitTwo}>
+                VALIDER 2/2
+              </h2>
             </div>
           )}
         </div>
         <a href="/home">Ignore this step</a>
+        <pre>{JSON.stringify(state)}</pre>
       </div>
     )
 }

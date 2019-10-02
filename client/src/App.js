@@ -45,12 +45,12 @@ function App() {
         <Route exact path="/event-details/:id" component={EventDetail} />
         
         <Route path="/profile-settings" component={UserDetail} />
+        <Route exact path="/message/:id" component={Messages} />
 
 
         {/* (- PAGES TO COMMENT ONCE DEPLOYED */}
         <Route exact path="/secret-admin-page" component={Admin} />
         <Route exact path="/secret-admin-page/details" component={Details} />
-        <Route exact path="/secret-messages-page/" component={Messages} />
         <Route path="/add-subscription/:id" component={NewSubscription} />
         <Route path="/add-event/:id" component={NewEvent} />
         {/* PAGES TO COMMENT OUT -) */}

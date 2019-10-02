@@ -11,8 +11,14 @@ let UserProfileSchema = mongoose.Schema(
         },
         username:String,
         emoji: String,
-        info: String,
-        address: String,
+        bio: String,
+        weekday: Boolean,
+        weeknights: Boolean,
+        weekends: Boolean,
+        question_type: String,
+        question_answer: String,
+    
+        // address: String,
 
         // subscriptions: [{
         //     type: mongoose.Schema.Types.ObjectId,

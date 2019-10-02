@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-component'
 import './userprofiles.css'
 import LazyLoad from 'react-lazy-load'
+import distance from '@turf/distance'
+import Messages from './Messages/Messages'
+
 
 const masonryOptions = {
   transitionDuration: 5,
@@ -17,6 +20,10 @@ const imagesLoadedOptions = {
   background: '.my-bg-image-el',
   columnWidth: 200,
 }
+
+
+
+
 
 function Container({
   setEventDetail,
@@ -34,6 +41,25 @@ function Container({
   useEffect(fetchUsers, [])
   useEffect(fetchUserProfile, [])
   useEffect(fetchUserProfiles, [])
+
+
+  const [geoloc, setGeoloc] = useState(false)
+
+  function getCurrentCoordinates() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        console.log('The current coords are', position.coords)
+        setGeoloc({
+          ...geoloc,
+          lng: position.coords.longitude,
+          lat: position.coords.latitude,
+        })
+        console.log(geoloc)
+      })
+    }
+  }
+
+  getCurrentCoordinates()
 
   console.log(userProfiles)
 
@@ -97,17 +123,24 @@ function Container({
                   backgroundImage: `url(${e.image})`,
                 }}
               >
-                
-                {e.keywords &&
+                {
                   <div className="HiddenCard">
-                    {e.keywords.fr.map((e, i) => (
-                    
-                      <span key={i}>{`# ${e}`}</span>
+                    <h3>
+                      {geoloc && distance(e.location.coordinates, [
+                        geoloc.lat,
+                        geoloc.lng,
+                      ]).toFixed(2) + ' km'}
+                    </h3>
 
-                    ))}
+                    {e.keywords &&
+                      e.keywords.fr.map((e, i) => (
+                        <span key={i}>{`# ${e}`}</span>
+                      ))}
                   </div>
                 }
                 <div class="NameTag">{e.name}</div>
+                <div></div>
+                {/* <div>{e.location.coordinates}</div> */}
 
                 {e._id !== 'undefined' && (
                   <button
@@ -154,6 +187,11 @@ function Container({
             )}
           </>
         ))}
+
+      {search === 'messages' &&
+        
+        <Messages userId={userProfile._id}/>
+        }
 
       {/* </div> */}
     </div>

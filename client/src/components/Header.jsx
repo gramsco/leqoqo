@@ -7,6 +7,9 @@ function Header({ userProfile="", props,filter, setFilter, search, setSearch}) {
   console.log(props)
   console.log("-------")
   const path = props.match.path
+  console.log("path")
+  console.log(path)
+  console.log("path")
   const id = props.match.params.id
   const check = id === userProfile._id
 
@@ -34,8 +37,8 @@ function Header({ userProfile="", props,filter, setFilter, search, setSearch}) {
           <div
             className="Header__filter"
             style={{
-              visibility: path !== "/home" ?
-                "hidden" : "visible"
+              visibility: path === "/home" ?
+                "visible" : path === "/" ? "visible":"hidden"
             }}
          >
           

@@ -4,6 +4,7 @@ import Header from './Header'
 import api from '../api'
 import { userInfo } from 'os'
 import UserProfile from './UserProfile'
+import Messages from './Messages/Messages'
 
 function UserDetail(props) {
   
@@ -25,6 +26,8 @@ function UserDetail(props) {
   console.log(userVisited._id === userProfile._id)
 
   const [evts, setEvts] = useState([])
+
+  const [msg,setMsg] = useState(false)
 
   function handleLogout() {
     api
@@ -103,16 +106,22 @@ function UserDetail(props) {
               🐼
             </span>
           </div>
-        ) : (
-          <div className="UserDetail__Main">
+        ) : ( 
+            
+          
+          !msg && <div className="UserDetail__Main">
             <div className="top">
               <div className="side">
                 <div onClick={handleLogout}>
                   <i class="fas fa-power-off logout-icon"></i>
+                  </div>
+                  
+                  <div onClick={() => setMsg(true)}>
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  
                 </div>
-                <div className="small_Circle"></div>
-              </div>
-
+                
               <div className="center">
                 <div className="bigEmoji">{userVisited.emoji}</div>
                 <div>{`${userVisited.username}`}</div>
@@ -137,8 +146,8 @@ function UserDetail(props) {
           </div>
         )}
       </div>
-
-      <NavBar props={props} />
+      {msg && <Messages />}
+      {!msg && <NavBar props={props} />}
     </>
   )
 

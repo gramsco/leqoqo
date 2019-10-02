@@ -20,13 +20,15 @@ router.post("/add-profile", (req, res, next) => {
 
 router.post("/user-profile/:id", (req, res, next) => {
         
-    console.log(`REQ BODY : ${req.body}`)
+    console.log("req body")
+    console.log(req.body)
+    console.log("req body")
 
     UserProfileModel
         .findOneAndUpdate({ user: req.params.id },req.body)
-        .then(() => {
+        .then((dataRes) => {
+            console.log(dataRes)
             res.send(200)
-            console.log(":)")
         })
         .catch(err => console.log(err))
     

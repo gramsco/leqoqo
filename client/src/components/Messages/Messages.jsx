@@ -1,94 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import useSocket from 'use-socket.io-client';
-import { useImmer } from 'use-immer';
+import React from 'react';
 
-// import './index.css';
+// import './App.css';
+import Chat from './Chat';
+// import UserList from './UserList';
+// import Login from './Login';
+// import chatkitLogo from './chatkit-logo.svg';
+import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
-const Messages = props => props.data.map(m => m[0] !== '' ? (<li><strong>{m[0]}</strong> : <div className="innermsg">{m[1]}</div></li>) : (<li className="update">{m[1]}</li>) );
+function Messages({userId="alice",otherUserId="bob"}) {
+  
+  console.log(userId)
+  console.log(otherUserId)
 
-const Online = props => props.data.map(m => <li id={m[0]}>{m[1]}</li>);
+  const tokenProvider = new TokenProvider({
+    url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/e7c6d2f5-e934-4568-a41b-9ac986cd53b9/token'
+  });
 
-export default () => {
-  const [id, setId] = useState('');
-  const [nameInput, setNameInput] = useState('');
-  const [room, setRoom] = useState('');
-  const [input, setInput] = useState('');
 
-  const [socket] = useSocket('https://open-chat-naostsaecf.now.sh');
-  socket.connect();
+  const instanceLocator = 'v1:us1:e7c6d2f5-e934-4568-a41b-9ac986cd53b9';
 
-  const [messages, setMessages] = useImmer([]);
-  const [online, setOnline] = useImmer([]);
+  return (
 
-  useEffect(()=>{
-    socket.on('message que',(nick,message) => {
-      setMessages(draft => {
-        draft.push([nick,message])
-      })
-    });
+    <div className="Messages">
+      {userId && otherUserId ? (
+        <ChatkitProvider
+          instanceLocator={instanceLocator}
+          tokenProvider={tokenProvider}
+          userId={userId}
+        >
+          <Chat otherUserId={otherUserId} />
 
-    socket.on('update',message => setMessages(draft => {
-      draft.push(['',message]);
-    }));
+        </ChatkitProvider>
+      ) : (
+          <div>yolo</div>
+        )}
 
-    socket.on('people-list',people => {
-      let newState = [];
-      for(let person in people){
-        newState.push([people[person].id,people[person].nick]);
-      }
-      setOnline(draft=>{draft.push(...newState)});
-      console.log(online)
-    });
-
-    socket.on('add-person',(nick,id)=>{
-      setOnline(draft => {
-        draft.push([id,nick])
-      })
-    });
-
-    socket.on('remove-person',id=>{
-      setOnline(draft => draft.filter(m => m[0] !== id))
-    });
-
-    socket.on('chat message',(nick,message)=>{
-      setMessages(draft => {draft.push([nick,message])})
-    });
-  },0);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!nameInput) {
-      return alert("Name can't be empty");
-    }
-    setId(nameInput);
-    socket.emit("join", nameInput,room);
-  };
-
-  const handleSend = e => {
-    e.preventDefault();
-    if(input !== ''){
-      socket.emit('chat message',input,room);
-      setInput('');
-    }
-  };
-
-  return id ? (
-    <section style={{display:'flex',flexDirection:'row'}} >
-      <ul id="messages"><Messages data={messages} /></ul>
-      <ul id="online"> &#x1f310; : <Online data={online} /> </ul>
-      <div id="sendform">
-        <form onSubmit={e => handleSend(e)} style={{display: 'flex'}}>
-            <input id="m" onChange={e=>setInput(e.target.value.trim())} /><button style={{width:'75px'}} type="submit">Send</button>
-        </form>
       </div>
-    </section>
-  ) : (
-    <div style={{ textAlign: 'center', margin: '30vh auto', width: '70%' }}>
-      <form onSubmit={event => handleSubmit(event)}>
-        <input id="name" onChange={e => setNameInput(e.target.value.trim())} required placeholder="What is your name .." /><br />
-        <input id="room" onChange={e => setRoom(e.target.value.trim())} placeholder="What is your room .." /><br />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
-};
+  
+  )
+
+}
+
+export default Messages
