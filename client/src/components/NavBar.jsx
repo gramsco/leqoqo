@@ -1,30 +1,34 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { Link, NavLink } from "react-router-dom"
 import { HashLink} from 'react-router-hash-link';
-
 import api from "../api"
+
+
+
 function NavBar({ props }) {
 
-  function handleLogout() {
-      api
-        .logout()
-        .then(result => {
-         
-          props.history.push('/signup') // Redirect to the home page
-        })
-        .catch(err => {
-          return 'cannot logout'
-        })
-    }
+  let users_infos = JSON.parse(localStorage.user)
 
+  const [userProfile,setUserProfile] = useState({})
+  useEffect(() => {
+      api
+        .getUserProfileWithUser(users_infos._id)
+        .then(res => {
+          setUserProfile(res)
+          console.log(userProfile)
+          console.log(res)
+        })
+        .catch(err => console.log(err))
+    },[])
+  
     return (
       <nav className="Navbar">
-        
+      
         <NavLink
           activeClassName="selected"
-          to="/profile-settings">
+          to={`/profile/${userProfile._id}`}>
           
-          <div className="Navbar__emoji" >👁</div>
+          <div className="Navbar__emoji" >{userProfile.emoji}</div>
           <p>Profile</p>
         </NavLink>
 

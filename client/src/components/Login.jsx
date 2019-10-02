@@ -9,7 +9,7 @@ export default function Login({ props }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log("t'es ici ")
+        // console.log("t'es ici ")
         api
             .login(formValues.email, formValues.password)
             .then(result => {

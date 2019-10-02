@@ -4,7 +4,7 @@ let mongoose = require('mongoose')
 let EventModel = require("../models/Event")
 let path = require("path")
 const baseURL = "https://openagenda.com/agendas/49405812/events.json?lang=fr&key=aa7d7eac3dc04a5fa98924368f080baf";
-const pageLimit = 178;
+const pageLimit = 3;
 require('dotenv').config({ path: path.join(__dirname, '../.env') })
 
 
@@ -22,14 +22,15 @@ function filterData(e) {
         image: e.image,
         keywords: e.keywords,
         range: e.range.fr,
+        description: e.longDescription,
         image_url: e.image,
         location: { coordinates: [e.latitude, e.longitude] },
         year: 2019,
         event_begin: e.timings[0].start,
         event_end: e.timings[e.timings.length - 1].end,
-        location: e.location.name
+        city: e.location.name
     }
-        
+     
 }
 
 async function recursiveGet(url, page, finalRes) {

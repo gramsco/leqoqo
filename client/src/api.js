@@ -208,8 +208,17 @@ export default {
   },
 
   getUserProfile(id) {
+    console.log(id)
     return service
       .get("/user-profile/" + id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getUserProfileWithUser(id) {
+    console.log(id)
+    return service
+      .get("/user/" + id)
       .then(res => res.data)
       .catch(errHandler)
   },

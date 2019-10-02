@@ -23,9 +23,7 @@ function App() {
   }
   return (
     <div
-      className="App"
-      onScroll={handleScroll}
-    >
+      className="App">
       <Switch>
 
         <Route exact path="/" component={Home}/>
@@ -43,8 +41,9 @@ function App() {
         )} />
 
         <Route exact path="/UserProfile" component={UserProfile} />
+        <Route exact path="/profile/:id" component={UserDetail} />
         <Route exact path="/event-details/:id" component={EventDetail} />
-
+        
         <Route path="/profile-settings" component={UserDetail} />
 
 

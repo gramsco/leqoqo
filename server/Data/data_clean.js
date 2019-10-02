@@ -5,7 +5,7 @@ console.log(json[0])
 
 json2 = []
 json.map((e, i) => {
-    
+    console.log(e)
     json2.push({
         name: e.fields.nom_du_musee,
         type:"museum",
@@ -15,7 +15,7 @@ json.map((e, i) => {
         coordonates: e.fields.coordonnees_finales,
         cp: e.fields.cp,
         location: e.geometry,
-        link:e.fields.sitweb
+        link: e.fields.sitweb,
         })
 
 

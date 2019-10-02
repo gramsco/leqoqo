@@ -66,33 +66,103 @@ th {
   color: white;
 }
 .container {
+  font-size:"avenir";
   display: flex;
   flex-direction: column;
   align-items: center;
+  background:rgba(255,0,0,0.3);
+  width:100vw;
+  height:100vh;
 }
 
 .userprofile-container {
   display: flex;
-  margin-left: 40px;
-  text-align: center;
-  margin-right: 40px;
+  justify-content: center;
+  width:100%;
+  margin:0 auto;
 }
+
+.userprofile__form__questions{
+  display:flex;
+  width:100%;
+}
+
+.userprofile__form__number{
+  padding:5px;
+  width:50px;
+  height:50px;
+  background:yellow;
+  border-radius:50%;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
 .profile-image {
   display: flex;
-  height: 185px;
-  width: 70%;
   margin: auto 0;
-  box-shadow: 5px 5px 5px 5px #6074c0;
-  font-size: 170px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  background:none;
+  width:22vw;
+  height:25vw;
+  font-size: 20vw;
+  outline: none;
+  /* box-shadow: 5px 5px 5px 5px #6074c0;
+  /* font-size: 170px; */
+  /* margin-bottom: 20px;
+  margin-top: 20px; */ 
 }
+.profile-image:hover{
+  cursor:pointer;
+}
+
+.profile-username{
+  display: flex;
+  margin: auto 0;
+  background:none;
+  width:50vw;
+  height:10vw;
+  font-size: 10vw;
+  text-align:center;
+  outline: none;
+  color:white;
+
+  /* box-shadow: 5px 5px 5px 5px #6074c0;
+  /* font-size: 170px; */
+  /* margin-bottom: 20px;
+  margin-top: 20px; */ 
+}
+
+
+.emoji_and_name{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Validate{
+  cursor:pointer;
+}
+
 .selector {
   width: 20%;
   margin-top: 10px;
 }
 .inputEmoji {
   font-size: 30px;
+}
+
+aside{
+  position: fixed !important;
+  left:0;
+  top:0;
+  width:100% !important;
+  border:solid black 1px;
+}
+
+.userprofile_bio{
+  width:70vw;
+  height:20vw;
+  resize:none;
 }
 .head {
   display: flex;
@@ -119,6 +189,7 @@ th {
   align-items: center;
   background: white;
   font-size: 8vh;
+  z-index:999999999999999999999999999;
 }
 
 .Navbar p{
@@ -201,10 +272,7 @@ th {
   /* border-radius:12px; */
   text-align: center;
   background-size: cover;
-
-  /* border:1px red solid; */
-  /* margin:5px 0px; */
-  /* margin:0 auto; */
+  position:relative;
   display: flex;
   /* width:100%; */
   height: 40vw;
@@ -212,6 +280,26 @@ th {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  z-index:2;
+}
+
+.HiddenCard{
+  background:rgba(0,0,0,0.3);
+  top:0;
+  height:100%;
+  width:100%;
+  color:white;
+  position:absolute;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  opacity:0;
+}
+
+.HiddenCard:hover{
+  opacity:1;
 }
 
 /* .Card:hover{
@@ -256,9 +344,19 @@ th {
 }
 
 .logout-icon {
-  font-size: 40px;
-  color: #ffe500;
+  font-size: 60px;
+  border-radius:50%;
 }
+
+.logout-icon:hover {
+  font-size: 60px;
+  transform:scale(1.2);
+  cursor:pointer;
+  opacity:0;
+  transition:opacity 5s;
+}
+
+
 
 .Header-in-userprofile {
   height: 20vh;
@@ -333,7 +431,15 @@ th {
 font-size:7rem;
 }
 
+.bigEmoji:hover{
+  transform:rotate(360deg);
+  transition: 5s;
+  
+}
+
+
 .small_Circle{
+  visibility:hidden;
   background:white;
   height:60px;
   width:60px;
@@ -341,6 +447,46 @@ font-size:7rem;
   border-radius:50%;
   box-shadow: 2px 2px 2px 1px black;
 }
+
+
+.EventDetail{
+  top:20vh;
+  position:fixed;
+  background:white;
+  width:100%;
+  max-height:60vh;
+  height:auto;
+  display:flex;
+  justify-content: space-around;
+  /* z-index:999999999999999999; */
+  /* overflow:scroll; */
+  /* border:solid 1px black; */
+}
+
+main{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EventDetail {
+  width:90%;
+  height:100%;
+  height:auto;
+  background-size:contain;
+  border:gold 1px solid;
+}
+
+.EventDetail img{
+
+  width:300px;
+  height:auto;
+
+}
+
+
+
 
 
 

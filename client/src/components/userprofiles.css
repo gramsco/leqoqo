@@ -6,21 +6,22 @@
 }
 
 .emj{
-
   font-size:90px;
   border-radius:15px;
   text-align:center;
 }
 
-<<<<<<< HEAD
 .newcontainer{
   height:250px;
   border:none;
   box-shadow:5px 5px 5px 1px;
   margin-right:10px;
 }
-=======
->>>>>>> 2b6286dfc73e5817f0c54155f60be4e46b43c853
+
+.newcontainer:hover{
+ transform:scale(1.05)
+}
+
 
 .iconsContainer{
   display:flex;
@@ -64,11 +65,20 @@
   width:40%;
 }
 
-.love{
-  color:#FF5A78;
-  font-size:45px;
 
+
+.love > *{
+  font-size:45px;
+  color:#FF5A78;
+  cursor:pointer;
 }
+
+.love > *:hover{
+  transform:rotate(360deg);
+  cursor:pointer;
+  transition:transform 0.5s;
+}
+
 
 .pallet{
   width:45px;

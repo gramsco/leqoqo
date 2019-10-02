@@ -45,11 +45,20 @@ router.get("/user-profile/all", (req, res, next) => {
 
 })
 
+router.get("/user/:id", (req, res, next) => {
+    
+    UserProfileModel
+        .findOne({ user: req.params.id })
+        .then(dataRes => res.send(dataRes))
+        .catch(err => console.log(err))  
+})
+
+
 router.get("/user-profile/:id", (req, res, next) => {
     
     console.log(req.params.id)
     UserProfileModel
-        .findOne({ user: req.params.id })
+        .findById(req.params.id)
         .then(dataRes => {
             console.log("-----user profile------")
             console.log(dataRes)
