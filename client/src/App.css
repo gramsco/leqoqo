@@ -39,10 +39,17 @@ th {
 
 .Signup {
   padding-top: 20px;
-  width: 400px;
-  background: #ffe500;
-  box-shadow: 5px 5px 1px 5px #ffbd59;
+  margin-top:10px;
+  width: 455px;
+  background:#FCD35E;
   text-align: center;
+}
+
+.white-background{
+  background:white;
+  width:550px;
+  display:flex;
+  justify-content: center;
 }
 
 .Signup form {
@@ -57,11 +64,10 @@ th {
 }
 
 .heading {
-  margin-top: 50px;
-  margin-bottom: 40px;
-  width: 40%;
+  margin-top: 20px;
+  /* margin-bottom: 40px; */
+  width: 300px;;
   background: #5271ff;
-  box-shadow: 5px 5px 1px 5px #bdddf4;
   text-align: center;
   color: white;
 }
@@ -452,16 +458,18 @@ font-size:7rem;
 .EventDetail{
   top:20vh;
   position:fixed;
-  background:white;
   width:100%;
   max-height:60vh;
   height:auto;
   display:flex;
+  flex-direction:column;
+  align-items:center;
   justify-content: space-around;
+}
   /* z-index:999999999999999999; */
   /* overflow:scroll; */
-  /* border:solid 1px black; */
-}
+  /* border:solid 1px black;
+
 
 main{
   width:100%;
@@ -470,7 +478,7 @@ main{
   align-items: center;
 }
 
-.EventDetail {
+/* .EventDetail {
   width:90%;
   height:100%;
   height:auto;
@@ -483,7 +491,7 @@ main{
   width:300px;
   height:auto;
 
-}
+} */
 
 
 
@@ -547,4 +555,13 @@ main{
     /* border:solid 5px green; */
     margin-bottom: 18vh;
   }
+}
+
+@media screen and (max-width: 750px) {
+    .Signup{
+      width:300px;
+    }
+    .white-background{
+      width:400px;
+    }
 }
