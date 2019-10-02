@@ -59,7 +59,10 @@ function Container({
     }
   }
 
-  getCurrentCoordinates()
+  useEffect(() => {
+    getCurrentCoordinates()
+  },[])
+  
 
   console.log(userProfiles)
 
