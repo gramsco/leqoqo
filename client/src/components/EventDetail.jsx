@@ -35,33 +35,42 @@ function EventDetail(props) {
     <main>
       <Header props={props} />
       <div className="EventDetail">
-        <div className="event-image">
-          <img className="event-img" alt="event-image" src={evt.image} />
+        <div className="event-name"><h3>{evt.name}</h3> </div>
+        <div className="container-for-event">
+          <div>
+            <div className="event-image">
+              <img className="event-img" alt="event-image" src={evt.image} />
+            </div>
+
+            <div className="event-city">{evt.city} &nbsp;</div>
+
+            <div className="badge">
+              <div className="box">8</div>
+              <div className="arrow-right"></div>
+              <div className="arrow-left"></div>
+            </div>
+
+
+            {/* <div className="test love event-love">
+              <i class="fab fa-gratipay"></i>
+            </div> */}
+
+          </div>
+          <div className="nothing"></div>
+
+          <div className="description">{evt.description && evt.description.fr}</div>
+
         </div>
 
-        <div className="event-city">{evt.city} &nbsp;</div>
-
-        <div className="badge">
-          <div className="box">8</div>
-          <div className="arrow-right"></div>
-          <div className="arrow-left"></div>
-        </div>
 
 
-        <div className="test love event-love">
-          <i class="fab fa-gratipay"></i>
-        </div>
-
-
-        <div className="event-name"><h3>{evt.name}</h3>
-        </div>
 
         {/* <h2>{evt.city}</h2> */}
-        {evt.description && evt.description.fr}
+
         <br /> <br />
         <div>{evt.keywords && evt.keywords.fr}</div>
       </div>
-      {/* <NavBar props={props} /> */}
+      <NavBar props={props} />
     </main>
   )
 }
