@@ -28,7 +28,6 @@ function Home(props) {
   
   function fetchUserProfiles() {
     
-    console.log("yo")
     api
       .getAllUserProfiles()
       .then(res => setUserProfiles(res))
@@ -39,19 +38,24 @@ function Home(props) {
   function fetchUserProfile() {
     console.log("fetching user profile")
     api
-      .getUserProfile(JSON.parse(localStorage.user)._id)
+      .getUserProfileWithUser(JSON.parse(localStorage.user)._id)
       .then(res => {
         console.log("--------")
         setUserProfile(res)
+        console.log(res)
         console.log("--------")
       })
         .catch(err => console.log(err))
     }  
   
-    function fetchEvents() {
+  function fetchEvents() {
+      setLoading(true)
         api
         .getEvents()
-        .then(res => setEvents(res))
+          .then(res => {
+            setEvents(res)
+            setLoading(false)
+          })
         .catch(err => console.log(err))
     }
 
@@ -85,6 +89,7 @@ function Home(props) {
             eventDetail={eventDetail}
           />
         )}
+        
         {!eventDetail && api.isLoggedIn() && (
           <Container
             onScroll={() => console.log('lalalalalala')}
@@ -95,6 +100,7 @@ function Home(props) {
             users={users}
             setEventDetail={setEventDetail}
             km={km}
+            loading={loading}
 
             //all the user profiles
             userProfiles={userProfiles}

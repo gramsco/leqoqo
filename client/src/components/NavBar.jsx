@@ -37,13 +37,13 @@ function NavBar({ props }) {
           <p>Home</p>
         </NavLink>
 
-        <div className="">
+        <NavLink activeClassName="selected" to="/messages">
           <i class="far fa-comment-dots"></i>
-        </div>
+        </NavLink>
 
-        <div className="Infos">
+        <NavLink activeClassName="selected" to="/infos">
           <i class="fas fa-info-circle"></i>
-        </div>
+        </NavLink>
       </nav>
     )
 }

@@ -7,7 +7,6 @@ import LazyLoad from 'react-lazy-load'
 import distance from '@turf/distance'
 import Messages from './Messages/Messages'
 
-
 const masonryOptions = {
   transitionDuration: 5,
 }
@@ -22,10 +21,12 @@ const imagesLoadedOptions = {
 }
 
 
+var today = new Date()
 
-
+console.log(today)
 
 function Container({
+  loading,
   km,
   setEventDetail,
   userProfile,
@@ -43,7 +44,7 @@ function Container({
   useEffect(fetchUserProfile, [])
   useEffect(fetchUserProfiles, [])
 
-
+  let checkDate = true
   const [geoloc, setGeoloc] = useState(false)
 
   function getCurrentCoordinates() {
@@ -74,7 +75,8 @@ function Container({
   function addFav(e) {
     let event = e.target.value
     let user = userProfile._id
-
+    console.log(event, user)
+    
     api
       .addFavEvent({ event, user })
       .then(() => {
@@ -100,19 +102,25 @@ function Container({
   function sorting(e) {
     // if (e.name === undefined) return
     return (
-      e.name && e.name.toLowerCase().includes(filter.toLowerCase())
-
-      // ||
-
-      // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
-        
-    &&
     
-      distance(
+       distance(
         e.location.coordinates, [
                         geoloc.lat,
                         geoloc.lng,
-                      ]) < Number(km))
+       ]) < Number(km))
+    
+    
+      &&
+
+      (
+        e.name && e.name.toLowerCase().includes(filter.toLowerCase())
+      ||
+        e.city && e.city.toLowerCase().includes(filter.toLowerCase())
+      )
+
+      // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
+  
+     
     // ||
     // e.place.ville.toLowerCase().includes(filter.toLowerCase())
     // ||
@@ -136,60 +144,68 @@ function Container({
       imagesLoadedOptions={imagesLoadedOptions} // default {}
       breakpointCols={breakpointColumnsObj}
     >
+      {loading && <div>It's qoqoming ... !</div>}
       {search === 'events' &&
         events &&
-        events.filter(sorting).sort(location).map(e => (
-          <a href={`/event-details/${e._id}`}>
-            <LazyLoad key={e._id}>
-              <div
-                className="Card"
-                style={{
-                  backgroundImage: `url(${e.image})`,
-                }}
-              >
-                {
-                  <div className="HiddenCard">
-                    <h3>
-                      {geoloc && distance(e.location.coordinates, [
-                        geoloc.lat,
-                        geoloc.lng,
-                      ]).toFixed(2) + ' km'}
-                    </h3>
+        events
+          .filter(sorting)
+          .sort(true ? location : () => true)
+          .map(e => (
+          
+              <LazyLoad key={e._id}>
+                <div
+                  className="Card"
+                  style={{
+                    backgroundImage: `url(${e.image})`,
+                  }}
+                >
+                  {
+                    <a href={`/event-details/${e._id}`} className="HiddenCard">
+                      <h3>
+                        {geoloc &&
+                          distance(e.location.coordinates, [
+                            geoloc.lat,
+                            geoloc.lng,
+                          ]).toFixed(2) + ' km'}
+                      </h3>
+                      {e.event_end < today ? 'qoqover :(' : ''}
+                      {e.keywords &&
+                        e.keywords.fr.map((e, i) => (
+                          <span key={i}>{`# ${e}`}</span>
+                        ))}
+                    </a>
+                  }
+                  <div class="NameTag">{e.name}</div>
 
-                    {e.keywords &&
-                      e.keywords.fr.map((e, i) => (
-                        <span key={i}>{`# ${e}`}</span>
-                      ))}
-                  </div>
-                }
-                <div class="NameTag">{e.name}</div>
-                <div></div>
-                {/* <div>{e.location.coordinates}</div> */}
+                  {/* <div>{e.location.coordinates}</div> */}
 
-                {e._id !== 'undefined' && (
-                  <button
-                    className="Favs"
-                    style={{
-                      border: '1px black solid',
-                      fontSize: '15px',
-                    }}
-                    value={e._id}
-                    onClick={
-                      e._id !== 'undefined'
-                        ? e.favs.includes(userProfile._id)
-                          ? removeFav
-                          : addFav
-                        : problem
-                    }
-                  >
-                    {e._id &&
-                      (e.favs.includes(userProfile._id) ? 'remove' : 'add')}
-                  </button>
-                )}
-              </div>
-            </LazyLoad>
-          </a>
-        ))}
+                  {e._id !== 'undefined' && (
+                    <button
+                      className="Favs"
+                      style={{
+                        border: '1px black solid',
+                        fontSize: '15px',
+                      }}
+                      value={e._id}
+                      onClick={
+                        e._id !== 'undefined'
+                          ? e.favs.includes(userProfile._id)
+                            ? removeFav
+                            : addFav
+                          : problem
+                      }
+                    >
+                      {e._id &&
+                        (e.favs.includes(userProfile._id) ? (
+                          'remove'
+                        ) : (
+                          <i class="far fa-heart"></i>
+                        ))}
+                    </button>
+                  )}
+                </div>
+              </LazyLoad>
+          ))}
 
       {/* <div className="userprofiles"> */}
       {search === 'persons' &&
@@ -199,12 +215,14 @@ function Container({
             {e.username && (
               <a href={`/profile/${e._id}`}>
                 <div key={e._id} className="userContainer newcontainer">
+
                   <div className="emj"> {e.emoji}</div>
                   <div className="test"> {e.username}</div>
-                  {/* <div className="test pallet "> <img className="pallet-image" src="color-pallet.png" /></div> */}
+
                   <div className="test love">
                     <i class="fab fa-gratipay"></i>
                   </div>
+
                   <div className="test"> {e.address}</div>
                 </div>
               </a>
@@ -212,10 +230,7 @@ function Container({
           </>
         ))}
 
-      {search === 'messages' &&
-        
-        <Messages userId={userProfile._id}/>
-        }
+      {search === 'messages' && <Messages userId={userProfile._id} />}
 
       {/* </div> */}
     </div>

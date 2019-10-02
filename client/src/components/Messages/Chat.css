@@ -32,7 +32,7 @@
 }
 
 .Chat__messages {
-  background-image: linear-gradient(#d3d3d3, #d0d0d0);
+  /* background-image: linear-gradient(#d3d3d3, #d0d0d0); */
   flex: 1;
   padding: 2rem 4rem;
   overflow-y: scroll;

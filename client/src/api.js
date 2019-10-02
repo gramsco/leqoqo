@@ -259,6 +259,13 @@ export default {
       .post(`/event/${id}/${user}`, vote)
       .then(res => res.data)
       .catch(errHandler)
+  },
+
+  createRoom(body) {
+    return service
+      .post("/messages/room", body)
+      .then(res => res.data)
+      .catch(err => console.log(err))
   }
 }
 

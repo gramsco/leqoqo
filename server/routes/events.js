@@ -26,7 +26,7 @@ router.get("/event/:id", (req, res, next) => {
 
   EventModel
     .findById(req.params.id)
-    // .populate({ path:"ratings", model: "UserProfile" })
+    .populate('favs')
     .then(dataRes => {
       console.log(dataRes)
       res.send(dataRes)

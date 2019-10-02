@@ -17,7 +17,11 @@ let UserProfileSchema = mongoose.Schema(
         weekends: Boolean,
         question_type: String,
         question_answer: String,
-    
+        something_new:false,
+        chats_user: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'UserProfile'
+        }],
         // address: String,
 
         // subscriptions: [{

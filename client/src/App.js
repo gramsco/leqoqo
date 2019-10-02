@@ -7,20 +7,18 @@ import Admin from './components/Admin/Admin'
 import NewSubscription from './components/Admin/NewSubscription'
 import NewEvent from './components/Admin/NewEvent'
 import Details from "./components/Admin/Details"
-import Messages from "./components/Messages/Messages"
+import ListMessages from "./components/Messages/ListMessages"
 import UserProfile from "./components/UserProfile"
 import UserDetail from './components/UserDetail'
 import Auth from './components/Auth'
 import NavBar from './components/NavBar'
 import Header from './components/Header'
 import EventDetail from './components/EventDetail';
+import Infos from './components/Infos'
 require ('dotenv').config()
 
 function App() {
-  console.log(process.env.REACT_APP_TEST)
-  function handleScroll(e) {
-    console.log("lalalala")
-  }
+
   return (
     <div
       className="App">
@@ -45,8 +43,8 @@ function App() {
         <Route exact path="/event-details/:id" component={EventDetail} />
         
         <Route path="/profile-settings" component={UserDetail} />
-        <Route exact path="/message/:id" component={Messages} />
-
+        <Route exact path="/messages/" component={ListMessages} />
+        <Route exact path="/infos" component={Infos} />
 
         {/* (- PAGES TO COMMENT ONCE DEPLOYED */}
         <Route exact path="/secret-admin-page" component={Admin} />
@@ -56,7 +54,7 @@ function App() {
         {/* PAGES TO COMMENT OUT -) */}
 
         {/* Default */}
-        <Route render={() => <h1>404</h1>} />
+        <Route render={() => <h1>404, sorry little qoqo</h1>} />
       </Switch>
 
 

@@ -37,6 +37,7 @@ th {
   align-items: center;
 }
 
+
 .Signup {
   padding-top: 20px;
   margin-top:10px;
@@ -304,6 +305,19 @@ aside{
   opacity:0;
 }
 
+.Favs{
+  position:relative;
+  z-index:99999;
+  width:50%;
+}
+
+.Favs:hover{
+  color:white;
+  cursor:pointer;
+  background:red;
+}
+
+
 .HiddenCard:hover{
   opacity:1;
 }
@@ -442,6 +456,40 @@ font-size:7rem;
   transition: 5s;
   
 }
+
+.ListMessages{
+height:80vh;
+justify-content: space-between;
+border:red solid 1px;
+}
+
+.ListMessages__Contacts{
+  position:fixed;
+  height:20vh;
+}
+
+.Messages_list{
+max-height:50%;
+position:fixed;
+top:20vh;
+width:100%;
+overflow:scroll;
+}
+
+.Messages_list .Chat__compose{
+
+  position:fixed;
+  bottom:15vh;
+
+}
+.Messages_list .Chat__titlebar{
+
+  position:fixed;
+  width:100%;
+  top:15vh;
+
+}
+
 
 
 .small_Circle{

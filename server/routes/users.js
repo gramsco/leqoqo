@@ -1,7 +1,12 @@
 const express = require("express")
 const router = express.Router()
 const UserProfileModel = require("../models/UserProfile")
+const Chatkit = require('@pusher/chatkit-server');
 
+const chatkit = new Chatkit.default({
+    instanceLocator: process.env.CHAT_INSTANCE_LOCATOR,
+    key: process.env.CHAT_KEY,
+})
 
 
 router.get("/", (req, res, next) => {
@@ -28,8 +33,12 @@ router.post("/user-profile/:id", (req, res, next) => {
     UserProfileModel
         .findOneAndUpdate({ user: req.params.id },req.body)
         .then((dataRes) => {
-            console.log(dataRes)
-            res.send(200)
+            chatkit.updateUser({
+                id: dataRes._id,
+                name: dataRes.username,
+            })
+            .then(() => res.sendStatus(200))
+            .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
     
@@ -52,6 +61,7 @@ router.get("/user/:id", (req, res, next) => {
     
     UserProfileModel
         .findOne({ user: req.params.id })
+        .populate('chats_user')
         .then(dataRes => res.send(dataRes))
         .catch(err => console.log(err))  
 })

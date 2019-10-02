@@ -21,8 +21,6 @@ function UserDetail(props) {
       .catch(err => console.log(err))
   },[])
 
-  console.log("userProfile !!!")
-  console.log(userProfile._id)
 
   const [evts, setEvts] = useState([])
 
@@ -62,8 +60,6 @@ function UserDetail(props) {
     api
       .getUserProfile(id)
       .then(res => {
-        console.log("new thing ::::::")
-        console.log(res)
         setUserVisited(res)
       })
       .catch(err => console.log(err))
@@ -80,7 +76,11 @@ function UserDetail(props) {
 
   function handleMsg() {
     // create in both userprofiles the id of the other
-    setMsg(true)
+    let body = { first_id: userVisited._id, second_id: userProfile._id }
+    api
+      .createRoom(body)
+      .then(res => setMsg(true))
+      .catch(err => console.log(err))
   }
   
   useEffect(fetchUserEvents,[])

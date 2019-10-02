@@ -10,6 +10,8 @@ function Chat(props) {
   const [pendingMessage, setPendingMessage] = useState('');
   const messageList = React.createRef();
 
+  console.log(props)
+
   const handleMessageKeyDown = event => {
     if (event.key === 'Enter') {
       handleSendMessage();
@@ -46,11 +48,11 @@ function Chat(props) {
   return (
     <div className="Chat">
       <div className="Chat__titlebar">
-        <img
+        {/* <img
           src={defaultAvatar}
           className="Chat__titlebar__avatar"
           alt="avatar"
-        />
+        /> */}
         <div className="Chat__titlebar__details">
           {/*TODO: Get other user's name from Chatkit */}
           <span>{props.chatkit.isLoading
