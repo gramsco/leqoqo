@@ -3,6 +3,7 @@ const router = express.Router()
 const UserProfileModel = require("../models/UserProfile")
 
 
+
 router.get("/", (req, res, next) => {
 
     res.send(200)

@@ -21,9 +21,8 @@ function UserDetail(props) {
       .catch(err => console.log(err))
   },[])
 
-  console.log(userVisited._id)
-  console.log(userProfile)
-  console.log(userVisited._id === userProfile._id)
+  console.log("userProfile !!!")
+  console.log(userProfile._id)
 
   const [evts, setEvts] = useState([])
 
@@ -44,14 +43,12 @@ function UserDetail(props) {
     
     // get the visitor profile id
     api
-    .getUserProfile(users_infos._id)
+    .getUserProfileWithUser(users_infos._id)
       .then(res => {
         if (id === res._id) {
-        console.log("params id is visitor id")
         setUserVisited(res)
         }
         else {
-          console.log('params id is different than visitor id')
           fetchUserVisited()
         }
       setUserProfile(res)
@@ -62,14 +59,6 @@ function UserDetail(props) {
   }
 
   function fetchUserVisited() {
-    console.log("--------YOLOOOOO-------")
-    console.log("--------YOLOOOOO-------")
-    console.log("--------YOLOOOOO-------")
-    console.log("--------YOLOOOOO-------")
-    console.log("--------YOLOOOOO-------")
-    console.log("--------YOLOOOOO-------")
-    console.log("--------YOLOOOOO-------")
-    console.log()
     api
       .getUserProfile(id)
       .then(res => {
@@ -146,7 +135,7 @@ function UserDetail(props) {
           </div>
         )}
       </div>
-      {msg && <Messages />}
+      {msg && <Messages userId={userProfile._id} />}
       {!msg && <NavBar props={props} />}
     </>
   )

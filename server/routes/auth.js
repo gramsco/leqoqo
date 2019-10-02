@@ -3,6 +3,15 @@ const passport = require('passport')
 const router = express.Router()
 const UserProfile = require("../models/UserProfile")
 const User = require('../models/User')
+const Chatkit = require('@pusher/chatkit-server');
+
+
+// console.log(process.env.CHAT_INSTANCE_LOCATOR)
+const chatkit = new Chatkit.default({
+  instanceLocator: process.env.CHAT_INSTANCE_LOCATOR,
+  key: process.env.CHAT_KEY,
+})
+
 
 // Bcrypt to encrypt passwords
 const bcrypt = require('bcrypt')
@@ -28,9 +37,23 @@ router.post('/Signup', (req, res, next) => {
     })
     .then(userSaved => {
       
+      
+
       UserProfile
-        .create({ user: userSaved._id })
-        .then(() => {
+        .create({ user: userSaved._id, username:'anonymous'})
+        .then((profileRes) => {
+          console.log(userSaved._id, profileRes._id)
+          chatkit.createUser({
+            id: profileRes._id,
+            name: profileRes.username,
+          })
+            .then((chatRes) => {
+              console.log(chatRes)
+              console.log('User created successfully');
+            }).catch((err) => {
+              console.log(err);
+            });
+
           req.logIn(userSaved, () => {
             // hide "encryptedPassword" before sending the JSON (it's a security risk)
             userSaved.password = undefined

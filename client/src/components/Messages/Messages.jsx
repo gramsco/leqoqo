@@ -7,7 +7,7 @@ import Chat from './Chat';
 // import chatkitLogo from './chatkit-logo.svg';
 import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
-function Messages({userId="alice",otherUserId="bob"}) {
+function Messages({userId,otherUserId="bob"}) {
   
   console.log(userId)
   console.log(otherUserId)

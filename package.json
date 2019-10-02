@@ -12,6 +12,7 @@
     "node": "8.9.4"
   },
   "dependencies": {
+    "@pusher/chatkit-server": "^2.1.1",
     "dotenv": "^8.1.0",
     "emoji-picker-react": "^2.1.1",
     "immer": "^4.0.0",
