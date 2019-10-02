@@ -4,6 +4,7 @@ import Login from './Login'
 import { Link } from 'react-router-dom'
 import Header from './Header'
 import './userprofiles.css'
+import Intro from "./Intro"
 
 
 function Signup(props) {
@@ -46,72 +47,62 @@ function Signup(props) {
     return (
 
         <div className="signup-container">
-            <header className="Header neg-margin">
-                <div className="logo">
-                    <i class="fas fa-search"></i>o <i class="fas fa-search"></i>o
-            </div>
-
-            </header>
+            <Intro />
 
             {/* <div className="heading">
                 <h2>Signup with facebook</h2>
 
             </div> */}
-            <div className="Signup">
-                <form>
-                    {/* Username:{' '}
+            <div className="white-background">
+
+
+                <div className="Signup">
+                    <form>
+                        {/* Username:{' '}
                     <input
                         type="text"
                         value={state.username}
                         username="username"
                         onChange={handleInputChange}
                     />{' '} */}
-                    <br />
-                    <br />
-                    Email:{' '}
-                    <input
-                        type="email"
-                        value={state.email}
-                        name="email"
-                        onChange={handleInputChange}
-                    />{' '}
-                    <br />  <br />
-                    Password:{' '}
-                    <input
-                        type="password"
-                        value={state.password}
-                        name="password"
-                        onChange={handleInputChange}
-                    />{' '}
-                    <br />  <br />
-                    {
-                        !props.isLogin &&
-                        <div className="heading" onClick={e => handleSignup(e)}><h2>Signup</h2></div>
-                    }
-                    {
-                        props.isLogin &&
-                        <div className="heading" onClick={e => handleLogin(e)}><h2>Login</h2></div>
-                    }
+                        <br />
+                        <br />
+                        Email:{' '}
+                        <input
+                            type="email"
+                            value={state.email}
+                            name="email"
+                            onChange={handleInputChange}
+                        />{' '}
+                        <br />  <br />
+                        Password:{' '}
+                        <input
+                            type="password"
+                            value={state.password}
+                            name="password"
+                            onChange={handleInputChange}
+                        />{' '}
+                        <br />  <br />
+                        {
+                            !props.isLogin &&
+                            <div className="heading" onClick={e => handleSignup(e)}><h3>Signup</h3></div>
+                        }
+                        {
+                            props.isLogin &&
+                            <div className="heading" onClick={e => handleLogin(e)}><h3>Login</h3></div>
+                        }
 
-                    {props.isLogin && <p>No account yet ?
+                        {props.isLogin && <p>No account yet ?
                         <Link to="/Signup"> Signup here</Link>  <i class="fas fa-user-plus"></i></p>}
-                    {!props.isLogin && <p>Already have an account ?
+                        {!props.isLogin && <p>Already have an account ?
                         <Link to="/login">Login here</Link> <i class="fas fa-key"></i> </p>}
 
 
-                </form>
-                {state.message && <div>{state.message}</div>}
-            </div>
-            <div className="iconsContainer">
-
-                <div className="each"><img src="./mask.png" alt="wine-image" /></div>
-                <div className="each"><img src="./mask.png" alt="wine-image" /></div>
-                <div className="each"><img src="./museum.png" alt="wine-image" /></div>
-                <div className="each"><img src="./mask.png" alt="wine-image" /></div>
+                    </form>
+                    {state.message && <div>{state.message}</div>}
+                </div>
 
             </div>
-
-
         </div >
 
     )

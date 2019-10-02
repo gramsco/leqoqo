@@ -1,0 +1,94 @@
+.intro{
+  background:#AFFBCE;
+  width:550px;
+  display:flex;
+  flex-direction: column;
+  margin-top:-120px;
+  align-items: center;
+}
+
+.test1{
+  font-family: 'Righteous', cursive;
+  text-align:center;  
+}
+.text{
+  font-size:15px;
+}
+
+.qoqo{
+  width:30%;
+  /* background:red; */
+}
+
+.small-div{
+  /* margin-top:20px; */
+  display:flex;
+  width:100%;
+  justify-content: center;
+}
+
+.qoqo-img{
+  width:30%;
+
+}
+
+.qoqoimg{
+  height:100%;
+    width:100%;
+}
+.margin-1{
+  margin-left:90px;
+  margin-bottom:30px;
+}
+.margin-2{
+  margin-left:50px;
+  margin-bottom: 30px;
+}
+
+.margin-3{
+  margin-left:90px;
+  /* margin-bottom: 30px; */
+
+}
+
+.music{
+  text-align:center;
+}
+
+.margin-5{
+  margin-left:20px;
+  margin-bottom: 30px;
+
+}
+
+.margin-6{
+  margin-left:55px;
+  margin-bottom: 30px;
+
+}
+.margin-7{
+  margin-left:20px;
+  /* margin-bottom:30px; */
+}
+
+@media screen and (max-width: 750px) {
+  .intro{
+    width:400px;
+  }
+  .qoqoimg{
+    height:70%;
+  }
+
+  .margin-2{
+    margin-left:40px;
+  }
+
+  .margin-1{
+    margin-left:70px;
+  }
+  .text{
+  text-align:center;
+  font-size:12px;
+  }
+
+}
