@@ -35,7 +35,6 @@ function EventDetail(props) {
     <main>
       <Header props={props} />
       <div className="EventDetail">
-
         <div className="event-image">
           <img className="event-img" alt="event-image" src={evt.image} />
         </div>
@@ -62,7 +61,7 @@ function EventDetail(props) {
         <br /> <br />
         <div>{evt.keywords && evt.keywords.fr}</div>
       </div>
-      <NavBar props={props} />
+      {/* <NavBar props={props} /> */}
     </main>
   )
 }
