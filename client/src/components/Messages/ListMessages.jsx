@@ -28,6 +28,9 @@ function ListMessages() {
       <ul className="ListMessages__Contacts">
         {profile.chats_user &&
           profile.chats_user.map(e => (
+            
+            profile._id !== e._id &&
+
             <li
               style={{ cursor: 'pointer' }}
               onClick={() => {
@@ -41,6 +44,7 @@ function ListMessages() {
               {e.emoji}
               {e.username}
             </li>
+            
           ))}
       </ul>
       <button onClick={() => setOtherUser("")}>Hide chat</button>

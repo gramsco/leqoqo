@@ -146,8 +146,8 @@ function Container({
       imagesLoadedOptions={imagesLoadedOptions} // default {}
       breakpointCols={breakpointColumnsObj}
     >
-      {loading && <div>It's qoqoming ... !</div>}
-      {search === 'events' &&
+      {loading && ""}
+      {search === 'events' && 
         events &&
         events
           .filter(sorting)

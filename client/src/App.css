@@ -196,7 +196,7 @@ aside{
   align-items: center;
   background: white;
   font-size: 8vh;
-  z-index:999999999999999999999999999;
+  z-index:9999;
 }
 
 .Navbar p{

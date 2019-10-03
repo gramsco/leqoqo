@@ -71,6 +71,7 @@ function EventDetail(props) {
                   )
               )}
           </div>
+          
           <div className="nothing"></div>
 
           <div className="description">

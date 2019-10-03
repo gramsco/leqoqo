@@ -19,7 +19,8 @@ function UserDetail(props) {
       .getUserProfile(id)
       .then(res => setUserVisited(res))
       .catch(err => console.log(err))
-  },[])
+
+  },[id])
 
 
   const [evts, setEvts] = useState([])
@@ -108,12 +109,14 @@ function UserDetail(props) {
                   <div onClick={handleLogout}>
                     <i class="fas fa-power-off logout-icon"></i>
                   </div>
-
+                </div>
+                {userVisited._id === userProfile._id ? (
+                  <a href="/UserProfile">edit profile</a>
+                ) : (
                   <div onClick={() => handleMsg(true)}>
                     <i class="fas fa-envelope"></i>
                   </div>
-                </div>
-
+                )}
                 <div className="center">
                   <div className="bigEmoji">{userVisited.emoji}</div>
                   <div>{`${userVisited.username}`}</div>
@@ -139,7 +142,9 @@ function UserDetail(props) {
           )
         )}
       </div>
-      {msg && userVisited && <Messages otherUserId={userVisited._id} userId={userProfile._id} />}
+      {msg && userVisited && (
+        <Messages otherUserId={userVisited._id} userId={userProfile._id} />
+      )}
       {!msg && <NavBar props={props} />}
     </>
   )

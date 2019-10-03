@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 // import Select from "react-select"
 import EmojiPicker from 'emoji-picker-react'
 import Subscriptions from './Admin/Subscriptions'
@@ -7,12 +7,39 @@ import api from '../api'
 
 function UserProfile(props) {
 
+    
+    const [currentUserProfile, setCurrentUserProfile] = useState({})
+  
+  console.log(currentUserProfile)
+  useEffect(() => {
+      
+    api
+      .getUserProfileWithUser(JSON.parse(localStorage.user)._id)
+      .then((res) => {
+        console.log(res)
+        setEmoji(res.emoji)
+        setState({
+          ...state,
+          username: res.username,
+          emoji: res.emoji,
+          bio: res.bio,
+          question_type: res.question_type,
+          question_answer: res.question_answer,
+          weekday: res.weekday,
+          weeknights: res.weeknights,
+          weekends: res.weekends,
+        })
+
+      })
+      .catch(err => console.log(err))
+
+    },[])
 
     const [page,setPage] = useState(1)
 
     const [state, setState] = useState({
       user: JSON.parse(localStorage.user)._id,
-      username:"",
+      username:'',
       emoji: '😍',
       bio: '',
       question_type:'',
@@ -40,6 +67,7 @@ function UserProfile(props) {
   const handleSubmitOne = e => {
       
     e.preventDefault()
+    
     
     
     let body = {
