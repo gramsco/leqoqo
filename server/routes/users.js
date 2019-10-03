@@ -81,7 +81,30 @@ router.get("/user-profile/:id", (req, res, next) => {
         .catch(err => console.log(err))
 })
 
+router.post("/users/connect/:id",(req,res,nect) => {
 
+    console.log("trying to connect")
+
+    UserProfileModel
+        .findByIdAndUpdate(req.params.id,{connected:true})
+        .then((data) => {
+            console.log(data)
+            res.send(data.connected)
+        })
+        .catch(err => console.log(err))
+})
+
+router.post("/users/disconnect/:id", (req, res, nect) => {
+
+    console.log("trying to disconnect")
+    UserProfileModel
+        .findByIdAndUpdate(req.params.id, { connected: false })
+        .then((data) => {
+            console.log(data)
+            res.send(data.connected)
+        })
+        .catch(err => console.log(err))
+})
 
 
 module.exports = router

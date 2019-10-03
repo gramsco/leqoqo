@@ -10,10 +10,12 @@ router.get("/events/user/:id", (req, res, next) => {
   console.log("$$$$$$$$$$")
   console.log(req.params.id)
   console.log("$$$$$$$$$$")
+
   EventModel
     .find({favs: req.params.id})
     .populate("place")
     .then(dataRes => {
+      console.log(dataRes)
       res.send(dataRes)
     })
     .catch(err => console.log(err))

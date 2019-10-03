@@ -15,13 +15,16 @@ import NavBar from './components/NavBar'
 import Header from './components/Header'
 import EventDetail from './components/EventDetail';
 import Infos from './components/Infos'
+import Favs from './components/Favs'
+
 require ('dotenv').config()
 
-function App() {
+function App(props) {
 
   return (
     <div
-      className="App">
+      className="App"
+      props={props}>
       <Switch>
 
         <Route exact path="/" component={Home}/>
@@ -45,7 +48,7 @@ function App() {
         <Route path="/profile-settings" component={UserDetail} />
         <Route exact path="/messages/" component={ListMessages} />
         <Route exact path="/infos" component={Infos} />
-
+        <Route exact path="/favs" component={Favs} />
         {/* (- PAGES TO COMMENT ONCE DEPLOYED */}
         <Route exact path="/secret-admin-page" component={Admin} />
         <Route exact path="/secret-admin-page/details" component={Details} />

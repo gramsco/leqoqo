@@ -44,7 +44,6 @@ function Container({
   useEffect(fetchUserProfile, [])
   useEffect(fetchUserProfiles, [])
 
-  let checkDate = true
   const [geoloc, setGeoloc] = useState(false)
 
   function getCurrentCoordinates() {
@@ -99,7 +98,7 @@ function Container({
   }
   console.log(km)
 
-  function sorting(e) {
+  function sortingEvents(e) {
     // if (e.name === undefined) return
     return (
     
@@ -137,6 +136,35 @@ function Container({
     )
   }
 
+function sortingUsers(e) {
+  // if (e.name === undefined) return
+  return (
+    //  distance(
+    //   e.location.coordinates, [
+    //                   geoloc.lat,
+    //                   geoloc.lng,
+    //  ]) < Number(km))
+e.username && e.username.toLowerCase().includes(filter.toLowerCase())
+      // (e.city && e.city.toLowerCase().includes(filter.toLowerCase())))
+  
+  )
+  // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
+
+  // ||
+  // e.place.ville.toLowerCase().includes(filter.toLowerCase())
+  // ||
+  // e.favs.length >= filter
+}
+
+function location(a, b) {
+  return (
+    distance(a.location.coordinates, [geoloc.lat, geoloc.lng]) -
+    distance(b.location.coordinates, [geoloc.lat, geoloc.lng])
+  )
+}
+
+
+
   return (
     <div
       className={'Container'}
@@ -150,7 +178,7 @@ function Container({
       {search === 'events' && 
         events &&
         events
-          .filter(sorting)
+          .filter(sortingEvents)
           .sort(true ? location : () => true)
           .map(e => (
           
@@ -212,7 +240,7 @@ function Container({
       {/* <div className="userprofiles"> */}
       {search === 'persons' &&
         userProfiles &&
-        userProfiles.map((e, i) => (
+        userProfiles.filter(sortingUsers).map((e, i) => (
           <>
             {e.username && (
               <a href={`/profile/${e._id}`}>

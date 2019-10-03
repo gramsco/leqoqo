@@ -248,6 +248,7 @@ export default {
   },
 
   getUserEvents(id) {
+    console.log(id)
     return service
       .get(`/events/user/${id}`)
       .then(res => res.data)
@@ -266,6 +267,26 @@ export default {
       .post("/messages/room", body)
       .then(res => res.data)
       .catch(err => console.log(err))
+  },
+
+  connect(id) {
+    console.log("connecting...")
+    return service
+      .post(`/users/connect/${id}`)
+      .then(res => {
+        console.log(res)
+        return !res.data
+      })
+      .catch(errHandler)
+  },
+  disconnect(id) {
+    console.log("disconnecting...")
+    return service
+      .post(`/users/disconnect/${id}`)
+      .then(res => {
+        return !res.data
+      })
+      .catch(errHandler)
   }
 }
 

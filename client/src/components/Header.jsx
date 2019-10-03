@@ -1,17 +1,28 @@
 import React from 'react'
+import api from '../api'
 
-
-function Header({ setKm, km, userProfile="", props,filter, setFilter, search, setSearch}) {
+function Header({ changeConnect, setConnected, connected, setKm, km, userProfile="", props,filter, setFilter, search, setSearch}) {
 
   if (userProfile) console.log(userProfile)
-  console.log(props)
-  console.log("-------")
+  
   const path = props.match.path
-  console.log("path")
-  console.log(path)
-  console.log("path")
   const id = props.match.params.id
-  const check = id === userProfile._id
+  const check = (id === userProfile._id)
+
+  function connectDisconnect() {
+    if (connected) {
+      api
+        .connect(userProfile._id)
+        .then(connec => setConnected(connec))
+        .catch(err => console.log(err))
+    }
+    else {
+      api
+        .disconnect(userProfile._id)
+        .then(connec => setConnected(connec))
+        .catch(err => console.log(err))
+    }
+  }
 
   return (
     <header className="Header" id="top_page">
@@ -30,7 +41,15 @@ function Header({ setKm, km, userProfile="", props,filter, setFilter, search, se
       </div>
 
       <div className="center">
-        <img src="/logoqoqo.png" alt="le logo" />
+        {/* <img
+          style={{ cursor: 'pointer' }}
+          onClick={() => console.log('clicked')}
+          src="/logoqoqo.png"
+          alt="le logo"
+        /> */}
+        <div style={{ cursor: 'pointer' }} onClick={connectDisconnect}>
+          {connected ? '🔵' : '🔴'}
+        </div>
 
         <div
           className="Header__filter"

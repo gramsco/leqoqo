@@ -9,31 +9,27 @@ import EventDetail from './EventDetail'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhbXNjbyIsImEiOiJjazB3ZG5oaXQwMjNrM2NtbTh1bWh0NWtzIn0.5zWaES3a2JH0EZbd7t8aMA'
 
-
-
 function Home(props) {
-
     // const [connected, setConnected] = useState(true)
-    const [users, setUsers] = useState([])
-    const [events, setEvents] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [search, setSearch] = useState("events")
-    const [km, setKm] = useState(10)
-    const [eventDetail, setEventDetail] = useState("")
-    const [userProfile, setUserProfile] = useState({})
-    const [userProfiles, setUserProfiles] = useState([])
-    const [filter, setFilter] = useState("")
-    
-  console.log(props)
+  const [users, setUsers] = useState([])
+  const [events, setEvents] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [search, setSearch] = useState("events")
+  const [km, setKm] = useState(10)
+  const [eventDetail, setEventDetail] = useState("")
+  const [userProfile, setUserProfile] = useState({})
+  const [userProfiles, setUserProfiles] = useState([])
+  const [filter, setFilter] = useState("")
+  const [connected,setConnected] = useState(false)
   
+
   function fetchUserProfiles() {
-    
     api
       .getAllUserProfiles()
       .then(res => setUserProfiles(res))
-      .catch(err => console.log(err))
-    
+      .catch(err => console.log(err)) 
   }
+
 
   function fetchUserProfile() {
     console.log("fetching user profile")
@@ -42,7 +38,7 @@ function Home(props) {
       .then(res => {
         console.log("--------")
         setUserProfile(res)
-        console.log(res)
+        if (res.connected) console.log(res.connected)
         console.log("--------")
       })
         .catch(err => console.log(err))
@@ -71,6 +67,7 @@ function Home(props) {
     return (
       <div className="Home">
         <Header
+          connected={connected}
           setKm={setKm}
           setSearch={setSearch}
           setUsers={setUsers}
@@ -80,6 +77,9 @@ function Home(props) {
           setFilter={setFilter}
           props={props}
           km={km}
+          userProfile={userProfile}
+          setConnected={setConnected}
+          fetchUserProfile={fetchUserProfile}
         />
 
         {!api.isLoggedIn() && <Map />}

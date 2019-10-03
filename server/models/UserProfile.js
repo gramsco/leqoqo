@@ -22,6 +22,7 @@ let UserProfileSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'UserProfile'
         }],
+        connected:Boolean,
         // address: String,
 
         // subscriptions: [{

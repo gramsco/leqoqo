@@ -40,7 +40,7 @@ router.post('/Signup', (req, res, next) => {
       
 
       UserProfile
-        .create({ user: userSaved._id, username:'anonymous'})
+        .create({ user: userSaved._id, username:'qoqonymous',connected:false})
         .then((profileRes) => {
           console.log(userSaved._id, profileRes._id)
           chatkit.createUser({

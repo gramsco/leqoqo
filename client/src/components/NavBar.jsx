@@ -28,9 +28,10 @@ function NavBar({ props }) {
           <p>Profile</p>
         </NavLink>
 
-        <div className="goToFavs">
+        <NavLink activeClassName="selected" to="/favs">
           <i class="fas fa-heart"></i>
-        </div>
+          <p>Favs</p>
+        </NavLink>
 
         <NavLink activeClassName="selected" to="/home">
           <i class="fas fa-home"></i>
