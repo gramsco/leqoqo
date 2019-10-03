@@ -7,21 +7,22 @@ import api from '../api'
 
 function UserProfile(props) {
 
+  
     
-    const [currentUserProfile, setCurrentUserProfile] = useState({})
+  const [currentUserProfile, setCurrentUserProfile] = useState({})
   
   console.log(currentUserProfile)
   useEffect(() => {
-      
+    
     api
       .getUserProfileWithUser(JSON.parse(localStorage.user)._id)
       .then((res) => {
         console.log(res)
-        setEmoji(res.emoji)
+        setEmoji(res.emoji ?res.emoji:'🐒')
         setState({
           ...state,
           username: res.username,
-          emoji: res.emoji,
+          emoji: emoji,
           bio: res.bio,
           question_type: res.question_type,
           question_answer: res.question_answer,
@@ -135,6 +136,7 @@ function UserProfile(props) {
       <div className="container">
         <header>
           <h1>Complete your profil</h1>
+          <div>{JSON.stringify(state)}</div>
         </header>
         <div className="userprofile-container">
           {page === 1 && (
