@@ -121,7 +121,7 @@ function UserDetail(props) {
                     )}
                   <div className="center">
                     <div className="bigEmoji">{userVisited.emoji}</div>
-                    <div>{`${userVisited.username}`}</div>
+                    <div className="userVisitedName">{`${userVisited.username}`}</div>
                   </div>
 
                   <div className="side">
@@ -131,18 +131,31 @@ function UserDetail(props) {
                 </div>
 
                 <div className="middle">
+                  <h3 className="bio">BIO</h3>
                   <div className="middle__bio">
                     <h3>{userVisited.bio && ''}</h3>
                     <p>{userVisited.bio || ''}</p>
                   </div>
 
                   <div className="middle__questions">
-                    <p>{userVisited.question || ''}</p>
+                    <p>If I was.. {userVisited.question_type || ''}.. I would be : {userVisited.question_answer || ''}</p>
+
+                    {(userVisited.weekends === '' && userVisited.weekday === '' && userVisited.weekends === '') ? ("i am not available") :
+                      (
+                        <><span className="availability">I am available during.....</span>
+                          <span className="availability">{(userVisited.weekends && "weekends" || '')}</span> &nbsp;
+                    <span className="availability">{(userVisited.weekday && 'weekday' || '')}</span> &nbsp;
+                     <span className="availability">{(userVisited.weeknights && 'weeknights' || '')}</span> </>)}
+
+
                   </div>
                 </div>
               </div>
             )
+
           )}
+
+        <div> tessttt</div>
       </div>
       {msg && userVisited && (
         <Messages otherUserId={userVisited._id} userId={userProfile._id} />
