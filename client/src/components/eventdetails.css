@@ -88,6 +88,35 @@ position:relative;
 .event-name{
   border-bottom:2px solid #F76A6A
 }
+.to-be-centered{
+  font-size:40px;
+  text-align:center;
+  /* font-family: 'Shadows Into Light', cursive; */
+}
+
+.people-interested{
+  font-family: 'Permanent Marker', cursive;
+  color:#F95658;
+  border-bottom:3px solid #F2C34F
+}
+.like-container{
+  display:flex;
+
+}
+.people-who-liked{
+  display:flex;
+  width:100px;
+  height:100px;
+  /* border-radius:50%; 
+  border:3px solid #F2C34F;  */
+  margin:auto 0;
+  justify-content:center;
+}
+/* .emo{
+  margin-left:5px;
+  font-size:30px;
+
+} */
 
 @media screen and (max-width: 750px) {
   .container-for-event{
@@ -107,6 +136,10 @@ position:relative;
       width:400px;
       text-align: justify;
       margin-top:20px;
+    }
+
+    .people-interested{
+      margin-left:35px;
     }
     
   

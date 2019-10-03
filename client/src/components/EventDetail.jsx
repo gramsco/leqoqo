@@ -42,7 +42,7 @@ function EventDetail(props) {
               <img className="event-img" alt="event-image" src={evt.image} />
             </div>
 
-            <div className="event-city">{evt.city} &nbsp;</div>
+            <div className="event-city"><strong>{evt.city} </strong>&nbsp;</div>
 
             <div className="badge">
               <div className="box">8</div>
@@ -53,23 +53,25 @@ function EventDetail(props) {
             {/* <div className="test love event-love">
               <i class="fab fa-gratipay"></i>
             </div> */}
-            <div>They wanna go:</div>
-            {evt.favs &&
-              evt.favs.map(
-                (e, i) =>
-                  i < 5 && (
-                    <a
-                      href={`/profile/${e._id}`}
-                      style={{ border: '1px solid black' }}
-                      key={i}
-                    >
-                      {e.user === JSON.parse(localStorage.user)._id
-                        ? ' you'
-                        : e.username}
-                      {e.emoji}
-                    </a>
-                  )
-              )}
+            <div><p className="people-interested">People Interested:</p></div>
+            <div className="like-container">
+              {evt.favs &&
+                evt.favs.map(
+                  (e, i) =>
+                    i < 5 && (
+                      <div className="people-who-liked">
+                        <a
+                          href={`/profile/${e._id}`}
+                          key={i}
+                        >
+                          <h3 className="to-be-centered">{e.user === JSON.parse(localStorage.user)._id
+                            ? ' you'
+                            : e.emoji}</h3>
+                        </a> </div>
+
+                    )
+                )}
+            </div>
           </div>
           
           <div className="nothing"></div>
