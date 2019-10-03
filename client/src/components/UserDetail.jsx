@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import NavBar from './NavBar'
 import Header from './Header'
 import api from '../api'
@@ -7,12 +7,12 @@ import UserProfile from './UserProfile'
 import Messages from './Messages/Messages'
 
 function UserDetail(props) {
-  
+
   let users_infos = JSON.parse(localStorage.user)
   const [userProfile, setUserProfile] = useState({})
   const id = props.match.params.id
   const [userVisited, setUserVisited] = useState({})
-  
+
   useEffect(() => {
 
     api
@@ -20,12 +20,12 @@ function UserDetail(props) {
       .then(res => setUserVisited(res))
       .catch(err => console.log(err))
 
-  },[id])
+  }, [id])
 
 
   const [evts, setEvts] = useState([])
 
-  const [msg,setMsg] = useState(false)
+  const [msg, setMsg] = useState(false)
 
   function handleLogout() {
     api
@@ -39,22 +39,22 @@ function UserDetail(props) {
   }
 
   function fetchUserProfile() {
-    
+
     // get the visitor profile id
     api
-    .getUserProfileWithUser(users_infos._id)
+      .getUserProfileWithUser(users_infos._id)
       .then(res => {
         if (id === res._id) {
-        setUserVisited(res)
+          setUserVisited(res)
         }
         else {
           fetchUserVisited()
         }
-      setUserProfile(res)
-      fetchUserEvents(res._id)
-    })
-    .catch(err => console.log(err))
-    
+        setUserProfile(res)
+        fetchUserEvents(res._id)
+      })
+      .catch(err => console.log(err))
+
   }
 
   function fetchUserVisited() {
@@ -65,14 +65,14 @@ function UserDetail(props) {
       })
       .catch(err => console.log(err))
   }
-  
+
   function fetchUserEvents(id) {
-      
+
     api
-    .getUserEvents(id)
-    .then(res => setEvts(res))
-    .catch(err => console.log(err))
-    
+      .getUserEvents(id)
+      .then(res => setEvts(res))
+      .catch(err => console.log(err))
+
   }
 
   function handleMsg() {
@@ -83,10 +83,10 @@ function UserDetail(props) {
       .then(res => setMsg(true))
       .catch(err => console.log(err))
   }
-  
-  useEffect(fetchUserEvents,[])
+
+  useEffect(fetchUserEvents, [])
   useEffect(fetchUserProfile, [])
-  
+
   return (
     <>
       <Header props={props} userProfile={userProfile} />
@@ -102,45 +102,47 @@ function UserDetail(props) {
             </span>
           </div>
         ) : (
-          !msg && (
-            <div className="UserDetail__Main">
-              <div className="top">
-                <div className="side">
-                  <div onClick={handleLogout}>
-                    <i class="fas fa-power-off logout-icon"></i>
+            !msg && (
+              <div className="UserDetail__Main">
+                <div className="top">
+                  <div className="side">
+                    <div onClick={handleLogout}>
+                      <i class="fas fa-power-off logout-icon"></i>
+                    </div>
+                  </div>
+                  {userVisited._id === userProfile._id ? (
+                    <div>
+                      <i class="fas fa-exchange-alt">
+                        <a href="/UserProfile">edit profile</a></i></div>
+                  ) : (
+                      <div onClick={() => handleMsg(true)}>
+                        <i class="fas fa-envelope"></i>
+                      </div>
+                    )}
+                  <div className="center">
+                    <div className="bigEmoji">{userVisited.emoji}</div>
+                    <div>{`${userVisited.username}`}</div>
+                  </div>
+
+                  <div className="side">
+                    <div></div>
+                    <div></div>
                   </div>
                 </div>
-                {userVisited._id === userProfile._id ? (
-                  <a href="/UserProfile">edit profile</a>
-                ) : (
-                  <div onClick={() => handleMsg(true)}>
-                    <i class="fas fa-envelope"></i>
+
+                <div className="middle">
+                  <div className="middle__bio">
+                    <h3>{userVisited.bio && ''}</h3>
+                    <p>{userVisited.bio || ''}</p>
                   </div>
-                )}
-                <div className="center">
-                  <div className="bigEmoji">{userVisited.emoji}</div>
-                  <div>{`${userVisited.username}`}</div>
-                </div>
 
-                <div className="side">
-                  <div></div>
-                  <div></div>
+                  <div className="middle__questions">
+                    <p>{userVisited.question || ''}</p>
+                  </div>
                 </div>
               </div>
-
-              <div className="middle">
-                <div className="middle__bio">
-                  <h3>{userVisited.bio && ''}</h3>
-                  <p>{userVisited.bio || ''}</p>
-                </div>
-
-                <div className="middle__questions">
-                  <p>{userVisited.question || ''}</p>
-                </div>
-              </div>
-            </div>
-          )
-        )}
+            )
+          )}
       </div>
       {msg && userVisited && (
         <Messages otherUserId={userVisited._id} userId={userProfile._id} />
