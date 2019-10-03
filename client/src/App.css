@@ -235,6 +235,21 @@ aside{
   z-index: 99999;
 }
 
+.middle {
+    margin-left:30px;
+}
+.middle p{
+  font-family: 'Notable', sans-serif;
+  font-family: 'Caveat', cursive;
+  font-size:25px;
+}
+.availability{
+  font-family: 'Notable', sans-serif;
+  font-family: 'Caveat', cursive;
+  font-size:25px; 
+  
+}
+
 .Header > * {
   /* border: 5px black solid; */
   height: 90%;
@@ -376,6 +391,11 @@ aside{
   transition:opacity 5s;
 }
 
+.userVisitedName{
+  font-family: 'Notable', sans-serif;
+  font-size:20px;
+}
+
 
 
 .Header-in-userprofile {
@@ -404,20 +424,22 @@ aside{
 }
 
 .UserDetail__Main{
-  width:90%;
+  width:60%;
   height:50vh;
   margin:15vh auto;
+  border: 1px solid gray;
   background:white;
   display:flex;
   flex-direction:column;
   justify-content: start;
+  /* overflow:scroll; */
   /* align-items: center; */
 }
 
 .UserDetail__Main .top{
   position:relative;
   top:-15%;
-  z-index:9999999999999999999;
+  z-index:99999999999;
   display:flex;
   justify-content: center;
   /* border:1px solid green; */
@@ -488,6 +510,10 @@ overflow:scroll;
   width:100%;
   top:15vh;
 
+}
+
+.bio{
+  color:grey;
 }
 
 
@@ -619,4 +645,15 @@ main{
     .white-background{
       width:400px;
     }
+    .UserDetail__Main{
+      width:90%;
+      height:80vh;
+      overflow:scroll;
+    }
+    .bigEmoji{
+      font-size:7rem;
+      margin-top:75%;
+      }
+
+
 }
