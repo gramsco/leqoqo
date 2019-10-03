@@ -19,7 +19,7 @@ function Messages({classs="Messages",userId,otherUserId}) {
   return (
 
     <div className={classs}>
-      {userId && otherUserId ? (
+      {userId && otherUserId !== "all" ? (
         <ChatkitProvider
           instanceLocator={instanceLocator}
           tokenProvider={tokenProvider}

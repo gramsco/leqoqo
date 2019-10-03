@@ -56,15 +56,17 @@ export default {
       .then(res => {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
+        console.log(localStorage)
         return res.data
       })
       .catch(errHandler)
   },
 
-  logout() {
+  logout(id) {
     localStorage.removeItem('user')
-    return service.get('/logout')
+    return service.get(`/logout/${id}`)
   },
+        
 
   // This is an example on how to use this method in a different file
   // api.getCountries().then(countries => { /* ... */ })
@@ -280,7 +282,7 @@ export default {
       .catch(errHandler)
   },
   disconnect(id) {
-    console.log("disconnecting...")
+    
     return service
       .post(`/users/disconnect/${id}`)
       .then(res => {

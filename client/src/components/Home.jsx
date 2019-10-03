@@ -20,7 +20,8 @@ function Home(props) {
   const [userProfile, setUserProfile] = useState({})
   const [userProfiles, setUserProfiles] = useState([])
   const [filter, setFilter] = useState("")
-  const [connected,setConnected] = useState(false)
+  const [connected, setConnected] = useState(false)
+  const [defaultValue,setDefaultValue] = useState(false)
   
 
   function fetchUserProfiles() {
@@ -80,6 +81,7 @@ function Home(props) {
           userProfile={userProfile}
           setConnected={setConnected}
           fetchUserProfile={fetchUserProfile}
+          defaultValue={defaultValue}
         />
 
         {!api.isLoggedIn() && <Map />}
@@ -89,7 +91,7 @@ function Home(props) {
             eventDetail={eventDetail}
           />
         )}
-        
+
         {!eventDetail && api.isLoggedIn() && (
           <Container
             onScroll={() => console.log('lalalalalala')}
@@ -101,11 +103,10 @@ function Home(props) {
             setEventDetail={setEventDetail}
             km={km}
             loading={loading}
-
+            setDefaultValue={setDefaultValue}
             //all the user profiles
             userProfiles={userProfiles}
             fetchUserProfiles={fetchUserProfiles}
-
             //the logged in user profile
             userProfile={userProfile}
             fetchUserProfile={fetchUserProfile}
@@ -117,7 +118,7 @@ function Home(props) {
             You're not connected! Please<a href="/signup"> log in </a>{' '}
           </div>
         )}
-        {api.isLoggedIn() && <NavBar props={props} />}
+        {api.isLoggedIn() && <NavBar />}
       </div>
     )
 

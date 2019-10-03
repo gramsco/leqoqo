@@ -5,18 +5,27 @@ import api from "../api"
 
 
 
-function NavBar({ props }) {
+function NavBar(props) {
 
-  let users_infos = JSON.parse(localStorage.user)
+  console.log(localStorage)
+  const users_infos = JSON.parse(localStorage.user)
+  
 
-  const [userProfile,setUserProfile] = useState({})
+  const [userProfile, setUserProfile] = useState({})
+  
   useEffect(() => {
       api
         .getUserProfileWithUser(users_infos._id)
         .then(res => {
-          setUserProfile(res)
-          console.log(userProfile)
-          console.log(res)
+          
+          console.log('------')
+          console.log(res._id)
+          console.log("------")
+
+          api
+            .connect(res._id)
+            .then(() => setUserProfile(res))
+            .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
     },[])
@@ -38,7 +47,7 @@ function NavBar({ props }) {
           <p>Home</p>
         </NavLink>
 
-        <NavLink activeClassName="selected" to="/messages">
+        <NavLink activeClassName="selected" to="/messages/all">
           <i class="far fa-comment-dots"></i>
         </NavLink>
 

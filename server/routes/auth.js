@@ -137,9 +137,13 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
   })(req, res, next)
 })
 
-router.get('/logout', (req, res) => {
-  req.logout()
-  res.json({ message: 'You are out!' })
+router.get('/logout/:user', (req, res) => {
+  UserProfile
+    .findByIdAndUpdate(req.params.id, { connected: false })
+    .then(() => {
+      req.logout()
+      res.json({ message: 'You are out!' })
+    })
 })
 
 module.exports = router

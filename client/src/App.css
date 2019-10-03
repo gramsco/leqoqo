@@ -221,49 +221,49 @@ aside{
 
 .Header {
   /* height:20vh; */
-  /* border: solid 1px red; */
+  /* border: solid 5px red; */
   position: fixed;
   top: 0;
   height: 20vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   background: var(--var-second-color);
   padding: 1%;
   z-index: 99999;
+  /* border:solid 5px black; */
 }
 
-.middle {
-    margin-left:30px;
-}
-.middle p{
-  font-family: 'Notable', sans-serif;
-  font-family: 'Caveat', cursive;
-  font-size:25px;
-}
-.availability{
-  font-family: 'Notable', sans-serif;
-  font-family: 'Caveat', cursive;
-  font-size:25px; 
-  
-}
-
-.Header > * {
-  /* border: 5px black solid; */
-  height: 90%;
-  min-width:20vw;
-}
-
-.Header .center {
-  display: flex;
-  flex-direction: column;
+.Header > *{
+  /* border:1px solid white; */
+  max-width:30%;
+  height:auto;
+  display:flex;
+  flex-direction:column;
   justify-content: center;
-  align-items: center;
-  width: 50%;
-  /* height:90%; */
 }
+
+
+.events-persons{
+  /* border:solid 3px purple; */
+}
+
+.logo_container{
+  width:10vh;
+  display:flex;
+  justify-content: center;
+  /* height:10vh; */
+}
+
+.Header img {
+  /* border: solid 1px red; */
+  height: 10vh;
+  width: auto;
+}
+
+
 
 .editProfile {
   display: flex;
@@ -284,11 +284,7 @@ aside{
   /* border: 1px solid black; */
 }
 
-.Header img {
-  /* border: solid 1px red; */
-  height: 10vh;
-  width: 10vh;
-}
+
 
 .Card {
   /* border-radius:12px; */
@@ -418,20 +414,20 @@ aside{
   margin-top: -150px;
 }
 
-.UserDetail {
-  position: relative;
-  top: 15vh;
-}
+
 
 .UserDetail__Main{
-  width:60%;
-  height:50vh;
-  margin:15vh auto;
+  width:50%;
+  height:60vh;
+  /* margin:15vh auto; */
   border: 1px solid gray;
   background:white;
   display:flex;
   flex-direction:column;
   justify-content: start;
+  position:relative;
+  top:25vh;
+  left:25%;
   /* overflow:scroll; */
   /* align-items: center; */
 }
@@ -464,10 +460,25 @@ aside{
   align-items: center;
 }
 
-/* .top .center > * {
+.middle {
+    border:solid 1px red;
+    position:relative;
+    top:15%;
+}
 
-  border:solid 2px red;
-} */
+.middle p{
+  font-family: 'Notable', sans-serif;
+  font-family: 'Caveat', cursive;
+  font-size:25px;
+  overflow-x:scroll;
+}
+.availability{
+  font-family: 'Notable', sans-serif;
+  font-family: 'Caveat', cursive;
+  font-size:25px; 
+  
+}
+
 
 .bigEmoji{
 font-size:7rem;
@@ -482,12 +493,17 @@ font-size:7rem;
 .ListMessages{
 height:80vh;
 justify-content: space-between;
-border:red solid 1px;
 }
 
 .ListMessages__Contacts{
-  position:fixed;
-  height:20vh;
+  height:10vh;
+  width:100%;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  list-style: none;
+  border:3px black solid;
+  overflow:scroll;
 }
 
 .Messages_list{
@@ -510,6 +526,13 @@ overflow:scroll;
   width:100%;
   top:15vh;
 
+}
+
+.logout{
+  position:fixed;
+  top:0;
+  left:0;
+  cursor:pointer;
 }
 
 .bio{
@@ -575,7 +598,16 @@ main{
 } */
 
 
+.FavsList{
+  margin-top:20vh;
+  text-align:center;
+  border:1px solid red;
+  height:65vh;
+}
 
+.FavsList__events{
+  height:50%;
+}
 
 
 
@@ -598,6 +630,11 @@ main{
     /* border:solid 5px green; */
     margin-bottom: 18vh;
   }
+  /* TODO */
+  /* .Container > *{
+    display:flex;
+    justify-content: center;
+  } */
 }
 
 @media (min-width: 800px) {
@@ -646,14 +683,15 @@ main{
       width:400px;
     }
     .UserDetail__Main{
-      width:90%;
-      height:80vh;
-      overflow:scroll;
+      /* width:90%;
+      height:80vh; */
+      
+      /* overflow:; */
     }
-    .bigEmoji{
+    /* .bigEmoji{
       font-size:7rem;
       margin-top:75%;
-      }
+      } */
 
 
 }
