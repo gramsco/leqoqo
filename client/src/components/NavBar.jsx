@@ -51,10 +51,12 @@ function NavBar() {
 
         <NavLink activeClassName="selected" to="/messages/all">
           <i class="far fa-comment-dots"></i>
+          <p>Messages</p>
         </NavLink>
 
         <NavLink activeClassName="selected" to="/infos">
           <i class="fas fa-info-circle"></i>
+          <p>About</p>
         </NavLink>
       </nav>
     )

@@ -743,6 +743,7 @@ main{
 
 @media (min-width: 1200px) {
   .Container {
+    /* background:red; */
     position: relative;
     top: 25vh;
     display: grid;
@@ -753,16 +754,18 @@ main{
     align-items: center;
     /* max-width:100vw; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 1vw;
+    grid-template-rows: auto;
+    grid-gap: 3vw;
     height: 100%;
     /* border:solid 5px green; */
     margin-bottom: 18vh;
   }
 
 
-  .Container > *{
+  .Container > .Card{
     display:block;
     height:30vw;
+    /* margin-top:3vw; */
 }
   
 }
