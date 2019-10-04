@@ -192,7 +192,9 @@ function Container({
                     {e.event_end < today ? 'qoqover :(' : ''}
                     {e.keywords &&
                       e.keywords.fr.map((e, i) => (
-                        <span key={i}>{`# ${e}`}</span>
+                        
+                          i < 3 ? <span key={i}>{`# ${e}`}</span>:""
+                        
                       ))}
                   </a>
                 }
