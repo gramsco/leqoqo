@@ -13,6 +13,7 @@ function Infos(props) {
         <div className="Antonin">My Name is Antonin, Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure nihil cupiditate delectus quo fuga quod rerum perspiciatis nesciunt ad suscipit, explicabo ullam dolorem voluptate, doloremque corrupti? Recusandae unde omnis alias.</div>
       </div>
 
+      <NavBar/>
       </div>
     
   )

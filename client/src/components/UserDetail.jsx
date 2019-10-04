@@ -81,7 +81,10 @@ function UserDetail(props) {
     let body = { first_id: userVisited._id, second_id: userProfile._id }
     api
       .createRoom(body)
-      .then(res => setMsg(true))
+      .then(res => {
+        setMsg(true)
+        props.history.push(`/messages/${userVisited._id}`)
+      })
       .catch(err => console.log(err))
   }
 
@@ -121,12 +124,12 @@ function UserDetail(props) {
                       </i>
                     </div>
                   ) : (
-                    <Link to={`/messages/${userVisited._id}`}>
-                      <i class="fas fa-envelope"></i>
-                    </Link>
-                    // <div onClick={() => handleMsg(true)}>
+                    // <Link to={`/messages/${userVisited._id}`}>
                     //   <i class="fas fa-envelope"></i>
-                    // </div>
+                    // </Link>
+                    <div onClick={() => handleMsg(true)}>
+                      <i class="fas fa-envelope"></i>
+                    </div>
                   )}
                   <div className="userVisitedName">{`${userVisited.username}`}</div>
                 </div>
@@ -183,7 +186,7 @@ function UserDetail(props) {
       {/* {msg && userVisited && (
         <Messages otherUserId={userVisited._id} userId={userProfile._id} />
       )} */}
-      {!msg && <NavBar props={props} />}
+      {!msg && <NavBar props={props} userProfile={userProfile}/>}
     </>
   )
 

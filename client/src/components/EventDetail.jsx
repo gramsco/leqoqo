@@ -65,7 +65,7 @@ function EventDetail(props) {
                           key={i}
                         >
                           <h3 className="to-be-centered">{e.user === JSON.parse(localStorage.user)._id
-                            ? ' you'
+                            ? <span>*{e.emoji}*</span>
                             : e.emoji}</h3>
                         </a> </div>
 

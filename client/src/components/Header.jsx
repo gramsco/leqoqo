@@ -1,14 +1,11 @@
 import React from 'react'
 import api from '../api'
 
-function Header({ defaultValue, changeConnect, setConnected, connected, setKm, km, userProfile="", props,filter, setFilter, search, setSearch}) {
+function Header({ defaultValue, setConnected, connected, setKm, km, userProfile="", props,filter, setFilter, search, setSearch}) {
 
   if (userProfile) console.log(userProfile)
   
   const path = props.match.path
-  const id = props.match.params.id
-  const check = (id === userProfile._id)
-  console.log(defaultValue)
   const vh = `${-(km / 10)}`
   const rotate = `rotate(${(km) - 10}deg)`
   
@@ -18,12 +15,11 @@ function Header({ defaultValue, changeConnect, setConnected, connected, setKm, k
     api
       .disconnect(userProfile._id)
       .then(result => {
-        api.logout().then(() => props.history.push('/')).catch(err => console.log(err))
+        api.logout()
+        props.history.push('/')
+      })
+      .catch(err => console.log(err))
          // Redirect to the home page
-      })
-      .catch(err => {
-        return 'cannot logout'
-      })
   }
 
 
@@ -44,7 +40,11 @@ function Header({ defaultValue, changeConnect, setConnected, connected, setKm, k
 
   return (
     <header className="Header" id="top_page">
-      <div onClick={handleLogout} class="logout">Log out</div>
+      {api.isLoggedIn() && (
+        <div onClick={handleLogout} class="logout">
+          Log out
+        </div>
+      )}
       {/* <div style={{ visibility: 'hidden' }} className="left">
         {check ? (
           <div className="editProfile">
@@ -67,7 +67,11 @@ function Header({ defaultValue, changeConnect, setConnected, connected, setKm, k
         className="Header__filter"
         style={{
           visibility:
-            path === '/home' ? 'visible' : path === '/' ? 'visible' : 'hidden',
+            path === '/home' && api.isLoggedIn()
+              ? 'visible'
+              : path === '/' && api.isLoggedIn()
+              ? 'visible'
+              : 'hidden',
         }}
       >
         <div className="events-persons">
@@ -115,7 +119,16 @@ function Header({ defaultValue, changeConnect, setConnected, connected, setKm, k
         />
       </div>
 
-      <div>
+      <div
+        style={{
+          visibility:
+            path === '/home' && api.isLoggedIn()
+              ? 'visible'
+              : path === '/' && api.isLoggedIn()
+              ? 'visible'
+              : 'hidden',
+        }}
+      >
         <input
           onChange={e => setKm(e.target.value)}
           type="range"

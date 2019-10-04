@@ -39,16 +39,32 @@ function FavsList(props) {
       <Header props={props} />
       <div className="FavsList">
         <h2>
-          favs of <span style={{ color: 'red' }}>{profile.username} </span>
+          Here the events you wanna go to,{' '}
+          <span style={{ color: 'red' }}>{profile.username} </span>!
         </h2>
         <div class="FavsList__events">
           <h3>Events</h3>
           {favs.map((e, i) => (
-            <div>{e.name}</div>
+            <div className="FavsList__event" key={i}><a href={`/event-details/${e._id}`}>{e.name}</a></div>
           ))}
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
+          <div>A weird event</div>
         </div>
 
-        <div class="FavsList__users">
+        <div style={{ display: 'none' }} class="FavsList__users">
           <h3>Users</h3>
         </div>
       </div>

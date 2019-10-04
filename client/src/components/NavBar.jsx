@@ -5,13 +5,15 @@ import api from "../api"
 
 
 
-function NavBar(props) {
+function NavBar() {
 
   console.log(localStorage)
   const users_infos = JSON.parse(localStorage.user)
-  
+  // const test = api.isLoggedIn() ? JSON.parse(localStorage.userprofile):"lalala"
 
-  const [userProfile, setUserProfile] = useState({})
+  // console.log(test)
+
+  const [userProfile, setUserProfile] = useState({emoji:'🌴'})
   
   useEffect(() => {
       api
@@ -37,9 +39,9 @@ function NavBar(props) {
           <p>Profile</p>
         </NavLink>
 
-        <NavLink activeClassName="selected" to="/favs">
+        <NavLink style={{ color: 'red' }} activeClassName="selected" to="/favs">
           <i class="fas fa-heart"></i>
-          <p>Favs</p>
+          <p style={{ color: 'black' }}>Favs</p>
         </NavLink>
 
         <NavLink activeClassName="selected" to="/home">

@@ -10,6 +10,7 @@ function ListMessages(props) {
   const [profile, setProfile] = useState({})
   const [otherUser, setOtherUser] = useState(props.match.params.id)
 
+  console.log(profile)
   useEffect(() => {
 
   api
@@ -60,50 +61,7 @@ function ListMessages(props) {
         <div>🎃fakeUser</div>
         <div>🎃fakeUser</div>
         <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
-        <div>🎃fakeUser</div>
+     
       </div>
 
       <Messages

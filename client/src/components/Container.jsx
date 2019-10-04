@@ -42,11 +42,11 @@ function Container({
 }) {
   useEffect(fetchEvents, [])
   useEffect(fetchUsers, [])
-  useEffect(fetchUserProfile, [])
+  useEffect(fetchUserProfile,[])
   useEffect(fetchUserProfiles, [])
 
   //46.7111 Longitude: 1.7191
-  const [geoloc, setGeoloc] = useState('')
+  const [geoloc, setGeoloc] = useState({lng: 2.3488, lat: 48.85341 })
 
   function getCurrentCoordinates() {
     if (navigator.geolocation) {
@@ -61,8 +61,10 @@ function Container({
         console.log(geoloc)
       })
     }
-    setDefaultValue(true)
-    setGeoloc({ ...geoloc, lng: 2.3488, lat: 48.85341 })
+    else {
+      setDefaultValue(true)
+      setGeoloc({ ...geoloc, lng: 2.3488, lat: 48.85341 })
+    }
   }
 
   useEffect(() => {
@@ -214,12 +216,7 @@ function Container({
                         : problem
                     }
                   >
-                    {e._id &&
-                      (e.favs.includes(userProfile._id) ? (
-                        'remove'
-                      ) : (
-                        <i class="far fa-heart"></i>
-                      ))}
+                    {e._id && (e.favs.includes(userProfile._id) ? '</3' : '<3')}
                   </button>
                 )}
               </div>

@@ -535,6 +535,10 @@ overflow:scroll;
   cursor:pointer;
 }
 
+.logout:hover{
+  color:red;
+}
+
 .bio{
   color:grey;
 }
@@ -606,8 +610,25 @@ main{
 }
 
 .FavsList__events{
-  height:50%;
+  height:85%;
+  border: 5px solid black;
+  overflow:scroll;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items:center;
 }
+
+.FavsList__events > div {
+  /* border:solid 1px red; */
+  margin-top:5%;
+  width:50%;
+}
+.FavsList__events > .FavsList__event:hover {
+  transform:scale(1.1);
+}
+
+
 
 
 

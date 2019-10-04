@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Link, NavLink, Route, Switch } from 'react-router-dom'
@@ -22,11 +22,29 @@ require ('dotenv').config()
 
 function App(props) {
 
+  const [userProfile, setUserProfile] = useState({})
+
   
+  function fetchUserProfile() {
+    console.log("fetching user profile")
+    api
+      .getUserProfileWithUser(JSON.parse(localStorage.user)._id)
+      .then(res => {
+        console.log("--------")
+        setUserProfile(res)
+        if (res.connected) console.log(res.connected)
+        console.log("--------")
+      })
+      .catch(err => console.log(err))
+  }  
+  
+
   return (
     <div
       className="App"
-      props={props}>
+      props={props}
+      fetchUserProfile={fetchUserProfile}
+    >
       {/* <Header /> */}
       <Switch>
 
@@ -61,7 +79,7 @@ function App(props) {
         <Route render={() => <h1>404, sorry little qoqo</h1>} />
       </Switch>
 
-      {api.isLoggedIn() && <NavBar />}
+      {/* {api.isLoggedIn() && <NavBar />} */}
 
     </div>
   );

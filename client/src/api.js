@@ -56,8 +56,7 @@ export default {
       .then(res => {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
-        console.log(localStorage)
-        return res.data
+        console.log(res.data._id)
       })
       .catch(errHandler)
   },
