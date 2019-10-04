@@ -110,8 +110,13 @@ function Container({
       distance(e.location.coordinates, [geoloc.lat, geoloc.lng]) < Number(km) &&
       // true)
 
-      ((e.name && e.name.toLowerCase().includes(filter.toLowerCase())) ||
-        (e.city && e.city.toLowerCase().includes(filter.toLowerCase())))
+
+        (e.name && e.name.toLowerCase().includes(filter.toLowerCase()))
+        ||
+        (e.city && e.city.toLowerCase().includes(filter.toLowerCase()))
+        ||  
+        (e.keywords && e.keywords.includes(filter))
+      
     )
 
     // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
