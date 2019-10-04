@@ -183,7 +183,7 @@ function Container({
                 {
                   <a href={`/event-details/${e._id}`} className="HiddenCard">
                     <h3>
-                      {geoloc &&
+                      {e.location && geoloc &&
                         distance(e.location.coordinates, [
                           geoloc.lat,
                           geoloc.lng,
@@ -191,7 +191,7 @@ function Container({
                     </h3>
                     {e.event_end < today ? 'qoqover :(' : ''}
                     {e.keywords &&
-                      e.keywords.fr.map((e, i) => (
+                      e.keywords.map((e, i) => (
                         
                           i < 3 ? <span key={i}>{`# ${e}`}</span>:""
                         

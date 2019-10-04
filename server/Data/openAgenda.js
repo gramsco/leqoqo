@@ -16,6 +16,10 @@ mongoose
 
 function filterData(e) {
     if (e == undefined) return
+
+    if (e.keywords) e.keywords = e.keywords.fr.map(e => e.toLowerCase())
+    // e.keywords = e.keywords.map(e => e.keywords.toLowerCase())
+
     return {
         name: e.title.fr,
         address: e.address,
