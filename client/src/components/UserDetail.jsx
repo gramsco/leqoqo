@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from './NavBar'
 import Header from './Header'
 import api from '../api'
+import { Link } from 'react-router-dom'
 import { userInfo } from 'os'
 import UserProfile from './UserProfile'
 import Messages from './Messages/Messages'
@@ -80,7 +81,10 @@ function UserDetail(props) {
     let body = { first_id: userVisited._id, second_id: userProfile._id }
     api
       .createRoom(body)
-      .then(res => setMsg(true))
+      .then(res => {
+        setMsg(true)
+        props.history.push(`/messages/${userVisited._id}`)
+      })
       .catch(err => console.log(err))
   }
 
@@ -102,65 +106,87 @@ function UserDetail(props) {
             </span>
           </div>
         ) : (
-            !msg && (
-              <div className="UserDetail__Main">
-                <div className="top">
-                  <div className="side">
-                    <div onClick={handleLogout}>
-                      <i class="fas fa-power-off logout-icon"></i>
-                    </div>
+          !msg && (
+            <div className="UserDetail__Main">
+              <div className="top">
+                <div className="side">
+                  <div style={{ visibility: 'hidden' }} onClick={handleLogout}>
+                    <i class="fas fa-power-off logout-icon"></i>
                   </div>
+                </div>
+
+                <div className="center">
+                  <div className="bigEmoji">{userVisited.emoji}</div>
                   {userVisited._id === userProfile._id ? (
                     <div>
                       <i class="fas fa-exchange-alt">
-                        <a href="/UserProfile">edit profile</a></i></div>
+                        <a href="/UserProfile">edit profile</a>
+                      </i>
+                    </div>
                   ) : (
-                      <div onClick={() => handleMsg(true)}>
-                        <i class="fas fa-envelope"></i>
-                      </div>
-                    )}
-                  <div className="center">
-                    <div className="bigEmoji">{userVisited.emoji}</div>
-                    <div className="userVisitedName">{`${userVisited.username}`}</div>
-                  </div>
-
-                  <div className="side">
-                    <div></div>
-                    <div></div>
-                  </div>
+                    // <Link to={`/messages/${userVisited._id}`}>
+                    //   <i class="fas fa-envelope"></i>
+                    // </Link>
+                    <div onClick={() => handleMsg(true)}>
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                  )}
+                  <div className="userVisitedName">{`${userVisited.username}`}</div>
                 </div>
 
-                <div className="middle">
-                  <h3 className="bio">BIO</h3>
-                  <div className="middle__bio">
-                    <h3>{userVisited.bio && ''}</h3>
-                    <p>{userVisited.bio || ''}</p>
-                  </div>
-
-                  <div className="middle__questions">
-                    <p>If I was.. {userVisited.question_type || ''}.. I would be : {userVisited.question_answer || ''}</p>
-
-                    {(userVisited.weekends === '' && userVisited.weekday === '' && userVisited.weekends === '') ? ("i am not available") :
-                      (
-                        <><span className="availability">I am available during.....</span>
-                          <span className="availability">{(userVisited.weekends && "weekends" || '')}</span> &nbsp;
-                    <span className="availability">{(userVisited.weekday && 'weekday' || '')}</span> &nbsp;
-                     <span className="availability">{(userVisited.weeknights && 'weeknights' || '')}</span> </>)}
-
-
-                  </div>
+                <div className="side">
+                  <div></div>
+                  <div></div>
                 </div>
               </div>
-            )
 
-          )}
+              <div className="middle">
+                <h3 className="bio">BIO</h3>
+                <div className="middle__bio">
+                  <h3>{userVisited.bio && ''}</h3>
+                  <p>{userVisited.bio || ''}</p>
+                </div>
+                
+                  <div className="middle__questions">
+                    {userVisited.question_answer &&
+                      <p>
+                        If I was.. {userVisited.question_type}.. I would be :{' '}
+                        {userVisited.question_answer}
+                      </p>
+                    }
 
-        <div> tessttt</div>
+                  {!userVisited.weekends &&
+                  !userVisited.weekday &&
+                  !userVisited.weekends ? (
+                    <span className="availability"></span>
+                  ) : (
+                    <>
+                      <span className="availability">
+                        I am available to go out on.....
+                      </span>
+                      <span className="availability">
+                        {(userVisited.weekends && 'weekends, ') || ''}
+                      </span>{' '}
+                      &nbsp;
+                      <span className="availability">
+                        {(userVisited.weekday && 'weekday, ') || ''}
+                      </span>{' '}
+                      &nbsp;
+                      <span className="availability">
+                        {(userVisited.weeknights && 'weeknights') || ''}
+                      </span>{' '}
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        )}
       </div>
-      {msg && userVisited && (
+      {/* {msg && userVisited && (
         <Messages otherUserId={userVisited._id} userId={userProfile._id} />
-      )}
-      {!msg && <NavBar props={props} />}
+      )} */}
+      {!msg && <NavBar props={props} userProfile={userProfile}/>}
     </>
   )
 

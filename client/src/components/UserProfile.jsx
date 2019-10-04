@@ -22,7 +22,7 @@ function UserProfile(props) {
         setState({
           ...state,
           username: res.username,
-          emoji: emoji,
+          emoji: res.emoji,
           bio: res.bio,
           question_type: res.question_type,
           question_answer: res.question_answer,
@@ -101,7 +101,7 @@ function UserProfile(props) {
       .catch(err => console.log(err))
   }
 
-    const [emoji, setEmoji] = useState('😍')
+    const [emoji, setEmoji] = useState('')
 
     const [emojis, setEmojis] = useState({
         bool: false,
@@ -136,7 +136,6 @@ function UserProfile(props) {
       <div className="container">
         <header>
           <h1>Complete your profil</h1>
-          <div>{JSON.stringify(state)}</div>
         </header>
         <div className="userprofile-container">
           {page === 1 && (
@@ -246,13 +245,13 @@ function UserProfile(props) {
                   value={state.question_type}
                   name="question_type"
                 >
-                  <option value="animal">an animal</option>
-                  <option value="movie">a movie</option>
-                  <option value="book">a book</option>
+                  <option value="an animal">an animal</option>
+                  <option value="a movie">a movie</option>
+                  <option value="a book">a book</option>
                   <option value="food">food</option>
-                  <option value="flower">a flower</option>
-                  <option value="person">another person</option>
-                  <option value="train">a train</option>
+                  <option value="a flower">a flower</option>
+                  <option value="a person">another person</option>
+                  <option value="a train">a train</option>
                 </select>{' '}
                 I'd be{' '}
                 <input
@@ -269,7 +268,6 @@ function UserProfile(props) {
           )}
         </div>
         <a href="/home">Ignore this step</a>
-        <pre>{JSON.stringify(state)}</pre>
       </div>
     )
 }

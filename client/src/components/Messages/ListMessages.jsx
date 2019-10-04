@@ -3,14 +3,14 @@ import api from './../../api'
 import NavBar from './../NavBar'
 import Messages from './Messages'
 
-function ListMessages() {
+function ListMessages(props) {
 
   let users_infos = JSON.parse(localStorage.user)
 
   const [profile, setProfile] = useState({})
-  const [otherUser, setOtherUser] = useState("")
-  console.log(profile)
+  const [otherUser, setOtherUser] = useState(props.match.params.id)
 
+  console.log(profile)
   useEffect(() => {
 
   api
@@ -25,30 +25,50 @@ function ListMessages() {
 
   return (
     <div className="ListMessages">
-      <ul className="ListMessages__Contacts">
+      <button
+        style={{ visibility: otherUser === 'all' ? 'hidden' : 'visible' }}
+        onClick={() => setOtherUser('all')}
+      >
+        Hide chat
+      </button>
+      <div
+        className="ListMessages__Contacts"
+        style={{ height: otherUser === 'all' ? '100%' : '10vh' }}
+      >
         {profile.chats_user &&
-          profile.chats_user.map(e => (
-            
-            profile._id !== e._id &&
+          profile.chats_user.map(
+            e =>
+              profile._id !== e._id && (
+                <div
+                  style={{
+                    cursor: 'pointer',
+                    color:e.connected?'green':'red'
+                  }}
+                  onClick={() => {
+                    setOtherUser('all')
+                    setTimeout(() => {
+                      setOtherUser(e._id)
+                    }, 100)
+                  }}
+                  key={e._id}
+                >
+                  {e.emoji}
+                  {e.username}
+      
+                </div>
+              )
+          )}
+        <div>🎃fakeUser</div>
+        <div>🎃fakeUser</div>
+        <div>🎃fakeUser</div>
+     
+      </div>
 
-            <li
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                setOtherUser("")
-                setTimeout(() => {
-                  setOtherUser(e._id)
-                }, 100)
-              }}
-              key={e._id}
-            >
-              {e.emoji}
-              {e.username}
-            </li>
-            
-          ))}
-      </ul>
-      <button onClick={() => setOtherUser("")}>Hide chat</button>
-      <Messages classs="Messages_list" userId={profile._id} otherUserId={otherUser} />
+      <Messages
+        classs="Messages_list"
+        userId={profile._id}
+        otherUserId={otherUser}
+      />
       <NavBar />
     </div>
   )

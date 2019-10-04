@@ -6,6 +6,8 @@ function Infos(props) {
   return (
 
     <div className="Infos">
+      <h1>Le QoQo</h1>
+
       <div>An original idea by Setti Rais Ali</div>
 
       <div className="dev_team">

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import NavBar from "./NavBar"
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import Map from './Map'
@@ -10,6 +10,9 @@ import EventDetail from './EventDetail'
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhbXNjbyIsImEiOiJjazB3ZG5oaXQwMjNrM2NtbTh1bWh0NWtzIn0.5zWaES3a2JH0EZbd7t8aMA'
 
 function Home(props) {
+
+  if (props.location.pathname === "/") props.history.push('/home')
+  if (!api.isLoggedIn()) props.history.push('/signup')
     // const [connected, setConnected] = useState(true)
   const [users, setUsers] = useState([])
   const [events, setEvents] = useState([])
@@ -20,9 +23,13 @@ function Home(props) {
   const [userProfile, setUserProfile] = useState({})
   const [userProfiles, setUserProfiles] = useState([])
   const [filter, setFilter] = useState("")
-  const [connected,setConnected] = useState(false)
+  const [connected, setConnected] = useState(false)
+  const [defaultValue,setDefaultValue] = useState(false)
   
+  
+  // useEffect(fetchUserProfile, [])
 
+  
   function fetchUserProfiles() {
     api
       .getAllUserProfiles()
@@ -80,6 +87,7 @@ function Home(props) {
           userProfile={userProfile}
           setConnected={setConnected}
           fetchUserProfile={fetchUserProfile}
+          defaultValue={defaultValue}
         />
 
         {!api.isLoggedIn() && <Map />}
@@ -89,7 +97,7 @@ function Home(props) {
             eventDetail={eventDetail}
           />
         )}
-        
+
         {!eventDetail && api.isLoggedIn() && (
           <Container
             onScroll={() => console.log('lalalalalala')}
@@ -101,11 +109,10 @@ function Home(props) {
             setEventDetail={setEventDetail}
             km={km}
             loading={loading}
-
+            setDefaultValue={setDefaultValue}
             //all the user profiles
             userProfiles={userProfiles}
             fetchUserProfiles={fetchUserProfiles}
-
             //the logged in user profile
             userProfile={userProfile}
             fetchUserProfile={fetchUserProfile}
@@ -117,7 +124,7 @@ function Home(props) {
             You're not connected! Please<a href="/signup"> log in </a>{' '}
           </div>
         )}
-        {api.isLoggedIn() && <NavBar props={props} />}
+        {api.isLoggedIn() && <NavBar userProfile={userProfile} />}
       </div>
     )
 

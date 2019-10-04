@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Link, NavLink, Route, Switch } from 'react-router-dom'
@@ -16,26 +16,45 @@ import Header from './components/Header'
 import EventDetail from './components/EventDetail';
 import Infos from './components/Infos'
 import Favs from './components/Favs'
+import api from './api'
 
 require ('dotenv').config()
 
 function App(props) {
 
+  const [userProfile, setUserProfile] = useState({})
+
+  
+  function fetchUserProfile() {
+    console.log("fetching user profile")
+    api
+      .getUserProfileWithUser(JSON.parse(localStorage.user)._id)
+      .then(res => {
+        console.log("--------")
+        setUserProfile(res)
+        if (res.connected) console.log(res.connected)
+        console.log("--------")
+      })
+      .catch(err => console.log(err))
+  }  
+  
+
   return (
     <div
       className="App"
-      props={props}>
+      props={props}
+      fetchUserProfile={fetchUserProfile}
+    >
+      {/* <Header /> */}
       <Switch>
 
         <Route exact path="/" component={Home}/>
         <Route exact path="/home" component={Home} />
         {/* <Route exact path="/Signup" component={Signup} /> */}
 
-
         <Route exact path="/Signup" render={routeProps => (
           <Auth isLogin={false} {...routeProps} />
         )} />
-
 
         <Route exact path="/login" render={routeProps => (
           <Auth isLogin={true} {...routeProps} />
@@ -46,7 +65,7 @@ function App(props) {
         <Route exact path="/event-details/:id" component={EventDetail} />
         
         <Route path="/profile-settings" component={UserDetail} />
-        <Route exact path="/messages/" component={ListMessages} />
+        <Route path="/messages/:id" component={ListMessages} />
         <Route exact path="/infos" component={Infos} />
         <Route exact path="/favs" component={Favs} />
         {/* (- PAGES TO COMMENT ONCE DEPLOYED */}
@@ -60,6 +79,7 @@ function App(props) {
         <Route render={() => <h1>404, sorry little qoqo</h1>} />
       </Switch>
 
+      {/* {api.isLoggedIn() && <NavBar />} */}
 
     </div>
   );

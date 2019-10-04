@@ -5,18 +5,29 @@ import api from "../api"
 
 
 
-function NavBar({ props }) {
+function NavBar() {
 
-  let users_infos = JSON.parse(localStorage.user)
+  console.log(localStorage)
+  const users_infos = JSON.parse(localStorage.user)
+  // const test = api.isLoggedIn() ? JSON.parse(localStorage.userprofile):"lalala"
 
-  const [userProfile,setUserProfile] = useState({})
+  // console.log(test)
+
+  const [userProfile, setUserProfile] = useState({emoji:'🌴'})
+  
   useEffect(() => {
       api
         .getUserProfileWithUser(users_infos._id)
         .then(res => {
-          setUserProfile(res)
-          console.log(userProfile)
-          console.log(res)
+          
+          console.log('------')
+          console.log(res._id)
+          console.log("------")
+
+          api
+            .connect(res._id)
+            .then(() => setUserProfile(res))
+            .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
     },[])
@@ -28,9 +39,9 @@ function NavBar({ props }) {
           <p>Profile</p>
         </NavLink>
 
-        <NavLink activeClassName="selected" to="/favs">
+        <NavLink style={{ color: 'red' }} activeClassName="selected" to="/favs">
           <i class="fas fa-heart"></i>
-          <p>Favs</p>
+          <p style={{ color: 'black' }}>Favs</p>
         </NavLink>
 
         <NavLink activeClassName="selected" to="/home">
@@ -38,7 +49,7 @@ function NavBar({ props }) {
           <p>Home</p>
         </NavLink>
 
-        <NavLink activeClassName="selected" to="/messages">
+        <NavLink activeClassName="selected" to="/messages/all">
           <i class="far fa-comment-dots"></i>
         </NavLink>
 

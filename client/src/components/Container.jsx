@@ -38,13 +38,15 @@ function Container({
   userProfiles,
   fetchUserProfiles,
   filter,
+  setDefaultValue,
 }) {
   useEffect(fetchEvents, [])
   useEffect(fetchUsers, [])
-  useEffect(fetchUserProfile, [])
+  useEffect(fetchUserProfile,[])
   useEffect(fetchUserProfiles, [])
 
-  const [geoloc, setGeoloc] = useState(false)
+  //46.7111 Longitude: 1.7191
+  const [geoloc, setGeoloc] = useState({lng: 2.3488, lat: 48.85341 })
 
   function getCurrentCoordinates() {
     if (navigator.geolocation) {
@@ -55,15 +57,19 @@ function Container({
           lng: position.coords.longitude,
           lat: position.coords.latitude,
         })
+        
         console.log(geoloc)
       })
+    }
+    else {
+      setDefaultValue(true)
+      setGeoloc({ ...geoloc, lng: 2.3488, lat: 48.85341 })
     }
   }
 
   useEffect(() => {
     getCurrentCoordinates()
-  },[])
-  
+  }, [])
 
   console.log(userProfiles)
 
@@ -75,7 +81,7 @@ function Container({
     let event = e.target.value
     let user = userProfile._id
     console.log(event, user)
-    
+
     api
       .addFavEvent({ event, user })
       .then(() => {
@@ -101,69 +107,55 @@ function Container({
   function sortingEvents(e) {
     // if (e.name === undefined) return
     return (
-    
-      //  distance(
-      //   e.location.coordinates, [
-      //                   geoloc.lat,
-      //                   geoloc.lng,
-      //  ]) < Number(km))
+      distance(e.location.coordinates, [geoloc.lat, geoloc.lng]) < Number(km) &&
+      // true)
 
-      true)
-    
-    
-      &&
+      ((e.name && e.name.toLowerCase().includes(filter.toLowerCase())) ||
+        (e.city && e.city.toLowerCase().includes(filter.toLowerCase())))
+    )
 
-      (
-        e.name && e.name.toLowerCase().includes(filter.toLowerCase())
-      ||
-        e.city && e.city.toLowerCase().includes(filter.toLowerCase())
-      )
+    // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
 
-      // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
-  
-     
     // ||
     // e.place.ville.toLowerCase().includes(filter.toLowerCase())
     // ||
     // e.favs.length >= filter
   }
 
-  function location(a,b) {
+  function location(a, b) {
     return (
-      distance(a.location.coordinates, [geoloc.lat, geoloc.lng])
-      -
+      distance(a.location.coordinates, [geoloc.lat, geoloc.lng]) -
       distance(b.location.coordinates, [geoloc.lat, geoloc.lng])
     )
   }
 
-function sortingUsers(e) {
-  // if (e.name === undefined) return
-  return (
-    //  distance(
-    //   e.location.coordinates, [
-    //                   geoloc.lat,
-    //                   geoloc.lng,
-    //  ]) < Number(km))
-e.username && e.username.toLowerCase().includes(filter.toLowerCase())
+  function sortingUsers(e) {
+    // if (e.name === undefined) return
+    return (
+      //  distance(
+      //   e.location.coordinates, [
+      //                   geoloc.lat,
+      //                   geoloc.lng,
+      //  ]) < Number(km))
+      e.username &&
+      e.username.toLowerCase().includes(filter.toLowerCase()) &&
+      e.connected
       // (e.city && e.city.toLowerCase().includes(filter.toLowerCase())))
-  
-  )
-  // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
+    )
+    // (e.keywords && e.keywords.fr && e.keywords.fr.includes(filter))
 
-  // ||
-  // e.place.ville.toLowerCase().includes(filter.toLowerCase())
-  // ||
-  // e.favs.length >= filter
-}
+    // ||
+    // e.place.ville.toLowerCase().includes(filter.toLowerCase())
+    // ||
+    // e.favs.length >= filter
+  }
 
-function location(a, b) {
-  return (
-    distance(a.location.coordinates, [geoloc.lat, geoloc.lng]) -
-    distance(b.location.coordinates, [geoloc.lat, geoloc.lng])
-  )
-}
-
-
+  function location(a, b) {
+    return (
+      distance(a.location.coordinates, [geoloc.lat, geoloc.lng]) -
+      distance(b.location.coordinates, [geoloc.lat, geoloc.lng])
+    )
+  }
 
   return (
     <div
@@ -174,67 +166,63 @@ function location(a, b) {
       imagesLoadedOptions={imagesLoadedOptions} // default {}
       breakpointCols={breakpointColumnsObj}
     >
-      {loading && ""}
-      {search === 'events' && 
+      {loading && ''}
+      {search === 'events' &&
         events &&
         events
           .filter(sortingEvents)
           .sort(true ? location : () => true)
           .map(e => (
-          
-              <LazyLoad key={e._id}>
-                <div
-                  className="Card"
-                  style={{
-                    backgroundImage: `url(${e.image})`,
-                  }}
-                >
-                  {
-                    <a href={`/event-details/${e._id}`} className="HiddenCard">
-                      <h3>
-                        {geoloc &&
-                          distance(e.location.coordinates, [
-                            geoloc.lat,
-                            geoloc.lng,
-                          ]).toFixed(2) + ' km'}
-                      </h3>
-                      {e.event_end < today ? 'qoqover :(' : ''}
-                      {e.keywords &&
-                        e.keywords.fr.map((e, i) => (
-                          <span key={i}>{`# ${e}`}</span>
-                        ))}
-                    </a>
-                  }
-                  <div class="NameTag">{e.name}</div>
+            <LazyLoad key={e._id}>
+              <div
+                className="Card"
+                style={{
+                  backgroundImage: `url(${e.image})`,
+                }}
+              >
+                {
+                  <a href={`/event-details/${e._id}`} className="HiddenCard">
+                    <h3>
+                      {geoloc &&
+                        distance(e.location.coordinates, [
+                          geoloc.lat,
+                          geoloc.lng,
+                        ]).toFixed(2) + ' km'}
+                    </h3>
+                    {e.event_end < today ? 'qoqover :(' : ''}
+                    {e.keywords &&
+                      e.keywords.fr.map((e, i) => (
+                        
+                          i < 3 ? <span key={i}>{`# ${e}`}</span>:""
+                        
+                      ))}
+                  </a>
+                }
+                <div class="NameTag">{e.name}</div>
 
-                  {/* <div>{e.location.coordinates}</div> */}
+                {/* <div>{e.location.coordinates}</div> */}
 
-                  {e._id !== 'undefined' && (
-                    <button
-                      className="Favs"
-                      style={{
-                        border: '1px black solid',
-                        fontSize: '15px',
-                      }}
-                      value={e._id}
-                      onClick={
-                        e._id !== 'undefined'
-                          ? e.favs.includes(userProfile._id)
-                            ? removeFav
-                            : addFav
-                          : problem
-                      }
-                    >
-                      {e._id &&
-                        (e.favs.includes(userProfile._id) ? (
-                          'remove'
-                        ) : (
-                          <i class="far fa-heart"></i>
-                        ))}
-                    </button>
-                  )}
-                </div>
-              </LazyLoad>
+                {e._id !== 'undefined' && (
+                  <button
+                    className="Favs"
+                    style={{
+                      border: '1px black solid',
+                      fontSize: '15px',
+                    }}
+                    value={e._id}
+                    onClick={
+                      e._id !== 'undefined'
+                        ? e.favs.includes(userProfile._id)
+                          ? removeFav
+                          : addFav
+                        : problem
+                    }
+                  >
+                    {e._id && (e.favs.includes(userProfile._id) ? '</3' : '<3')}
+                  </button>
+                )}
+              </div>
+            </LazyLoad>
           ))}
 
       {/* <div className="userprofiles"> */}
@@ -245,7 +233,6 @@ function location(a, b) {
             {e.username && (
               <a href={`/profile/${e._id}`}>
                 <div key={e._id} className="userContainer newcontainer">
-
                   <div className="emj"> {e.emoji}</div>
                   <div className="test"> {e.username}</div>
 

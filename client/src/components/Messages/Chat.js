@@ -57,7 +57,7 @@ function Chat(props) {
           {/*TODO: Get other user's name from Chatkit */}
           <span>{props.chatkit.isLoading
             ? 'Loading...'
-            : props.chatkit.otherUser.name}
+            : "you're talking with " + props.chatkit.otherUser.name}
           </span>
         </div>
       </div>
