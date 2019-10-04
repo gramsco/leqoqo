@@ -12,7 +12,7 @@ function UserDetail(props) {
   let users_infos = JSON.parse(localStorage.user)
   const [userProfile, setUserProfile] = useState({})
   const id = props.match.params.id
-  const [userVisited, setUserVisited] = useState({})
+  const [userVisited, setUserVisited] = useState('')
 
   useEffect(() => {
 
@@ -95,35 +95,25 @@ function UserDetail(props) {
     <>
       <Header props={props} userProfile={userProfile} />
       <div className="UserDetail">
-        {!api.isLoggedIn ? (
-          <div>
-            <span role="img" aria-label="Panda">
-              🐼
-            </span>
-            YOU SHOULD NOT BE HERE{' '}
-            <span role="img" aria-label="Panda">
-              🐼
-            </span>
-          </div>
-        ) : (
-          !msg && (
-            <div className="UserDetail__Main">
-              <div className="top">
-                <div className="side">
-                  <div style={{ visibility: 'hidden' }} onClick={handleLogout}>
-                    <i class="fas fa-power-off logout-icon"></i>
-                  </div>
+        
+        {!msg && (
+          <div className="UserDetail__Main">
+            <div className="top">
+              <div className="side">
+                <div style={{ visibility: 'hidden' }} onClick={handleLogout}>
+                  <i class="fas fa-power-off logout-icon"></i>
                 </div>
+              </div>
 
-                <div className="center">
-                  <div className="bigEmoji">{userVisited.emoji}</div>
-                  {userVisited._id === userProfile._id ? (
-                    <div>
-                      <i class="fas fa-exchange-alt">
-                        <a href="/UserProfile">edit profile</a>
-                      </i>
-                    </div>
-                  ) : (
+              <div className="center">
+                <div className="bigEmoji">{userVisited.emoji}</div>
+                {userVisited._id === userProfile._id ? (
+                  <div>
+                    <i class="fas fa-exchange-alt">
+                      <a href="/UserProfile">edit profile</a>
+                    </i>
+                  </div>
+                ) : (
                     // <Link to={`/messages/${userVisited._id}`}>
                     //   <i class="fas fa-envelope"></i>
                     // </Link>
@@ -131,31 +121,31 @@ function UserDetail(props) {
                       <i class="fas fa-envelope"></i>
                     </div>
                   )}
-                  <div className="userVisitedName">{`${userVisited.username}`}</div>
-                </div>
-
-                <div className="side">
-                  <div></div>
-                  <div></div>
-                </div>
+                <div className="userVisitedName">{`${userVisited.username}`}</div>
               </div>
 
-              <div className="middle">
-                <h3 className="bio">BIO</h3>
-                <div className="middle__bio">
-                  <h3>{userVisited.bio && ''}</h3>
-                  <p>{userVisited.bio || ''}</p>
-                </div>
-                
-                  <div className="middle__questions">
-                    {userVisited.question_answer &&
-                      <p>
-                        If I was.. {userVisited.question_type}.. I would be :{' '}
-                        {userVisited.question_answer}
-                      </p>
-                    }
+              <div className="side">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
 
-                  {!userVisited.weekends &&
+            <div className="middle">
+              <h3 className="bio">BIO</h3>
+              <div className="middle__bio">
+                <h3>{userVisited.bio && ''}</h3>
+                <p>{userVisited.bio || ''}</p>
+              </div>
+                
+              <div className="middle__questions">
+                {userVisited.question_answer &&
+                  <p>
+                    If I was.. {userVisited.question_type}.. I would be :{' '}
+                    {userVisited.question_answer}
+                  </p>
+                }
+
+                {!userVisited.weekends &&
                   !userVisited.weekday &&
                   !userVisited.weekends ? (
                     <span className="availability"></span>
@@ -177,11 +167,11 @@ function UserDetail(props) {
                       </span>{' '}
                     </>
                   )}
-                </div>
               </div>
             </div>
-          )
+          </div>
         )}
+        )
       </div>
       {/* {msg && userVisited && (
         <Messages otherUserId={userVisited._id} userId={userProfile._id} />

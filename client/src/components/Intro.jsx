@@ -22,7 +22,7 @@ function Intro() {
           <p className="margin-3">#theatre</p>
         </div>
         <div className="qoqo-img">
-          <img className="qoqoimg" src="/logoqoqo.png" alt="logoqoqo" />
+          <img className="qoqoimg" src="/happy_qoqo.png" alt="logoqoqo" />
         </div>
         <div className="qoqo">
 

@@ -1,10 +1,9 @@
 .intro{
   background:#AFFBCE;
-  width:550px;
+  width:750px;
   display:flex;
   flex-direction: column;
-  margin-top:-120px;
-  align-items: center;
+  align-items: center; 
 }
 
 .test1{
@@ -71,13 +70,15 @@
   /* margin-bottom:30px; */
 }
 
+
+
 @media screen and (max-width: 750px) {
   .intro{
-    width:400px;
+    width:100%;
   }
-  .qoqoimg{
+  /* .qoqoimg{
     height:70%;
-  }
+  } */
 
   .margin-2{
     margin-left:40px;

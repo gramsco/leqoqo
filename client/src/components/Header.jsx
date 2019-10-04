@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import api from '../api'
 
 function Header({ defaultValue, setConnected, connected, setKm, km, userProfile="", props,filter, setFilter, search, setSearch}) {
@@ -9,6 +9,10 @@ function Header({ defaultValue, setConnected, connected, setKm, km, userProfile=
   const vh = `${-(km / 10)}`
   const rotate = `rotate(${(km) - 10}deg)`
   
+  const [logo, setLogo] = useState('/logoqoqo.png')
+
+  
+
   function handleLogout() {
 
     console.log(`trying to disconnect ${userProfile.username}`)
@@ -106,15 +110,17 @@ function Header({ defaultValue, setConnected, connected, setKm, km, userProfile=
         </div>
       </div>
 
-      <div className="logo_container">
+      <div
+        className="logo_container"
+        onMouseEnter={() => setLogo('/happy_qoqo.png')}
+        onMouseLeave={() => setLogo('/logoqoqo.png')}
+      >
         <img
           style={{
-            cursor: 'pointer',
             height: vh,
             transform: rotate,
           }}
-          onClick={() => console.log('clicked')}
-          src="/logoqoqo.png"
+          src={logo}
           alt="le logo"
         />
       </div>
