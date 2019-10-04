@@ -6,8 +6,8 @@ function Header({ defaultValue, setConnected, connected, setKm, km, userProfile=
   if (userProfile) console.log(userProfile)
   
   const path = props.match.path
-  const vh = `${-(km / 10)}`
-  const rotate = `rotate(${(km) - 10}deg)`
+  // const vh = `${(km)}`
+  const rotate = `rotate(${(km)*36-36}deg)`
   
   const [logo, setLogo] = useState('/logoqoqo.png')
 
@@ -117,7 +117,7 @@ function Header({ defaultValue, setConnected, connected, setKm, km, userProfile=
       >
         <img
           style={{
-            height: vh,
+            // height: vh,
             transform: rotate,
           }}
           src={logo}
@@ -138,10 +138,10 @@ function Header({ defaultValue, setConnected, connected, setKm, km, userProfile=
         <input
           onChange={e => setKm(e.target.value)}
           type="range"
-          step="10"
+          step="1"
           value={km}
-          min="10"
-          max="1000"
+          min="1"
+          max="10"
         />
         {km}km {defaultValue && <span>(from default location Paris)</span>}
       </div>

@@ -18,7 +18,7 @@ function Home(props) {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState("events")
-  const [km, setKm] = useState(10)
+  const [km, setKm] = useState(1)
   const [eventDetail, setEventDetail] = useState("")
   const [userProfile, setUserProfile] = useState({})
   const [userProfiles, setUserProfiles] = useState([])

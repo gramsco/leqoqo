@@ -4,7 +4,8 @@ let mongoose = require('mongoose')
 let EventModel = require("../models/Event")
 let path = require("path")
 const baseURL = "https://openagenda.com/agendas/49405812/events.json?lang=fr&key=aa7d7eac3dc04a5fa98924368f080baf";
-const pageLimit = 3;
+const pageLimit = 160;
+const start_page = 102;
 require('dotenv').config({ path: path.join(__dirname, '../.env') })
 
 
@@ -16,15 +17,21 @@ mongoose
 
 function filterData(e) {
     if (e == undefined) return
-
-    if (e.keywords) e.keywords = e.keywords.fr.map(e => e.toLowerCase())
-    // e.keywords = e.keywords.map(e => e.keywords.toLowerCase())
+    if (e.keywords == undefined) {
+        
+        keywords = null
+    }
+    else {
+        keywords = e.keywords.fr
+    }
+    
+    console.log(keywords)
 
     return {
         name: e.title.fr,
         address: e.address,
         image: e.image,
-        keywords: e.keywords,
+        keywords: keywords,
         range: e.range.fr,
         description: e.longDescription,
         image_url: e.image,
@@ -47,7 +54,7 @@ async function recursiveGet(url, page, finalRes) {
 }
 
 (async function getData() {
-    const finalCall = await recursiveGet(baseURL, 0, []);
+    const finalCall = await recursiveGet(baseURL, start_page, []);
     EventModel
         .insertMany(finalCall.map(filterData))
         .then(() => console.log("mash'allah"))

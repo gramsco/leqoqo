@@ -168,7 +168,6 @@ router.get("/places", (req, res) => {
 //EVENTS
 
 router.get("/events", (req, res) => {
-  console.log("wesh")
   EventModel
     .find()
     .populate("place")
@@ -182,7 +181,6 @@ router.get("/events", (req, res) => {
 
 router.post("/events", (req, res) => {
 
-  console.log(req.body)
   const {type,name,place,cat,event_begin,event_end,hour_begin} = req.body
   EventModel
     .create({ type, name, place, cat, event_begin, event_end, hour_begin, favs: [] })

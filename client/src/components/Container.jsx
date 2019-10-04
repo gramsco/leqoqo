@@ -242,7 +242,7 @@ function Container({
                   <div className="emj"> {e.emoji}</div>
                   <div className="test"> {e.username}</div>
 
-                  <div className="test love">
+                  <div style={{ visilibity: "hidden" }} className="test love">
                     <i class="fab fa-gratipay"></i>
                   </div>
 
