@@ -47,21 +47,6 @@ function FavsList(props) {
           {favs.map((e, i) => (
             <div className="FavsList__event" key={i}><a href={`/event-details/${e._id}`}>{e.name}</a></div>
           ))}
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
-          <div>A weird event</div>
         </div>
 
         <div style={{ display: 'none' }} class="FavsList__users">

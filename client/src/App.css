@@ -464,7 +464,8 @@ aside{
 }
 
 .middle {
-    border:solid 1px red;
+    /* border:solid 1px red; */
+    overflow:scroll;
     position:relative;
     top:15%;
 }
