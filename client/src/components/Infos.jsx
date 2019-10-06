@@ -21,31 +21,23 @@ function Infos(props) {
       <div className="dev_team">
         <h3 className="devtt">The QoQoding team</h3>
         <div className="Antonin">
+          <p>
+            {' '}
+            <strong>Antonin (@gramsco)</strong>
+          </p>
           <a target="_blank" href="https:/github.com/gramsco">
             <i class="fab fa-github ninja-icon"></i>
           </a>
-
-          <p>
-            {' '}
-            <strong>Antonin</strong> , Lorem ipsum, dolor sit amet consectetur
-            adipisicing elit. Iure nihil cupiditate delectus quo fuga quod rerum
-            perspiciatis nesciunt ad suscipit, explicabo ullam dolorem
-            voluptate, doloremque corrupti? Recusandae unde omnis alias
-          </p>
         </div>
 
         <div className="Niraja">
-          <a target="_blank" href="https://github.com/niraja426">
-            <i class="fab fa-github ninja-icon"></i>
-          </a>
           <p>
-            <strong>Niraja</strong>, Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Voluptatibus minus assumenda voluptatem harum in
-            dicta. Quisquam voluptates soluta deserunt aperiam, quo repellat.
-            Temporibus aperiam nobis corporis doloribus tenetur consequuntur
-            doloremque!
+            <strong>Niraja (@niraja426)</strong>
           </p>
         </div>
+        <a target="_blank" href="https://github.com/niraja426">
+          <i class="fab fa-github ninja-icon"></i>
+        </a>
       </div>
 
       <NavBar />
